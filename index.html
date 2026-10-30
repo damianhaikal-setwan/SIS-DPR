@@ -1,10 +1,86 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a6369"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="application-name" content="SIS-DPR"><meta name="apple-mobile-web-app-title" content="SIS-DPR"><meta name="description" content="Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu terintegrasi Supabase"><title>SIS-DPR · Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu</title><style>:root{--bg:#f0f4f8;--card:#fff;--ink:#152439;--muted:#65758a;--line:#dae3ed;--brand:#087b78;--brand2:#0c5764;--soft:#e4f4f0;--nav:#102238;--red:#aa3443;--orange:#fff3de;--shadow:0 8px 26px rgba(18,37,64,.05)}
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a6369"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="application-name" content="SIS-DPR"><meta name="apple-mobile-web-app-title" content="SIS-DPR"><meta name="mobile-web-app-capable" content="yes"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/sis-dpr-180.png"><link rel="icon" type="image/png" sizes="192x192" href="./icons/sis-dpr-192.png"><meta name="description" content="Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu terintegrasi Supabase"><title>SIS-DPR · Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu</title><style>:root{--bg:#f0f4f8;--card:#fff;--ink:#152439;--muted:#65758a;--line:#dae3ed;--brand:#087b78;--brand2:#0c5764;--soft:#e4f4f0;--nav:#102238;--red:#aa3443;--orange:#fff3de;--shadow:0 8px 26px rgba(18,37,64,.05)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--bg);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;min-height:40px;touch-action:manipulation}button:disabled{opacity:.5;cursor:not-allowed}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(21px,3vw,28px);line-height:1.2}h2{font-size:16px}small,.hint,.muted{color:var(--muted)}code{overflow-wrap:anywhere}button{border:1px solid var(--line);background:#fff;border-radius:11px;color:var(--ink);padding:9px 14px;font-size:13px;font-weight:700;white-space:normal}button:hover{filter:brightness(.96)}.primary{background:var(--brand);border-color:var(--brand);color:white}.button{background:#fff}.danger{background:#fff0f1;color:var(--red);border-color:#f2cfd3}.wide{width:100%}.light{background:#fff;color:var(--brand);border-color:#fff}.iconButton{width:42px;min-width:42px;padding:7px}.control{border:1px solid #d1dce8;border-radius:11px;min-height:43px;padding:10px 12px;background:#fff;color:var(--ink);width:100%;font-size:16px;outline:none}.control:focus{border-color:#087b78;box-shadow:0 0 0 3px #087b7822}.sidebar{position:fixed;inset:0 auto 0 0;width:265px;background:var(--nav);color:#d2e1f0;overflow:auto;z-index:80;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:11px;padding:23px 17px 20px;border-bottom:1px solid #ffffff1a}.brand b{font-size:18px;color:#fff;display:block}.brand small{font-size:10px;line-height:1.4;color:#a9c0d6;display:block}.logo,.loginLogo{background:linear-gradient(150deg,#1db9a3,#075e6a);border-radius:14px;color:#fff;display:grid;place-items:center;flex:0 0 auto;font-size:22px;font-weight:900;height:48px;width:48px}.navGroup{padding:8px 10px}.navHead{margin:7px 5px 6px;color:#97b0c6;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.55px}.navLink{display:block;background:transparent;color:#d1e1ef;border:0;text-align:left;border-radius:9px;width:100%;min-height:37px;padding:9px 13px;font-weight:500;white-space:normal}.navLink.active{background:#18535c;color:#fff;font-weight:800}.navLink.home{padding:13px 19px;text-align:left}.navLink:hover{background:#ffffff1c}.sideFoot{margin-top:auto;padding:16px;color:#a7bbc9;font-size:11px;border-top:1px solid #ffffff17}.logout{display:block;margin-top:10px;background:transparent;border-color:#557088;color:#fff;font-size:12px}.shell{margin-left:265px;min-height:100vh;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border-bottom:1px solid var(--line);padding:12px 26px;min-height:74px;position:sticky;top:0;z-index:50}.topLeft{display:flex;align-items:center;gap:12px}.crumb{font-size:11px;color:var(--muted)}.topTitle{font-size:18px;font-weight:850}.topRight{text-align:right;font-size:12px}.topRight span{display:block}.statusDot{background:#27ad76;border-radius:50%;width:8px;height:8px;display:inline-block;margin-right:4px}.view{max-width:1500px;margin:auto;padding:24px}.menuButton{display:none;min-width:42px}.welcome{background:linear-gradient(112deg,#076760,#0b465a);color:#fff;border-radius:18px;padding:26px 29px;margin-bottom:17px;display:flex;align-items:center;justify-content:space-between;gap:12px}.welcome h1{margin:0 0 8px}.welcome p:last-child{opacity:.88;margin:0}.eyebrow{font-size:10px;letter-spacing:1.3px;font-weight:800;margin-bottom:9px}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.metric{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:var(--shadow);overflow:hidden}.metricIcon{width:38px;height:38px;background:var(--soft);color:var(--brand);display:grid;place-items:center;border-radius:10px;margin-bottom:10px;font-size:18px}.metric strong{font-size:clamp(17px,1.7vw,25px);overflow-wrap:anywhere;line-height:1.23;margin-bottom:5px}.metric span:last-of-type{font-size:12px;color:var(--muted)}.metric small{font-size:11px;margin-top:5px}.panel{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:18px 20px;margin-bottom:17px;box-shadow:var(--shadow);min-width:0}.panel>header,.dialog>header,.panel header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.panel h2{margin-bottom:12px}.panel header h2{margin:0}.split{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,1fr);gap:17px}.listRow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.listRow:last-child{border-bottom:0}.listRow>div{min-width:0;flex:1}.listRow b{display:block;overflow-wrap:anywhere}.listRow small{display:block;font-size:11px;overflow-wrap:anywhere}.pageIntro{margin:1px 0 18px}.pageIntro h1{margin-bottom:6px}.pageIntro p{color:var(--muted);margin:0}.toolbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:12px 0}.grow{flex:1;min-width:170px}.recordGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.record{border:1px solid var(--line);border-radius:13px;padding:15px;min-width:0}.recordTop{display:flex;gap:12px;justify-content:space-between;align-items:flex-start}.recordTop>div{min-width:0}.recordTop b{font-size:14px;display:block;overflow-wrap:anywhere}.recordTop small{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:11px;margin-top:5px}.recordFoot{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:14px;border-top:1px solid var(--line);padding-top:10px}.recordFoot>span{font-size:10px;color:var(--muted);max-width:65%;overflow-wrap:anywhere}.chip{display:inline-flex;padding:4px 8px;font-size:10px;font-weight:800;white-space:nowrap;border-radius:8px;background:#edf2f7;color:#53657b}.chip.draft,.chip.diajukan{background:#fff1d5;color:#895b09}.chip.diverifikasi{background:#e6efff;color:#3a65a0}.chip.disetujui,.chip.selesai{background:#def8eb;color:#13694e}.chip.arsip{background:#e1f2f4;color:#0a636f}.empty{color:var(--muted);text-align:center;padding:32px 12px}.warn{background:var(--orange);border-left:3px solid #d49335;padding:16px 18px;border-radius:10px;margin:14px 0}.tableScroll{overflow:auto;max-width:100%;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;width:100%;min-width:650px;text-align:left;font-size:12px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);background:#f8fafc;font-size:11px;font-weight:800}td{overflow-wrap:anywhere}.field{display:flex;flex-direction:column;gap:5px;margin:4px 0;font-size:12px;font-weight:700}.field small{font-weight:400}.field.full,.full{grid-column:1/-1}.formGrid,.detailGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.detailItem{background:#f5f8fb;border-radius:9px;padding:10px 11px;overflow-wrap:anywhere}.detailItem small{display:block;font-size:11px}.detailItem b{font-size:13px;white-space:pre-line}.backdrop{position:fixed;inset:0;background:#071429b5;z-index:200;display:flex;justify-content:center;align-items:center;padding:13px;overflow-y:auto}.dialog{width:min(850px,100%);max-height:min(91vh,950px);overflow-y:auto;overscroll-behavior:contain;border-radius:17px;background:#fff;padding:21px;box-shadow:0 22px 65px #0004}.dialog h2{margin:0}.dialog footer{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:9px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}.sectionLabel{font-weight:850;margin:22px 0 10px;font-size:13px}.stepList{display:flex;flex-wrap:wrap;gap:7px}.step{padding:7px 12px;background:#eef3f7;border-radius:999px;color:#657184;font-size:11px;font-weight:750}.step.current{background:#fff1d5;color:#835508}.step.complete{background:#ddf6ea;color:#12704f}.upload{display:grid;gap:10px;background:#f5f9fc;border:1px dashed #cbd9e5;border-radius:12px;padding:14px}.toast{background:#0a5750;color:#fff;padding:12px 17px;border-radius:12px;box-shadow:0 7px 25px #0003;margin-bottom:8px;max-width:440px;font-size:13px}.toast.error{background:#9a3342}#toasts{position:fixed;bottom:calc(13px + env(safe-area-inset-bottom));right:13px;z-index:999;max-width:calc(100vw - 25px)}#loading{position:fixed;inset:0;background:#eef5f8bd;z-index:1000;display:flex;align-items:center;justify-content:center;gap:11px;font-weight:800}#loading[hidden]{display:none}#loading span{background:#fff;padding:15px 24px;border-radius:13px;box-shadow:0 10px 30px #0002}#authPage{min-height:100dvh;display:grid;place-items:center;padding:25px;background:linear-gradient(160deg,#e9f7f4,#f2f5f9 56%,#dfeaf2)}#authPage[hidden],#application[hidden]{display:none}.loginCard{width:min(460px,100%);background:#fff;border-radius:23px;padding:34px;box-shadow:0 18px 55px #13384a1e}.loginIdentity{text-align:center;margin-bottom:24px}.loginLogo{width:65px;height:65px;margin:0 auto 13px;font-size:26px}.loginIdentity h1{font-size:27px;margin:0 0 7px;color:#0a5f62}.loginIdentity p{color:var(--muted);line-height:1.5}.loginCard form{display:grid;gap:10px}.loginCard label{font-weight:750;font-size:12px}.loginCard button{margin-top:10px}.loginCard .hint{margin:20px 0 0;font-size:12px}.loginInfo{text-align:center;font-size:11px;color:#7b8ba0;border-top:1px solid var(--line);padding-top:18px;margin-top:24px}#shade[hidden]{display:none}
 @media(max-width:1180px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}}
 @media(max-width:820px){.sidebar{transform:translateX(-105%);transition:transform .25s;width:min(290px,86vw)}.sidebar.open{transform:translateX(0)}.shell{margin:0}.menuButton{display:inline-flex;justify-content:center;align-items:center}.topbar{padding:9px 13px;min-height:66px}.view{padding:16px}.topTitle{font-size:15px}.crumb,.desktopOnly{display:none}#shade:not([hidden]){position:fixed;inset:0;background:#0714299e;z-index:70}.welcome{padding:21px}.recordGrid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
 @media(max-width:540px){.metrics{gap:9px}.metric{padding:13px}.metric strong{font-size:17px}.metricIcon{height:31px;width:31px;font-size:16px}.panel{padding:15px}.welcome{display:block}.welcome button{margin-top:15px}.formGrid,.detailGrid{grid-template-columns:1fr}.dialog{padding:15px;max-height:95dvh}.backdrop{padding:6px}.recordGrid{grid-template-columns:1fr}.topRight{font-size:10px;max-width:47%;overflow-wrap:anywhere}.loginCard{padding:26px 20px}.toolbar>button{flex:0 1 auto}}
 @media print{.sidebar,.topbar,.toolbar,button,#shade{display:none!important}.shell{margin:0}.view{padding:0}.panel{box-shadow:none}}
-</style></head><body><div id="authPage"></div><div id="application" hidden><aside id="sidebar" class="sidebar"></aside><div id="shade" hidden></div><div class="shell"><header class="topbar"><div class="topLeft"><button id="menuToggle" class="menuButton" aria-label="Menu navigasi">☰</button><div><span class="crumb">SIS-DPR / Sekretariat DPRD Kabupaten Kapuas Hulu</span><div class="topTitle" id="topTitle">Dashboard</div></div></div><div class="topRight"><span id="userIndicator"></span><span id="connection"></span></div></header><main id="view" class="view"></main></div></div><div id="dialog"></div><div id="toasts" aria-live="polite"></div><div id="loading" hidden><span>Memuat...</span></div><script>
+
+/* SIS-DPR Mobile 2026: safe-area iPhone 13, Android, touch navigation */
+:root{--tap-min:44px}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,.navLink,[data-go]{-webkit-tap-highlight-color:transparent}
+button,select,input[type=checkbox],input[type=radio]{accent-color:var(--brand)}
+button:focus-visible,.navLink:focus-visible,.bottomNav button:focus-visible{outline:3px solid #54c3be;outline-offset:2px}
+.bottomNav{display:none}
+.offlineBanner{display:block;margin:0;padding:9px 18px;background:#fff2d8;color:#75460e;text-align:center;font-size:12px;font-weight:750;border-bottom:1px solid #e9cf91}
+.offlineBanner[hidden]{display:none!important}
+body.sis-drawer-open{overscroll-behavior:contain}
+.tableScroll{overscroll-behavior-x:contain;scrollbar-width:thin}
+label.field{min-width:0} .field>.control{min-width:0}
+@media(max-width:820px){
+  .shell{padding-bottom:calc(73px + env(safe-area-inset-bottom, 0px));min-height:100dvh}
+  .topbar{padding:calc(9px + env(safe-area-inset-top,0px)) calc(13px + env(safe-area-inset-right,0px)) 9px calc(13px + env(safe-area-inset-left,0px));min-height:calc(59px + env(safe-area-inset-top,0px))}
+  .topLeft{min-width:0;flex:1}.topLeft>div{min-width:0}.topTitle{line-height:1.25;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+  .topRight{flex:0 0 auto;max-width:39%;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+  .topRight #userIndicator{display:none}
+  .topRight #connection{display:flex;align-items:center;justify-content:flex-end;gap:5px;white-space:nowrap}
+  .topRight #connection .statusDot{display:inline-block;flex:0 0 auto;margin-right:0}
+  .topRight #connection .desktopOnly{display:none!important}
+  .menuButton{min-height:44px;min-width:44px}
+  .sidebar{top:0;bottom:0;height:100vh;height:100dvh;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .navLink{min-height:44px;padding:11px 13px}
+  .logout{min-height:44px}
+  .view{padding:15px 13px}
+  .bottomNav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;position:fixed;z-index:65;inset:auto 0 0 0;min-height:calc(68px + env(safe-area-inset-bottom,0px));padding:5px max(5px,env(safe-area-inset-right,0px)) calc(4px + env(safe-area-inset-bottom,0px)) max(5px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.98);border-top:1px solid var(--line);box-shadow:0 -5px 22px #19364d12;isolation:isolate}
+  .bottomNav button{border:0;border-radius:10px;background:transparent;color:#66778a;min-width:0;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px 1px;line-height:1.2;font-size:10px;font-weight:750;white-space:normal}
+  .bottomNav button span:first-child{font-size:21px;line-height:1.2}
+  .bottomNav button.current{background:var(--soft);color:#075f5c}
+  .bottomNav button:active,.navLink:active{background:#dff1ef}
+  body.sis-drawer-open{overflow:hidden}
+  #shade:not([hidden]){inset:0;z-index:70;touch-action:none}
+  .panel>header,.panel header{flex-wrap:wrap;align-items:flex-start}
+  .panel>header button,.panel header button{max-width:100%}
+  .listRow{flex-wrap:wrap;align-items:flex-start}
+  .listRow>button,.listRow>.button{min-height:44px}
+  .toolbar .control.grow{flex:1 1 100%;min-width:100%;max-width:100%}
+  .toolbar button{min-height:44px}
+  .recordFoot button,.recordTop button{min-height:44px}
+  .backdrop{align-items:flex-end;padding:env(safe-area-inset-top,0px) 0 0;overscroll-behavior:contain}
+  .dialog{width:100%;max-width:100%;max-height:calc(100dvh - env(safe-area-inset-top,0px) - 12px);border-radius:19px 19px 0 0;padding:16px 15px calc(16px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  .dialog>header{position:sticky;top:-16px;background:white;z-index:2;padding:7px 0 12px;margin:0 0 13px;border-bottom:1px solid var(--line)}
+  .dialog footer{position:sticky;bottom:calc(-16px - env(safe-area-inset-bottom,0px));background:white;padding:13px 0 calc(9px + env(safe-area-inset-bottom,0px));z-index:3;box-shadow:0 -5px 15px #1f36540a}
+  .dialog footer button{min-height:44px;flex:1 1 130px}
+  #toasts{bottom:calc(82px + env(safe-area-inset-bottom,0px));right:10px;left:10px;max-width:none}
+  body:not(.sis-authenticated) #toasts{bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  #authPage{min-height:100vh;min-height:100dvh;padding:calc(18px + env(safe-area-inset-top,0px)) 15px calc(18px + env(safe-area-inset-bottom,0px));align-items:center}
+  .loginCard{width:min(100%,460px)}
+  .loginCard button{min-height:48px}
+  .warn{overflow-wrap:anywhere}
+}
+@media(max-width:540px){
+  .view{padding:12px 11px}
+  .welcome{padding:19px 17px;border-radius:15px}
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .metric{min-width:0;padding:12px 11px}
+  .metric strong{font-size:clamp(15px,4.1vw,20px);word-break:break-word}
+  .metric span:last-of-type{font-size:11px}
+  .panel{padding:14px 12px}
+  .pageIntro h1{font-size:21px}
+  .formGrid,.detailGrid{grid-template-columns:1fr}
+  .record{padding:13px 12px}
+  .recordFoot{flex-wrap:wrap}
+  .toolbar{gap:8px}
+  .toolbar>button{flex:1 1 136px}
+  .toolbar>.control:not(.grow){min-width:0}
+  .stepList{gap:6px}
+  .step{white-space:normal;line-height:1.5}
+  .loginCard{padding:26px 19px}
+}
+@media(max-width:360px){.metrics{grid-template-columns:1fr 1fr}.bottomNav button{font-size:9px}.bottomNav button span:first-child{font-size:19px}.topTitle{font-size:14px}}
+@media(orientation:landscape) and (max-height:510px) and (max-width:920px){.topbar{position:relative}.bottomNav{min-height:59px}.bottomNav button{min-height:48px}.shell{padding-bottom:calc(65px + env(safe-area-inset-bottom,0px))}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sidebar{transition:none!important}}
+@media print{.bottomNav,.offlineBanner{display:none!important}.shell{padding-bottom:0!important}}
+</style></head><body><div id="authPage"></div><div id="application" hidden><aside id="sidebar" class="sidebar"></aside><div id="shade" hidden></div><div class="shell"><header class="topbar"><div class="topLeft"><button id="menuToggle" type="button" class="menuButton" aria-label="Buka menu navigasi" aria-controls="sidebar" aria-expanded="false">☰</button><div><span class="crumb">SIS-DPR / Sekretariat DPRD Kabupaten Kapuas Hulu</span><div class="topTitle" id="topTitle">Dashboard</div></div></div><div class="topRight"><span id="userIndicator"></span><span id="connection"></span></div></header><div id="offlineBanner" class="offlineBanner" role="status" hidden>📶 Tidak ada koneksi internet. SIS-DPR memerlukan internet untuk membaca dan menyimpan data Supabase.</div><main id="view" class="view"></main></div><nav id="bottomNav" class="bottomNav" aria-label="Navigasi cepat mobile"></nav></div><div id="dialog"></div><div id="toasts" aria-live="polite"></div><div id="loading" hidden><span>Memuat...</span></div><script>
 'use strict';
 (()=>{
 const f=(label,type='text',opts={})=>({label,type,...opts});
@@ -132,18 +208,42 @@ function closeModal(){S.modal=null;$('#dialog').innerHTML=''}
 function frame(html){S.modal=true;$('#dialog').innerHTML=`<div class="backdrop" id="dialogBackdrop"><section class="dialog" role="dialog" aria-modal="true">${html}</section></div>`}
 function pageName(p){return SPECIAL[p]||modules[p]?.title||'Dashboard'}
 function accessible(p){return !['akun','kewenangan','migrasi'].includes(p)||isAdmin()}
-function navigate(p){if(!SPECIAL[p]&&!modules[p])p='dashboard';if(!accessible(p))p='dashboard';S.page=p;S.search='';S.menu=false;closeModal();history.replaceState({},'','#'+p);render()}
+function setMobileMenu(open){
+ S.menu=!!open;
+ $('#sidebar').classList.toggle('open',S.menu);
+ $('#shade').hidden=!S.menu;
+ document.body.classList.toggle('sis-drawer-open',S.menu);
+ $('#menuToggle').setAttribute('aria-expanded',String(S.menu));
+ $('#menuToggle').setAttribute('aria-label',S.menu?'Tutup menu navigasi':'Buka menu navigasi');
+}
+function renderMobileNav(){
+ const options=[['dashboard','⌂','Beranda'],['kegiatan','▦','Kegiatan'],['tugaskegiatan','☑','Tugas'],['persetujuan','✓','Persetujuan']];
+ const buttons=options.filter(([p])=>accessible(p)).map(([p,ic,label])=>`<button type="button" data-go="${p}" class="${S.page===p?'current':''}" ${S.page===p?'aria-current="page"':''} aria-label="${label}"><span aria-hidden="true">${ic}</span><span>${label}</span></button>`);
+ buttons.push(`<button type="button" data-do="toggle-menu" class="${S.menu?'current':''}" aria-label="${S.menu?'Tutup':'Buka'} semua menu" aria-expanded="${S.menu}"><span aria-hidden="true">☰</span><span>Menu</span></button>`);
+ $('#bottomNav').innerHTML=buttons.join('');
+}
+function updateNetworkIndicator(){
+ const online=navigator.onLine!==false;
+ const banner=$('#offlineBanner');if(banner)banner.hidden=online;
+ if(S.profile){
+  const connected=$('#connection');
+  if(connected)connected.innerHTML=online?`<span class="statusDot"></span> Online <span class="muted desktopOnly">· terakhir sinkron ${esc(stamp(S.lastLoad))}</span>`:'<span style="color:#9b5a03">● Offline</span>';
+ }
+}
+function navigate(p){if(!SPECIAL[p]&&!modules[p])p='dashboard';if(!accessible(p))p='dashboard';S.page=p;S.search='';setMobileMenu(false);closeModal();history.replaceState({},'','#'+p);render();window.scrollTo(0,0)}
 function render(){if(!S.profile)return renderGate();const groups=GROUPS.map(([id,ic,name,pages])=>{
  const allowed=pages.filter(p=>accessible(p));if(!allowed.length)return'';return `<div class="navGroup"><div class="navHead">${ic} ${esc(name)}</div>${allowed.map(p=>`<button type="button" class="navLink ${S.page===p?'active':''}" data-go="${p}">${esc(pageName(p))}</button>`).join('')}</div>`}).join('');
- $('#sidebar').innerHTML=`<div class="brand"><span class="logo">SD</span><div><b>SIS-DPR</b><small>Sistem Informasi Sekretariat DPRD<br>Kabupaten Kapuas Hulu</small></div></div><button class="navLink home ${S.page==='dashboard'?'active':''}" data-go="dashboard">🏠 Dashboard</button>${groups}<div class="sideFoot">Terhubung ke Supabase · <span>Database terpusat</span><br><button class="logout" data-do="logout">Keluar dari akun</button></div>`;
- $('#sidebar').classList.toggle('open',S.menu);$('#shade').hidden=!S.menu;
+ $('#sidebar').innerHTML=`<div class="brand"><span class="logo">SD</span><div><b>SIS-DPR</b><small>Sistem Informasi Sekretariat DPRD<br>Kabupaten Kapuas Hulu</small></div></div><button class="navLink home ${S.page==='dashboard'?'active':''}" data-go="dashboard">🏠 Dashboard</button>${groups}<div class="sideFoot"><b>${esc(S.profile.full_name||S.user?.email||'Pengguna SIS-DPR')}</b><br>${esc(ROLE_NAMES[role()]||role())}<br>Data terpusat di Supabase<br><button class="logout" data-do="logout">Keluar dari akun</button></div>`;
+ setMobileMenu(S.menu);
  $('#topTitle').textContent=pageName(S.page);
  $('#userIndicator').textContent=(S.profile.full_name||S.user?.email)+' · '+(ROLE_NAMES[role()]||role());
  $('#view').innerHTML=renderContent();
- $('#connection').innerHTML=`<span class="statusDot"></span> Cloud aktif <span class="muted desktopOnly">· sinkron ${esc(stamp(S.lastLoad))}</span>`;
+ document.body.classList.add('sis-authenticated');
+ renderMobileNav();updateNetworkIndicator();
  $('#application').hidden=false;$('#authPage').hidden=true;
 }
 function renderGate(){
+ setMobileMenu(false);document.body.classList.remove('sis-authenticated');
  $('#application').hidden=true;$('#authPage').hidden=false;
  $('#authPage').innerHTML=`<div class="loginCard"><div class="loginIdentity"><div class="loginLogo">SD</div><h1>SIS-DPR</h1><p>Sistem Informasi Sekretariat DPRD<br><strong>Kabupaten Kapuas Hulu</strong></p></div>${configOK()?`<form id="loginForm"><label>Email pegawai</label><input class="control" type="email" name="email" autocomplete="username" required placeholder="email@instansi.go.id"><label>Kata sandi</label><input class="control" type="password" name="password" autocomplete="current-password" required minlength="6"><button class="primary wide" type="submit">Masuk ke SIS-DPR</button></form><p class="hint">Akun harus dibuat di Supabase Auth dan diaktifkan oleh Administrator. Tidak ada pemilih peran simulasi.</p>${S.activation?`<div class="warn" role="status" aria-live="polite"><b>${S.activation.reason==='inactive'?'Akun belum aktif':'Profil akun belum tersedia'}</b><p>Autentikasi berhasil, tetapi izin SIS-DPR belum tersedia. Pemilik proyek harus menjalankan <b>SIS_DPR_Aktivasi_Admin_Pertama.sql</b> di Supabase SQL Editor. Jangan mengubah peran melalui browser.</p><p class="hint">Akun: <b>${esc(S.activation.email)}</b><br>UUID Auth: <code>${esc(S.activation.id)}</code></p><button type="button" class="button" data-do="copy-auth-uid">Salin UUID akun</button><p class="hint" style="margin:10px 0 0">Sesudah profil aktif, masuk kembali.</p></div>`:''}`:`<div class="warn"><b>Konfigurasi Supabase belum diisi.</b><p>Isi <code>config.url</code> dan <code>config.key</code> (publishable/anon) di berkas HTML. Jalankan skrip SQL lalu unggah file HTML ke hosting HTTPS. Jangan gunakan service_role/secret key.</p></div>`}<div class="loginInfo">SIS-DPR · Pengelolaan administrasi, keuangan, kegiatan, dan persetujuan terpusat</div></div>`;
 }
@@ -274,7 +374,7 @@ function attachEvents(){document.addEventListener('click',async e=>{
  if(el.dataset.decision){const id=el.dataset.id,which=el.dataset.decision;const reason=which==='return'?prompt('Alasan pengembalian (wajib, minimum 4 karakter):'):'';if(reason===null)return;await action(()=>rpc('sis_decide',{p_record_id:id,p_action:which,p_reason:reason||''}),'Memproses keputusan...');return}
  if(el.dataset.closeRecord){if(confirm('Ubah tahap dokumen ini?'))await action(()=>rpc('sis_close_record',{p_record_id:el.dataset.closeRecord,p_archive:el.dataset.archive==='true'}),'Memperbarui tahap...');return}
  if(el.dataset.delete){if(confirm('Hapus data draf? Perubahan tidak dapat dibatalkan.'))await action(()=>rpc('sis_delete_draft',{p_record_id:el.dataset.delete}),'Menghapus draf...');return}
- switch(el.dataset.do){case 'logout': S.token=null;S.refresh=null;S.user=null;S.profile=null;S.activation=null;S.records=[];renderGate();break;
+ switch(el.dataset.do){case 'toggle-menu':setMobileMenu(!S.menu);renderMobileNav();break;case 'logout': S.token=null;S.refresh=null;S.user=null;S.profile=null;S.activation=null;S.records=[];renderGate();break;
   case 'copy-auth-uid':if(S.activation?.id){try{await navigator.clipboard.writeText(S.activation.id);note('UUID akun disalin.')}catch{window.prompt('Salin UUID akun ini:',S.activation.id)}}break;
  case 'sync':await action(async()=>{},'Sinkronisasi...');break;
  case 'csv':exportModule(el.dataset.module);break;
@@ -295,12 +395,23 @@ function attachEvents(){document.addEventListener('click',async e=>{
  }catch(err){note(err.message||String(err),'error');console.error(err)}});
  document.addEventListener('input',e=>{if(e.target.id==='moduleSearch'){S.search=e.target.value;const c=$('.recordGrid');if(!c)return;const active=S.page;const filtered=rows(active).filter(r=>JSON.stringify(r.data).toLowerCase().includes(S.search.toLowerCase()));c.innerHTML=filtered.slice(0,150).map(r=>`<article class="record"><div class="recordTop"><div><b>${esc(titleOf(active,r))}</b><small>${esc(r.unit)}</small></div>${chip(r.status)}</div><div class="recordFoot"><span>v${r.version}</span><button class="button" data-detail="${r.id}">Detail</button></div></article>`).join('')||'<p class="empty">Tidak ada hasil.</p>'}});
  document.addEventListener('change',e=>{if(e.target.name==='pelakuTipe'||e.target.name==='refTipe'){const form=e.target.closest('form');if(!form)return;const sel=form.elements[e.target.name==='pelakuTipe'?'pelakuId':'refId'];if(!sel)return;const target=e.target.name==='pelakuTipe'?(e.target.value==='Anggota DPRD'?'anggota':'pegawai'):({'Perjalanan Dinas':'perjalanan','Pengadaan':'pengadaan','Pemeliharaan':'pemeliharaan','Fasilitasi Rapat':'dukunganrapat','Pusat Kegiatan DPRD':'kegiatan'})[e.target.value];sel.innerHTML=selectOptions(rows(target||'').map(r=>[r.id,titleOf(target,r)]),'') }});
- $('#menuToggle').onclick=()=>{S.menu=!S.menu;$('#sidebar').classList.toggle('open',S.menu);$('#shade').hidden=!S.menu};$('#shade').onclick=()=>{S.menu=false;$('#sidebar').classList.remove('open');$('#shade').hidden=true};
+ $('#menuToggle').onclick=()=>{setMobileMenu(!S.menu);renderMobileNav()};$('#shade').onclick=()=>{setMobileMenu(false);renderMobileNav()};
  document.addEventListener('click',e=>{if(e.target.id==='dialogBackdrop')closeModal()});
  window.addEventListener('hashchange',()=>{if(S.profile)navigate(location.hash.slice(1)||'dashboard')});
+ window.addEventListener('online',updateNetworkIndicator);
+ window.addEventListener('offline',updateNetworkIndicator);
+ window.addEventListener('resize',()=>{if(window.innerWidth>820&&S.menu){setMobileMenu(false);renderMobileNav()}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(S.modal)closeModal();else if(S.menu){setMobileMenu(false);renderMobileNav()}}});
+ // Close the off-canvas drawer on iPhone swipe left; no page navigation is intercepted.
+ let startX=null,startY=null;
+ $('#sidebar').addEventListener('touchstart',e=>{if(e.touches.length===1){startX=e.touches[0].clientX;startY=e.touches[0].clientY}},{passive:true});
+ $('#sidebar').addEventListener('touchend',e=>{if(startX===null||!S.menu||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;if(dx< -75&&Math.abs(dx)>Math.abs(dy)*1.2){setMobileMenu(false);renderMobileNav()}startX=startY=null},{passive:true});
  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S.profile&&Date.now()-S.lastLoad?.getTime()>120000)sync().catch(e=>note('Sinkronisasi gagal: '+e.message,'error'))});
 }
 attachEvents();S.page=location.hash.slice(1)||'dashboard';if(!configOK())S.page='dashboard';renderGate();
+if('serviceWorker' in navigator&&location.protocol==='https:'){
+ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(e=>console.info('Pemasangan aplikasi tidak tersedia:',e.message)));
+}
 
 })();
 </script></body></html>
