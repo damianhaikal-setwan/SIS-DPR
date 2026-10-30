@@ -81,7 +81,7 @@ const tdate=v=>v?new Date(v).toLocaleDateString('id-ID',{day:'2-digit',month:'sh
 const stamp=v=>v?new Date(v).toLocaleString('id-ID'):'—';
 const uuid=()=>crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16)});
 const config={url:'https://yyddgjnwhuyblyovzksd.supabase.co',key:'sb_publishable_JwB6MlzFtoiW-gZ15wWHow_D2zh5cFx'};
-const S={token:null,refresh:null,expires:0,profile:null,user:null,records:[],approvals:[],attachments:[],rules:[],settings:[],audit:[],users:[],page:'dashboard',search:'',modal:null,busy:false,menu:false,lastLoad:null,migrationSummary:''};
+const S={token:null,refresh:null,expires:0,profile:null,user:null,records:[],approvals:[],attachments:[],rules:[],settings:[],audit:[],users:[],page:'dashboard',search:'',modal:null,busy:false,menu:false,lastLoad:null,migrationSummary:'',activation:null};
 const isAdmin=()=>S.profile?.app_role==='admin';
 const role=()=>S.profile?.app_role||'';
 const canWrite=(m,unit)=>isAdmin()||(['operator','kabag'].includes(role())&&S.profile.unit===unit)||(role()==='keuangan'&&S.profile.unit===unit&&['program','anggaran','perjalanan','realisasi','spj'].includes(m));
@@ -106,10 +106,20 @@ async function raw(path,{method='GET',body,headers={},auth=true,retry=true}={}){
  return payload;
 }
 async function refreshSession(){if(!S.refresh)throw Error('Sesi habis. Masuk kembali.');const x=await raw('/auth/v1/token?grant_type=refresh_token',{method:'POST',body:{refresh_token:S.refresh},auth:false,retry:false});S.token=x.access_token;S.refresh=x.refresh_token;S.expires=Date.now()+(x.expires_in||3600)*1000}
-async function authLogin(email,password){const x=await raw('/auth/v1/token?grant_type=password',{method:'POST',body:{email,password},auth:false});S.token=x.access_token;S.refresh=x.refresh_token;S.expires=Date.now()+(x.expires_in||3600)*1000;S.user=x.user;try{
- const list=await raw('/rest/v1/sis_profiles?id=eq.'+encodeURIComponent(S.user.id)+'&select=*');
- if(!list.length||!list[0].active)throw Error('Pengguna belum diaktifkan Admin pada tabel sis_profiles.');S.profile=list[0];await sync();
- }catch(e){S.token=null;S.refresh=null;S.profile=null;throw e}}
+async function authLogin(email,password){
+ S.activation=null;
+ const x=await raw('/auth/v1/token?grant_type=password',{method:'POST',body:{email,password},auth:false});
+ S.token=x.access_token;S.refresh=x.refresh_token;S.expires=Date.now()+(x.expires_in||3600)*1000;S.user=x.user;
+ try{
+  // RLS menampilkan profil sendiri. Profil tidak boleh dibuat/promosi otomatis oleh browser.
+  const list=await raw('/rest/v1/sis_profiles?id=eq.'+encodeURIComponent(S.user.id)+'&select=*');
+  if(!list.length||!list[0].active){
+   S.activation={id:S.user.id,email:S.user.email||email,reason:list.length?'inactive':'missing'};
+   throw Error(list.length?'Akun SIS-DPR masih nonaktif. Hubungi administrator untuk mengaktifkannya.':'Login Supabase berhasil, tetapi profil SIS-DPR belum dibuat. Jalankan aktivasi Admin awal di SQL Editor oleh pemilik proyek.');
+  }
+  S.activation=null;S.profile=list[0];await sync();
+ }catch(e){S.token=null;S.refresh=null;S.expires=0;S.profile=null;throw e}
+}
 async function rpc(name,args){return raw('/rest/v1/rpc/'+name,{method:'POST',body:args,headers:{Prefer:'return=representation'}})}
 async function listAll(table,params=''){let result=[],offset=0;while(true){const separator=params?'&':'?';const batch=await raw('/rest/v1/'+table+(params||'?select=*')+separator+'limit=1000&offset='+offset);if(!Array.isArray(batch))throw Error('Respon '+table+' tidak berupa daftar');result.push(...batch);if(batch.length<1000)break;offset+=1000;if(offset>100000)throw Error('Batas pemuatan data terlampaui')}return result}
 async function sync(){loading(true,'Sinkronisasi Supabase...');try{
@@ -135,7 +145,7 @@ function render(){if(!S.profile)return renderGate();const groups=GROUPS.map(([id
 }
 function renderGate(){
  $('#application').hidden=true;$('#authPage').hidden=false;
- $('#authPage').innerHTML=`<div class="loginCard"><div class="loginIdentity"><div class="loginLogo">SD</div><h1>SIS-DPR</h1><p>Sistem Informasi Sekretariat DPRD<br><strong>Kabupaten Kapuas Hulu</strong></p></div>${configOK()?`<form id="loginForm"><label>Email pegawai</label><input class="control" type="email" name="email" autocomplete="username" required placeholder="email@instansi.go.id"><label>Kata sandi</label><input class="control" type="password" name="password" autocomplete="current-password" required minlength="6"><button class="primary wide" type="submit">Masuk ke SIS-DPR</button></form><p class="hint">Akun harus dibuat di Supabase Auth dan diaktifkan oleh Administrator. Tidak ada pemilih peran simulasi.</p>`:`<div class="warn"><b>Konfigurasi Supabase belum diisi.</b><p>Isi <code>config.url</code> dan <code>config.key</code> (publishable/anon) di berkas HTML. Jalankan skrip SQL lalu unggah file HTML ke hosting HTTPS. Jangan gunakan service_role/secret key.</p></div>`}<div class="loginInfo">SIS-DPR · Pengelolaan administrasi, keuangan, kegiatan, dan persetujuan terpusat</div></div>`;
+ $('#authPage').innerHTML=`<div class="loginCard"><div class="loginIdentity"><div class="loginLogo">SD</div><h1>SIS-DPR</h1><p>Sistem Informasi Sekretariat DPRD<br><strong>Kabupaten Kapuas Hulu</strong></p></div>${configOK()?`<form id="loginForm"><label>Email pegawai</label><input class="control" type="email" name="email" autocomplete="username" required placeholder="email@instansi.go.id"><label>Kata sandi</label><input class="control" type="password" name="password" autocomplete="current-password" required minlength="6"><button class="primary wide" type="submit">Masuk ke SIS-DPR</button></form><p class="hint">Akun harus dibuat di Supabase Auth dan diaktifkan oleh Administrator. Tidak ada pemilih peran simulasi.</p>${S.activation?`<div class="warn" role="status" aria-live="polite"><b>${S.activation.reason==='inactive'?'Akun belum aktif':'Profil akun belum tersedia'}</b><p>Autentikasi berhasil, tetapi izin SIS-DPR belum tersedia. Pemilik proyek harus menjalankan <b>SIS_DPR_Aktivasi_Admin_Pertama.sql</b> di Supabase SQL Editor. Jangan mengubah peran melalui browser.</p><p class="hint">Akun: <b>${esc(S.activation.email)}</b><br>UUID Auth: <code>${esc(S.activation.id)}</code></p><button type="button" class="button" data-do="copy-auth-uid">Salin UUID akun</button><p class="hint" style="margin:10px 0 0">Sesudah profil aktif, masuk kembali.</p></div>`:''}`:`<div class="warn"><b>Konfigurasi Supabase belum diisi.</b><p>Isi <code>config.url</code> dan <code>config.key</code> (publishable/anon) di berkas HTML. Jalankan skrip SQL lalu unggah file HTML ke hosting HTTPS. Jangan gunakan service_role/secret key.</p></div>`}<div class="loginInfo">SIS-DPR · Pengelolaan administrasi, keuangan, kegiatan, dan persetujuan terpusat</div></div>`;
 }
 function barButtons(list){return `<div class="toolbar">${list.join('')}</div>`}
 function metric(label,val,icon,detail=''){return `<div class="metric"><span class="metricIcon">${icon}</span><strong>${val}</strong><span>${esc(label)}</span>${detail?`<small>${esc(detail)}</small>`:''}</div>`}
@@ -264,7 +274,8 @@ function attachEvents(){document.addEventListener('click',async e=>{
  if(el.dataset.decision){const id=el.dataset.id,which=el.dataset.decision;const reason=which==='return'?prompt('Alasan pengembalian (wajib, minimum 4 karakter):'):'';if(reason===null)return;await action(()=>rpc('sis_decide',{p_record_id:id,p_action:which,p_reason:reason||''}),'Memproses keputusan...');return}
  if(el.dataset.closeRecord){if(confirm('Ubah tahap dokumen ini?'))await action(()=>rpc('sis_close_record',{p_record_id:el.dataset.closeRecord,p_archive:el.dataset.archive==='true'}),'Memperbarui tahap...');return}
  if(el.dataset.delete){if(confirm('Hapus data draf? Perubahan tidak dapat dibatalkan.'))await action(()=>rpc('sis_delete_draft',{p_record_id:el.dataset.delete}),'Menghapus draf...');return}
- switch(el.dataset.do){case 'logout': S.token=null;S.refresh=null;S.user=null;S.profile=null;S.records=[];renderGate();break;
+ switch(el.dataset.do){case 'logout': S.token=null;S.refresh=null;S.user=null;S.profile=null;S.activation=null;S.records=[];renderGate();break;
+  case 'copy-auth-uid':if(S.activation?.id){try{await navigator.clipboard.writeText(S.activation.id);note('UUID akun disalin.')}catch{window.prompt('Salin UUID akun ini:',S.activation.id)}}break;
  case 'sync':await action(async()=>{},'Sinkronisasi...');break;
  case 'csv':exportModule(el.dataset.module);break;
  case 'report-csv':csvExport('SIS-DPR_laporan.csv',[['Modul','Jumlah','Draf'],...Object.keys(modules).map(k=>[modules[k].title,rows(k).length,rows(k).filter(r=>r.status==='draft').length])]);break;
