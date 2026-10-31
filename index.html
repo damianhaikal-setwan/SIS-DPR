@@ -162,9 +162,30 @@ label.field{min-width:0} .field>.control{min-width:0}
 .renstraMatrixRow{margin:10px 0;border:1px solid #cddce1;background:#fff;border-radius:10px}.renstraMatrixRow summary{cursor:pointer;padding:11px 13px;display:flex;gap:9px;align-items:center;justify-content:space-between;min-height:44px}.renstraRowHint{font-size:11px;color:#6a7d89}.renstraMatrixRowBody{border-top:1px solid #e4ecef;padding:12px}.renstraDeleteRow{margin-top:9px;color:#9b2833!important}.renstraDetailMatrix{border:1px solid #e3e8ed;border-radius:9px;margin:9px 0}.renstraDetailMatrix>summary{cursor:pointer;padding:12px;min-height:44px}.renstraDetailRecord{border-top:1px solid #e4ecef;padding:12px}.renstraDetailRecord .detailGrid{margin-top:8px}
 @media(max-width:820px){.renstraMatrix{margin:0 8px 10px;padding:10px}.renstraMatrixToolbar button{flex:1 1 100%;white-space:normal}.renstraMatrixRowBody .formGrid{padding:0}.renstraMatrix .field{min-width:0}.renstraMatrix .control{font-size:16px}}
 
+
+/* RENSTRA 2025–2029 — satu dokumen, navigasi bab dan tabel sesuai pedoman */
+.renstraWorkbookTop{margin-bottom:12px}.renstraDocumentHeader{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;justify-content:space-between}
+.renstraDocumentMeta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}.renstraDocumentMeta>span{background:#eef6f7;border:1px solid #dbe9e9;border-radius:7px;padding:7px 10px;font-size:12px;color:#244955}
+.renstraWorkbook .renstraChapterNav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:8px 0 14px}
+.renstraChapterButton{border:1px solid #d8e5e7;border-radius:10px;min-height:62px;background:#f5f8fa;color:#284c59;text-align:left;padding:11px;cursor:pointer;font:inherit;font-weight:750}
+.renstraChapterButton small{display:block;font-size:11px;margin-top:3px;color:#607884;font-weight:500}
+.renstraChapterButton.is-active{background:#0b6669;color:#fff;border-color:#0b6669}.renstraChapterButton.is-active small{color:#daefef}
+.renstraWorksheetLead{padding:11px 14px;border:1px solid #d8e9e9;border-radius:9px;background:#f2f9f8;margin:0 0 9px;font-size:13px;color:#28545a}
+.renstraWorkbook .renstraTableTabs{margin-bottom:7px}.renstraWorkbook .renstraTableTabs button[hidden]{display:none!important}
+.renstraWorkbook .renstraSheetNarrative{border:1px solid #dbe9ec;border-radius:10px;background:#fff;padding:12px}.renstraWorkbook .renstraNarrativeFields{padding:4px 0 0}
+.renstraSourceBanner{border-left:3px solid #1c7d76;background:#f2faf8;border-radius:5px;margin:0 0 10px;padding:9px 12px;font-size:12px;color:#35616a}
+.renstraLegacyBox{margin-top:10px}.renstraLegacyBox>summary{cursor:pointer;padding:8px;font-size:12px;color:#566f79}.renstraLegacyItems{display:flex;flex-wrap:wrap;gap:8px;padding:9px}.renstraLegacyItems button{min-height:42px}
+.renstraStatusInfo{font-size:12px;color:#6d5d38;background:#fff9ea;border:1px solid #f0deb7;border-radius:8px;padding:9px;margin:10px 0}
+@media(max-width:820px){.renstraWorkbook .renstraChapterNav{display:flex;overflow-x:auto;gap:7px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}.renstraChapterButton{flex:0 0 138px;min-height:62px}.renstraDocumentHeader{display:block}.renstraDocumentMeta>span{font-size:11px}.renstraWorkbook .renstraWorkbookTables>header{display:block}.renstraWorkbook .renstraTableTabs{margin-bottom:8px}}
+
+
+@media(max-width:820px){.renstraWorkbookBottom{display:flex;position:sticky;bottom:calc(62px + env(safe-area-inset-bottom, 0px));padding:7px 10px;border-radius:10px}.renstraWorkbookBottom .hint{display:none}.renstraWorkbookBottom .renstraSaveButton{min-height:44px;width:100%;font-size:14px}}
+
 /* Renstra spreadsheet: real tables, safe for iPhone 13 and Android touch screens */
 .renstraWorkbook{max-width:100%;min-width:0}.renstraWorkbook .panel{min-width:0}.renstraWorkbookTop{padding:14px 17px;margin:12px 0 15px}.renstraWorkbookRow{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}.renstraWorkbookRow .renstraRecordSelect{flex:1 1 290px;min-width:0}.renstraWorkbookRow>.button{min-height:45px}.renstraWorkbookLegend{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.renstraWorkbookLegend>span{border-radius:7px;background:#edf7f8;padding:6px 9px;font-size:12px;color:#345968}.renstraWorkbookIdentity{margin-bottom:14px;padding:13px 16px}.renstraWorkbookIdentity header{margin-bottom:10px}.renstraIdentityFields{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:11px}.renstraWorkbookTables{padding:14px 16px}.renstraWorkbookTables>header{display:flex;justify-content:space-between;align-items:center;gap:12px}.renstraDirtyBadge{font-size:12px;color:#995213;background:#fff1d9;border-radius:8px;padding:8px;white-space:nowrap}.renstraTableTabs{display:flex;overflow-x:auto;gap:7px;padding:10px 0 12px;scrollbar-width:thin;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}.renstraTab{appearance:none;background:#eef3f6;color:#425a68;border:1px solid #d9e6e7;border-radius:9px;font-weight:700;white-space:nowrap;padding:11px 14px;min-height:45px;cursor:pointer;font-size:13px;flex:0 0 auto}.renstraTab.is-active{background:#0b6669;color:white;border-color:#0b6669}.renstraMobileGuide{font-size:12px;color:#475f70;background:#eef8fa;padding:9px 11px;border-radius:8px;margin-bottom:12px}.renstraSheetPanel[hidden],.renstraSheetNarrative[hidden]{display:none!important}.renstraWorkbook .renstraMatrix{margin:0;background:#fff;border:0;padding:0}.renstraWorkbook .renstraMatrixTop{margin:0 0 9px}.renstraTableScroller{max-width:100%;width:100%;overflow:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;border:1px solid #c8d8dc;border-radius:8px;background:white}.renstraDataTable{border-collapse:separate;border-spacing:0;table-layout:fixed;width:max-content;min-width:100%;font-size:12px}.renstraDataTable th,.renstraDataTable td{box-sizing:border-box;border-right:1px solid #dde5e9;border-bottom:1px solid #dde5e9;padding:0;vertical-align:top}.renstraDataTable thead th{background:#e4f1f2;color:#184950;min-width:188px;width:188px;white-space:normal;text-align:center;line-height:1.35;padding:12px 9px;position:sticky;top:0;z-index:2;font-weight:800}.renstraDataTable thead th.renstraNumericHead{min-width:126px;width:126px}.renstraDataTable thead small{display:block;color:#a05e10;font-size:10px;margin-top:2px}.renstraDataTable .renstraRowNumber{min-width:49px;width:49px;max-width:49px;text-align:center;background:#eaf3f4;color:#28555c;font-size:13px;font-weight:700;padding:14px 5px;position:sticky;left:0;z-index:3}.renstraDataTable thead .renstraRowNumber{z-index:5}.renstraDataTable thead th:last-child{min-width:62px;width:62px}.renstraDataTable td:has(input[type=number]){min-width:126px;width:126px}.renstraDataTable .renstraCell{display:block;box-sizing:border-box;width:100%;min-width:0;border:0;outline:0;background:transparent;resize:vertical;padding:11px 9px;min-height:70px;font:400 14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#183246;border-radius:0}.renstraDataTable input.renstraCell{height:70px;min-height:70px;text-align:right;font-variant-numeric:tabular-nums;resize:none}.renstraDataTable td:focus-within{background:#effbf8;box-shadow:inset 0 0 0 2px #14857c}.renstraDataTable tbody tr:nth-child(even){background:#fafcfd}.renstraDataTable td.renstraRowActions{min-width:62px;width:62px;text-align:center;padding:10px 5px}.renstraIconDelete{font-size:17px;border:1px solid #f4cbcd;border-radius:8px;background:#fff4f4;color:#962e41;min-height:44px;min-width:44px;cursor:pointer}.renstraTableScroller:focus-visible{outline:3px solid #15948e;outline-offset:2px}.renstraWorkbook .renstraMatrixToolbar{display:flex;justify-content:flex-start;gap:8px;padding:12px 0 3px;flex-wrap:wrap}.renstraWorkbook .renstraMatrixEmpty{border:1px dashed #c1d4d8}.renstraSheetNarrative{padding:8px 2px}.renstraNarrativeChapter{border:1px solid #dce6ea;border-radius:9px;margin-bottom:10px;background:white}.renstraNarrativeChapter>summary{cursor:pointer;min-height:48px;padding:13px;font-weight:800;color:#1c5057}.renstraNarrativeFields{padding:13px;display:grid;gap:11px}.renstraWorkbookBottom{position:sticky;bottom:0;background:rgba(255,255,255,.97);border:1px solid #d0e0e2;border-radius:12px;padding:13px;margin:15px 0 8px;display:flex;gap:14px;align-items:center;justify-content:space-between;z-index:8;box-shadow:0 -5px 18px rgba(22,46,55,.08)}.renstraWorkbookBottom .hint{flex:1}.renstraSaveButton{flex:0 0 auto;min-height:48px}.renstraReadTable td{padding:10px 12px;white-space:pre-wrap;overflow-wrap:anywhere;min-width:150px}.renstraReadTable td:empty:after{content:'—';color:#adbac5}
 @media(max-width:820px){.renstraWorkbookTop,.renstraWorkbookIdentity,.renstraWorkbookTables{padding:11px}.renstraWorkbook .renstraMatrixToolbar button{flex:1 1 160px}.renstraTableTabs{margin:0 -3px}.renstraTab{font-size:12px}.renstraDataTable .renstraCell{font-size:16px;line-height:1.35;min-height:78px}.renstraDataTable input.renstraCell{height:78px;min-height:78px}.renstraWorkbookBottom{bottom:calc(62px + env(safe-area-inset-bottom, 0px));display:block;padding:9px 11px}.renstraWorkbookBottom .hint{font-size:11px;margin-bottom:8px}.renstraSaveButton{width:100%;min-height:48px}.renstraIdentityFields{grid-template-columns:1fr}.renstraTableScroller{margin-bottom:6px}}
+
+@media(max-width:820px){.renstraWorkbookBottom{display:flex;position:sticky;bottom:calc(62px + env(safe-area-inset-bottom, 0px));padding:7px 10px;border-radius:10px}.renstraWorkbookBottom .hint{display:none}.renstraWorkbookBottom .renstraSaveButton{min-height:44px;width:100%;font-size:14px}}
 @media print{.renstraWorkbookTop,.renstraTableTabs,.renstraMatrixToolbar,.renstraWorkbookBottom,.renstraMobileGuide,.renstraIconDelete{display:none!important}.renstraSheetPanel[hidden]{display:block!important}.renstraDataTable{font-size:10px}.renstraTableScroller{overflow:visible;max-width:none}}
 </style></head><body><div id="authPage"></div><div id="application" hidden><aside id="sidebar" class="sidebar"></aside><div id="shade" hidden></div><div class="shell"><header class="topbar"><div class="topLeft"><button id="menuToggle" type="button" class="menuButton" aria-label="Buka menu navigasi" aria-controls="sidebar" aria-expanded="false">☰</button><div><span class="crumb">SIS-DPR / Sekretariat DPRD Kabupaten Kapuas Hulu</span><div class="topTitle" id="topTitle">Dashboard</div></div></div><div class="topRight"><span id="userIndicator"></span><span id="connection"></span></div></header><div id="offlineBanner" class="offlineBanner" role="status" hidden>📶 Tidak ada koneksi internet. SIS-DPR memerlukan internet untuk membaca dan menyimpan data Supabase.</div><main id="view" class="view"></main></div><nav id="bottomNav" class="bottomNav" aria-label="Navigasi cepat mobile"></nav></div><div id="dialog"></div><div id="toasts" aria-live="polite"></div><div id="loading" hidden><span>Memuat...</span></div><script>
 'use strict';
@@ -769,19 +790,18 @@ function sisDataDefaults(k,r,unit){const data={...(r?.data||{})};if(!r&&k==='mph
  */
 const RENSTRA_MATRICES={
  '2.1':{label:'Tabel 2.1 — Penyimpulan isu strategis',section:3,source:'Pedoman PDF hlm 48 / halaman cetak 44',columns:[['potensi','Potensi daerah / kemampuan Setwan'],['masalah','Permasalahan pelayanan'],['klhs','Isu KLHS yang relevan'],['global','Lingkungan global'],['nasional','Lingkungan nasional'],['regional','Lingkungan regional'],['isu','Kesimpulan isu strategis']],map:{potensi:'potensiDaerah',masalah:'permasalahan',klhs:'isuKLHS',global:'isuGlobal',nasional:'isuNasional',regional:'isuRegional',isu:'isuStrategis'}},
- '3.3':{label:'Tabel 3.3 — Teknik perumusan tujuan dan sasaran',section:4,source:'Pedoman PDF hlm 50 / halaman cetak 46',columns:[['rpjmd','NSPK / sasaran RPJMD'],['tujuan','Tujuan Renstra'],['sasaran','Sasaran Renstra'],['indikator','Indikator'],['baseline2024','Baseline 2024','number'],...Array.from({length:6},(_,i)=>['target'+(2025+i),'Target '+(2025+i),'number'])],map:{rpjmd:'sasaranRPJMD',tujuan:'tujuan',sasaran:'sasaran',indikator:'indikator',baseline2024:'baseline',...Object.fromEntries(Array.from({length:6},(_,i)=>['target'+(2025+i),'target'+(2025+i)]))}},
+ '3.3':{label:'Tabel 3.3 — Teknik perumusan tujuan dan sasaran',section:4,source:'Pedoman PDF hlm 50 / halaman cetak 46',columns:[['rpjmd','NSPK / sasaran RPJMD'],['tujuan','Tujuan Renstra'],['sasaran','Sasaran Renstra'],['indikator','Indikator'],['baseline2024','Baseline 2024','number'],...Array.from({length:6},(_,i)=>['target'+(2025+i),'Target '+(2025+i),'number']),['keterangan','Keterangan / sumber']],map:{rpjmd:'sasaranRPJMD',tujuan:'tujuan',sasaran:'sasaran',indikator:'indikator',baseline2024:'baseline',...Object.fromEntries(Array.from({length:6},(_,i)=>['target'+(2025+i),'target'+(2025+i)]))}},
  '3.4':{label:'Tabel 3.4 — Penahapan Renstra (2026–2030)',section:6,source:'Pedoman PDF hlm 51 / halaman cetak 47',columns:Array.from({length:5},(_,i)=>['tahap'+(2026+i),'Tahap '+(i+1)+' ('+(2026+i)+')']),map:Object.fromEntries(Array.from({length:5},(_,i)=>['tahap'+(2026+i),'tahap'+(2026+i)]))},
- '3.5':{label:'Tabel 3.5 — Teknik perumusan arah kebijakan',section:7,source:'Pedoman PDF hlm 51 / halaman cetak 47',columns:[['operasional','Operasionalisasi NSPK'],['arahRPJMD','Arah kebijakan RPJMD'],['arahRenstra','Arah kebijakan Renstra']],map:{operasional:'operasionalNSPK',arahRPJMD:'arahKebijakanRPJMD',arahRenstra:'arahKebijakan'}},
- '4.2':{label:'Tabel 4.2 — Hubungan tujuan–sasaran–program',section:8,source:'Pedoman PDF hlm 53 / halaman cetak 49',columns:[['nspk','NSPK / sasaran RPJMD'],['tujuan','Tujuan'],['sasaran','Sasaran'],['outcome','Outcome program'],['output','Output kegiatan/subkegiatan'],['indikator','Indikator'],['kodeProgram','Kode program'],['program','Nama program'],['kodeKegiatan','Kode kegiatan'],['kegiatan','Nama kegiatan'],['kodeSub','Kode subkegiatan'],['sub','Nama subkegiatan']],map:{nspk:'sasaranRPJMD',tujuan:'tujuan',sasaran:'sasaran',outcome:'outcome',output:'output',indikator:'indikatorOutput',kodeProgram:'kodeProgram',program:'programRenstra',kodeKegiatan:'kodeKegiatan',kegiatan:'kegiatanRenstra',kodeSub:'kodeSubkegiatan',sub:'subkegiatanRenstra'}},
- '4.3':{label:'Tabel 4.3 — Rencana program/kegiatan & pendanaan',section:9,source:'Pedoman PDF hlm 54 / halaman cetak 50',columns:[['program','Program / kegiatan / subkegiatan'],['indikator','Indikator outcome/output'],['baseline2024','Baseline 2024','number'],...Array.from({length:5},(_,i)=>['target'+(2026+i),'Target '+(2026+i),'number']),...Array.from({length:5},(_,i)=>['pagu'+(2026+i),'Pagu '+(2026+i)+' (Rp)','number'])],map:{program:'subkegiatanRenstra',indikator:'indikatorOutput',baseline2024:'baselineProgram2024',...Object.fromEntries(Array.from({length:5},(_,i)=>['target'+(2026+i),'target'+(2026+i)])),...Object.fromEntries(Array.from({length:5},(_,i)=>['pagu'+(2026+i),'pagu'+(2026+i)]))}},
- '4.4':{label:'Tabel 4.4 — Subkegiatan pendukung program prioritas',section:10,source:'Pedoman PDF hlm 54 / halaman cetak 50',columns:[['prioritas','Program prioritas RPJMD'],['outcome','Outcome'],['subkegiatan','Kegiatan / subkegiatan pendukung']],map:{prioritas:'programPrioritas',outcome:'outcome',subkegiatan:'subkegiatanPrioritas'}},
- '4.5':{label:'Tabel 4.5 — Indikator Kinerja Utama PD (IKU)',section:10,source:'Pedoman PDF hlm 55 / halaman cetak 51. Angka sumber: Renstra Setwan Tabel 4.5 PDF hlm 91',columns:[['indikator','Indikator IKU'],['satuan','Satuan'],...Array.from({length:6},(_,i)=>['target'+(2025+i),'Target '+(2025+i),'number'])],map:{indikator:'indikator',satuan:'satuan',...Object.fromEntries(Array.from({length:6},(_,i)=>['target'+(2025+i),'target'+(2025+i)]))},kind:'IKU Perangkat Daerah'},
+ '3.5':{label:'Tabel 3.5 — Teknik perumusan arah kebijakan',section:7,source:'Pedoman PDF hlm 51 / halaman cetak 47',columns:[['operasional','Operasionalisasi NSPK'],['arahRPJMD','Arah kebijakan RPJMD'],['arahRenstra','Arah kebijakan Renstra'],['keterangan','Keterangan']],map:{operasional:'operasionalNSPK',arahRPJMD:'arahKebijakanRPJMD',arahRenstra:'arahKebijakan',keterangan:'catatanKebijakan'}},
+ '4.2':{label:'Tabel 4.2 — Hubungan tujuan–sasaran–program',section:8,source:'Pedoman PDF hlm 53 / halaman cetak 49',columns:[['nspk','NSPK / sasaran RPJMD'],['tujuan','Tujuan'],['sasaran','Sasaran'],['outcome','Outcome program'],['output','Output kegiatan/subkegiatan'],['indikator','Indikator'],['kodeProgram','Kode program'],['program','Nama program'],['kodeKegiatan','Kode kegiatan'],['kegiatan','Nama kegiatan'],['kodeSub','Kode subkegiatan'],['sub','Nama subkegiatan'],['keterangan','Keterangan']],map:{nspk:'sasaranRPJMD',tujuan:'tujuan',sasaran:'sasaran',outcome:'outcome',output:'output',indikator:'indikatorOutput',kodeProgram:'kodeProgram',program:'programRenstra',kodeKegiatan:'kodeKegiatan',kegiatan:'kegiatanRenstra',kodeSub:'kodeSubkegiatan',sub:'subkegiatanRenstra'}},
+ '4.3':{label:'Tabel 4.3 — Rencana program/kegiatan & pendanaan',section:9,source:'Pedoman PDF hlm 54 / halaman cetak 50',columns:[['program','Program / kegiatan / subkegiatan'],['indikator','Indikator outcome/output'],['baseline2024','Baseline 2024','number'],...Array.from({length:5},(_,i)=>['target'+(2026+i),'Target '+(2026+i),'number']),...Array.from({length:5},(_,i)=>['pagu'+(2026+i),'Pagu '+(2026+i)+' (Rp)','number']),['keterangan','Keterangan']],map:{program:'subkegiatanRenstra',indikator:'indikatorOutput',baseline2024:'baselineProgram2024',...Object.fromEntries(Array.from({length:5},(_,i)=>['target'+(2026+i),'target'+(2026+i)])),...Object.fromEntries(Array.from({length:5},(_,i)=>['pagu'+(2026+i),'pagu'+(2026+i)]))}},
+ '4.4':{label:'Tabel 4.4 — Subkegiatan pendukung program prioritas',section:10,source:'Pedoman PDF hlm 54 / halaman cetak 50',columns:[['prioritas','Program prioritas RPJMD'],['outcome','Outcome'],['subkegiatan','Kegiatan / subkegiatan pendukung'],['keterangan','Keterangan']],map:{prioritas:'programPrioritas',outcome:'outcome',subkegiatan:'subkegiatanPrioritas'}},
+ '4.5':{label:'Tabel 4.5 — Indikator Kinerja Utama PD (IKU)',section:10,source:'Pedoman PDF hlm 55 / halaman cetak 51. Angka sumber: Renstra Setwan Tabel 4.5 PDF hlm 91',columns:[['indikator','Indikator IKU'],['satuan','Satuan'],...Array.from({length:6},(_,i)=>['target'+(2025+i),'Target '+(2025+i),'number']),['keterangan','Keterangan']],map:{indikator:'indikator',satuan:'satuan',...Object.fromEntries(Array.from({length:6},(_,i)=>['target'+(2025+i),'target'+(2025+i)]))},kind:'IKU Perangkat Daerah'},
  '4.6':{label:'Tabel 4.6 — Indikator Kinerja Kunci (IKK)',section:10,source:'Pedoman PDF hlm 56 / halaman cetak 52. Hanya jika relevan',columns:[['indikator','Indikator IKK'],['satuan','Satuan'],...Array.from({length:6},(_,i)=>['target'+(2025+i),'Target '+(2025+i),'number']),['catatan','Dasar kewenangan / keterangan']],map:{indikator:'indikator',satuan:'satuan',catatan:'catatanIKK',...Object.fromEntries(Array.from({length:6},(_,i)=>['target'+(2025+i),'target'+(2025+i)]))},kind:'IKK (jika mengampu urusan)'}
 };
 function renstraMatrixRowHTML(table,row={},index=0,readonly=false){
  const def=RENSTRA_MATRICES[table];if(!def)return '';
- const cells=def.columns.map(([key,label,type])=>{const v=row[key]??'',numeric=type==='number';return `<td data-col-label="${esc(label)}"><${numeric?'input':'textarea'} class="renstraCell" aria-label="${esc(label)} · baris ${index+1}" data-matrix-col="${esc(key)}" ${numeric?'type="number" step="any" inputmode="decimal" min="0"':'rows="2"'} ${numeric?`value="${esc(v)}"`:`placeholder="${esc(label)}"`} ${readonly?'readonly':''}>${numeric?'':esc(v)}</${numeric?'input':'textarea'}></td>`}).join('');
- // Input is void, so compose numeric inputs separately rather than closing the tag.
+ // Number inputs are void elements; text columns use textarea.
  const fixed=def.columns.map(([key,label,type])=>{const v=row[key]??'';return `<td data-col-label="${esc(label)}">${type==='number'?`<input class="renstraCell renstraNumber" aria-label="${esc(label)} baris ${index+1}" data-matrix-col="${esc(key)}" type="number" step="any" inputmode="decimal" min="0" value="${esc(v)}" ${readonly?'readonly':''}>`:`<textarea class="renstraCell" aria-label="${esc(label)} baris ${index+1}" data-matrix-col="${esc(key)}" rows="2" placeholder="Isi sesuai sumber..." ${readonly?'readonly':''}>${esc(v)}</textarea>`}</td>`}).join('');
  return `<tr data-matrix-row="${esc(table)}"><th scope="row" class="renstraRowNumber" data-renstra-row-index>${index+1}</th>${fixed}<td class="renstraRowActions">${readonly?'':`<button type="button" class="renstraIconDelete" data-renstra-row-delete="1" title="Hapus baris ${index+1}" aria-label="Hapus baris ${index+1}">✕</button>`}</td></tr>`;
 }
@@ -791,7 +811,7 @@ function renstraMatrixHTML(table,data={},sheet=false,readonly=false){
  const legacy=!saved.length&&!Object.values(data.tabelRenstra||{}).some(a=>Array.isArray(a)&&a.length)?renstraLegacyMatrixRow(table,data):null;
  const rows=saved.length?saved:(legacy?[legacy]:[]);
  const count=rows.length;
- return `<section class="renstraMatrix renstraSheetPanel" data-matrix="${esc(table)}" data-sheet-panel="${esc(table)}" aria-label="${esc(def.label)}" ${sheet&&((S.renstraTab||'3.3')!==table)?'hidden':''}><div class="renstraMatrixTop"><div><strong>${esc(def.label)}</strong><p>${esc(def.source)} · isi langsung di sel tabel. Kolom yang tidak memiliki data sumber boleh dikosongkan.</p></div><span class="renstraMatrixCount" data-matrix-count>${count} baris</span></div><div class="renstraTableScroller" role="region" aria-label="Tabel isian ${esc(def.label)}; geser ke samping untuk kolom lain" tabindex="0"><table class="renstraDataTable"><thead><tr><th scope="col" class="renstraRowNumber">No.</th>${def.columns.map(([key,label,type])=>`<th scope="col" class="${type==='number'?'renstraNumericHead':''}">${esc(label)}${/2030/.test(label)?'<small>Transisi</small>':''}</th>`).join('')}<th scope="col">Aksi</th></tr></thead><tbody data-matrix-rows>${rows.map((r,i)=>renstraMatrixRowHTML(table,r,i,readonly)).join('')}</tbody></table></div><div class="renstraMatrixEmpty" data-matrix-empty ${count?'hidden':''}>Belum ada baris. Tekan <b>Tambah baris tabel</b> untuk mengisi langsung dalam sel.</div>${readonly?'':`<div class="renstraMatrixToolbar"><button type="button" class="button" data-renstra-add="${esc(table)}">＋ Tambah baris tabel</button>${sheet&&['3.3','4.5'].includes(table)?`<button type="button" class="button" data-renstra-targets="${esc(table)}">⇩ Ambil indikator dari Renstra sumber</button>`:''}${!sheet?`<button type="button" class="button" data-renstra-from-summary="${esc(table)}">↪ Ambil dari isian ringkas</button>`:''}<button type="button" class="button" data-renstra-csv="${esc(table)}">⇩ Ekspor tabel CSV</button></div>`}</section>`;
+ return `<section class="renstraMatrix renstraSheetPanel" data-matrix="${esc(table)}" data-sheet-panel="${esc(table)}" aria-label="${esc(def.label)}" ${sheet&&((S.renstraTab||'3.3')!==table)?'hidden':''}><div class="renstraMatrixTop"><div><strong>${esc(def.label)}</strong><p>${esc(def.source)} · isi langsung di sel tabel. Kolom yang tidak memiliki data sumber boleh dikosongkan.</p></div><span class="renstraMatrixCount" data-matrix-count>${count} baris</span></div><div class="renstraTableScroller" role="region" aria-label="Tabel isian ${esc(def.label)}; geser ke samping untuk kolom lain" tabindex="0"><table class="renstraDataTable"><thead><tr><th scope="col" class="renstraRowNumber">No.</th>${def.columns.map(([key,label,type])=>`<th scope="col" class="${type==='number'?'renstraNumericHead':''}">${esc(label)}${/2030/.test(label)?'<small>Transisi</small>':''}</th>`).join('')}<th scope="col">Aksi</th></tr></thead><tbody data-matrix-rows>${rows.map((r,i)=>renstraMatrixRowHTML(table,r,i,readonly)).join('')}</tbody></table></div><div class="renstraMatrixEmpty" data-matrix-empty ${count?'hidden':''}>Belum ada baris. Tekan <b>Tambah baris tabel</b> untuk mengisi langsung dalam sel.</div>${readonly?'':`<div class="renstraMatrixToolbar"><button type="button" class="button" data-renstra-add="${esc(table)}">＋ Tambah baris tabel</button>${sheet&&['3.3','4.5'].includes(table)?`<button type="button" class="button" data-renstra-targets="${esc(table)}">⇩ Ambil indikator dari Renstra sumber</button>`:''}${sheet&&table==='4.2'?`<button type="button" class="button" data-renstra-programs="1">⇩ Ambil 2 program dari Renstra sumber</button>`:''}${!sheet?`<button type="button" class="button" data-renstra-from-summary="${esc(table)}">↪ Ambil dari isian ringkas</button>`:''}<button type="button" class="button" data-renstra-csv="${esc(table)}">⇩ Ekspor tabel CSV</button></div>`}</section>`;
 }
 function renstraMatricesForSection(sectionIndex,data){return Object.entries(RENSTRA_MATRICES).filter(([,def])=>def.section===sectionIndex).map(([key])=>renstraMatrixHTML(key,data)).join('');}
 function renstraUpdateCount(host){if(!host)return;const n=host.querySelectorAll('[data-matrix-row]').length;const t=host.querySelector('[data-matrix-count]');if(t)t.textContent=n+' baris';const empty=host.querySelector('[data-matrix-empty]');if(empty)empty.hidden=n>0;host.querySelectorAll('[data-renstra-row-index]').forEach((el,i)=>el.textContent=String(i+1));}
@@ -876,63 +896,139 @@ const RENSTRA_BAB_FIELDS=[
  ['BAB IV — Penjelasan Program & Pendanaan',['sumberProgram','programPrioritas']],
  ['BAB V — Penutup, Reviu dan Verifikasi',['penutupRenstra','reviuAPIP','konsistensiRPJMD','penyelarasanRPJMN','catatanVerifikasi']]
 ];
+const RENSTRA_PRIMARY_CODE='RENSTRA-SETWAN-2025-2029';
+const RENSTRA_CHAPTER_TABS={
+ bab1:[['bab1','Uraian BAB I']],
+ bab2:[['bab2','Uraian BAB II'],['2.1','Tabel 2.1 · Isu strategis']],
+ bab3:[['3.3','Tabel 3.3 · Tujuan & sasaran'],['3.4','Tabel 3.4 · Penahapan'],['3.5','Tabel 3.5 · Arah kebijakan'],['bab3','Uraian BAB III']],
+ bab4:[['4.2','Tabel 4.2 · Cascading program'],['4.3','Tabel 4.3 · Target & pagu'],['4.4','Tabel 4.4 · Prioritas'],['4.5','Tabel 4.5 · IKU'],['4.6','Tabel 4.6 · IKK'],['bab4','Uraian BAB IV']],
+ bab5:[['bab5','Uraian BAB V & reviu']]
+};
+const RENSTRA_CHAPTER_INFO=[
+ ['bab1','BAB I','Pendahuluan'],['bab2','BAB II','Pelayanan & isu strategis'],
+ ['bab3','BAB III','Tujuan, sasaran & strategi'],['bab4','BAB IV','Program & kinerja'],
+ ['bab5','BAB V','Penutup & reviu']
+];
+function renstraChapterForTab(tab){return Object.keys(RENSTRA_CHAPTER_TABS).find(ch=>RENSTRA_CHAPTER_TABS[ch].some(t=>t[0]===tab))||'bab3'}
+function renstraSeedFromDocument(){
+ // Sumber: Rancangan Akhir Renstra Setwan, uraian halaman PDF 25–27, Tabel 4.5 halaman PDF 91.
+ // Belum ada dokumen final; tidak mengisi nominal pagu, hasil APIP, penetapan, atau IKK tanpa dasar.
+ const targets=KINERJA_REF_PREVIEW.targets;
+ const refs=[
+  {code:'SAKIP_SETWAN',tujuan:'Meningkatnya akuntabilitas kinerja penyelenggaraan pemerintah daerah',sasaran:'Meningkatnya akuntabilitas kinerja Sekretariat DPRD'},
+  {code:'IKM_SETWAN',tujuan:'Meningkatnya kualitas pelayanan publik yang prima',sasaran:'Meningkatnya kualitas pelayanan publik pada Sekretariat DPRD'},
+  {code:'KEPUASAN_ANGGOTA_DPRD',tujuan:'Meningkatnya kualitas pelayanan publik yang prima',sasaran:'Meningkatnya kualitas pelayanan publik pada Sekretariat DPRD'}
+ ];
+ const t33=[],t45=[];
+ for(const ref of refs){const series=targets.filter(x=>x.indicator_code===ref.code),base=series[0];if(!base)continue;
+  const row33={tujuan:ref.tujuan,sasaran:ref.sasaran,indikator:base.indicator_name,baseline2024:base.value,keterangan:'Sumber Renstra Setwan Rancangan Akhir, Bab III PDF 26–27 dan Tabel 4.5 PDF 91'},row45={indikator:base.indicator_name,satuan:base.unit,keterangan:'Sumber: Rancangan Akhir Renstra Setwan, Tabel 4.5, PDF hlm. 91'};
+  for(const year of [2025,2026,2027,2028,2029,2030]){const target=series.find(x=>x.year===year);if(target){row33['target'+year]=target.value;row45['target'+year]=target.value;}}
+  t33.push(row33);t45.push(row45);
+ }
+ return {'3.3':t33,'4.5':t45};
+}
+function renstraBaseDraft(){return {kode:RENSTRA_PRIMARY_CODE,periodeMulai:2025,periodeAkhir:2029,
+ fungsiDPRD:'Dukungan lintas fungsi',statusDokumen:'Rancangan Akhir',statusRujukan:'Rancangan Akhir — belum ditetapkan',
+ sumberRujukan:'Inmendagri Nomor 2 Tahun 2025 Lampiran Bagian IV halaman cetak 41–53 (PDF 45–57); Rancangan Akhir Renstra Sekretariat DPRD Kabupaten Kapuas Hulu Tahun 2025–2029, Bab III PDF 25–27, Tabel 4.5 PDF 91',
+ tabelRenstra:renstraSeedFromDocument()};}
+function renstraOtherRecords(current){return rows('renstra').filter(x=>x.id!==current?.id)}
 function renstraWorkbookCurrent(){
- const rr=rows('renstra');if(S.renstraActiveId==='new')return null;
- const found=rr.find(r=>r.id===S.renstraActiveId);if(found)return found;
- const initial=rr[0]||null;S.renstraActiveId=initial?.id||'new';return initial;
+ const rr=rows('renstra');
+ const current=rr.find(x=>x.data?.kode===RENSTRA_PRIMARY_CODE&&Number(x.data?.periodeMulai)===2025&&Number(x.data?.periodeAkhir)===2029);
+ if(current){S.renstraActiveId=current.id;return current;}
+ const legacy=rr.filter(x=>Number(x.data?.periodeMulai)===2025&&Number(x.data?.periodeAkhir)===2029);
+ // Tawarkan rekaman yang paling banyak memiliki isi tabel untuk diangkat menjadi induk; tidak menghapus rekaman lain.
+ const weight=x=>Object.values(x.data?.tabelRenstra||{}).reduce((n,a)=>n+(Array.isArray(a)?a.length:0),0);
+ const eligible=legacy.filter(x=>x.status==='draft'||x.status==='master');
+ const best=eligible.sort((a,b)=>weight(b)-weight(a)||String(a.created_at||'').localeCompare(String(b.created_at||'')))[0]||legacy[0]||null;
+ S.renstraActiveId=best?.id||'new';return best;
 }
 function renstraNarrativeHTML(data,readonly){
- return `<section class="renstraSheetNarrative" data-sheet-panel="narasi" ${(S.renstraTab||'3.3')!=='narasi'?'hidden':''}><p class="hint">Uraian Bab I–V melengkapi matriks. Bagian ini bukan pengganti tabel utama; tuliskan hanya informasi yang didukung dokumen sumber.</p>${RENSTRA_BAB_FIELDS.map(([title,keys])=>`<details class="renstraNarrativeChapter"><summary>${esc(title)}</summary><div class="renstraNarrativeFields">${keys.map(key=>{const meta=modules.renstra.fields[key];return `<label class="field"><span>${esc(meta.label)}</span><textarea name="narasi_${esc(key)}" class="control" rows="4" ${readonly?'readonly':''} placeholder="Isi sesuai naskah Renstra dan dokumen verifikasi...">${esc(data[key]??'')}</textarea></label>`}).join('')}</div></details>`).join('')}</section>`;
+ return RENSTRA_BAB_FIELDS.map(([title,keys],index)=>{
+  const tab='bab'+(index+1);
+  return `<section class="renstraSheetNarrative" data-sheet-panel="${tab}" ${(S.renstraTab||'3.3')!==tab?'hidden':''} aria-label="${esc(title)}"><div class="renstraSourceBanner">${esc(title)} · Isi uraian dari naskah Renstra Setwan dan bahan verifikasi. Bagian yang belum didukung bukti biarkan kosong.</div><div class="renstraNarrativeFields">${keys.map(key=>{const meta=modules.renstra.fields[key];return `<label class="field"><span>${esc(meta.label)}</span><textarea name="narasi_${esc(key)}" class="control" rows="5" ${readonly?'readonly':''} placeholder="Isi dari Renstra dan dokumen sumber yang terverifikasi...">${esc(data[key]??'')}</textarea></label>`}).join('')}</div></section>`;
+ }).join('');
 }
 function renstraWorkbookPage(){
- const rr=rows('renstra'),r=renstraWorkbookCurrent(),d=r?.data||{},unit=r?.unit||(isAdmin()?unitDefault('renstra'):S.profile.unit),writable=canWrite('renstra',unit)&&(!r||['draft','master'].includes(r.status)),selected=S.renstraTab||'3.3';
- const tabs=[['3.3','3.3 Tujuan & Sasaran'],['4.5','4.5 IKU'],['4.2','4.2 Program'],['4.3','4.3 Target & Pagu'],['2.1','2.1 Isu Strategis'],['3.4','3.4 Penahapan'],['3.5','3.5 Arah Kebijakan'],['4.4','4.4 Prioritas'],['4.6','4.6 IKK'],['narasi','Bab I–V']];
- const get=key=>d[key]??'';
- const picker=rr.length?`<label class="field renstraRecordSelect"><span>Pilih dokumen/rekaman Renstra</span><select id="renstraRecordSelect" class="control"><option value="new" ${!r?'selected':''}>＋ Lembar Renstra baru</option>${rr.map(x=>`<option value="${esc(x.id)}" ${r?.id===x.id?'selected':''}>${esc(x.data.kode||'Tanpa kode')} · ${esc((x.data.sasaran||x.data.indikator||'').slice(0,62))} · ${esc(statusName(x.status))}</option>`).join('')}</select></label>`:'<p class="hint">Belum ada rekaman Renstra; isi lembar kerja baru di bawah.</p>';
- return `<section class="renstraWorkbook" aria-label="Lembar kerja Renstra Setwan 2025–2029">
- <div class="pageIntro sisModuleIntro"><div><p class="sisEyebrow">PERENCANAAN KINERJA · LEMBAR KERJA LANGSUNG</p><h1>🎯 Renstra Sekretariat DPRD 2025–2029</h1><p>Tulis data <strong>langsung di sel tabel</strong> mengikuti Inmendagri 2/2025 Lampiran IV halaman cetak 41–53. Data acuan berasal dari <strong>Rancangan Akhir Renstra Setwan</strong>, belum dianggap dokumen final ditetapkan.</p></div></div>
- <div class="renstraWorkbookTop panel"><div class="renstraWorkbookRow">${picker}${writable?`<button type="button" class="button" data-renstra-new="1">＋ Lembar baru</button>`:''}${r?`<button type="button" class="button" data-detail="${esc(r.id)}">Lihat detail & evidence</button>`:''}</div><div class="renstraWorkbookLegend"><span>📘 Pedoman: Inmendagri 2/2025</span><span>📄 Sumber: Rancangan Akhir Renstra Setwan</span><span>🗓 Periode 2025–2029; 2030 = transisi</span>${r?`<span>${chip(r.status)}</span>`:''}</div></div>
+ const r=renstraWorkbookCurrent(),d=r?.data||renstraBaseDraft(),unit=r?.unit||'Sekretariat DPRD';
+ const writable=canWrite('renstra',unit)&&(!r||['draft','master'].includes(r.status));
+ const selected=RENSTRA_CHAPTER_TABS[renstraChapterForTab(S.renstraTab||'3.3')].some(x=>x[0]===S.renstraTab)?S.renstraTab:'3.3';
+ const chapter=renstraChapterForTab(selected),older=renstraOtherRecords(r);
+ const chapterNames={bab1:'Latar belakang, dasar hukum, maksud, tujuan, dan sistematika.',bab2:'Gambaran pelayanan, kondisi sumber daya, permasalahan dan isu strategis.',bab3:'Tabel tujuan, sasaran, indikator, target, penahapan dan arah kebijakan.',bab4:'Keterkaitan outcome–output, program, kegiatan, subkegiatan, target, pagu dan IKU/IKK.',bab5:'Penutup, reviu APIP dan catatan verifikasi. Bukti asli harus diunggah.'};
+ const allTabs=Object.entries(RENSTRA_CHAPTER_TABS).flatMap(([ch,tabs])=>tabs.map(([id,label])=>`<button type="button" role="tab" aria-selected="${id===selected}" data-tab-chapter="${ch}" data-renstra-tab="${id}" class="renstraTab ${id===selected?'is-active':''}" ${ch!==chapter?'hidden':''}>${esc(label)}</button>`)).join('');
+ return `<section class="renstraWorkbook" aria-label="Dokumen Renstra Setwan 2025–2029">
+ <div class="pageIntro sisModuleIntro"><div><p class="sisEyebrow">PERENCANAAN KINERJA · DOKUMEN INDUK</p><h1>📘 Renstra Sekretariat DPRD 2025–2029</h1><p><b>Satu dokumen induk</b> untuk seluruh tujuan, sasaran, program, kegiatan, subkegiatan dan indikator. Input langsung pada tabel yang disusun menurut <b>Inmendagri Nomor 2 Tahun 2025</b>.</p></div></div>
+ <section class="panel renstraWorkbookTop"><div class="renstraDocumentHeader"><div><h2 style="margin:0">Dokumen induk Renstra Sekretariat DPRD</h2><p class="hint">Kabupaten Kapuas Hulu · Periode 2025–2029 · Data berasal dari Rancangan Akhir, bukan dokumen penetapan final.</p></div><div style="display:flex;flex-wrap:wrap;gap:8px"><button type="button" class="button" data-renstra-review="1">✓ Periksa kelengkapan</button>${r?`<button type="button" class="button" data-detail="${esc(r.id)}">📎 Detail & evidence</button>`:''}</div></div>
+ <div class="renstraDocumentMeta"><span>📅 2025–2029</span><span>📘 Pedoman Inmendagri 2/2025</span><span>📄 Sumber Rancangan Akhir Renstra Setwan</span><span>🏢 Sekretariat DPRD</span>${r?`<span>${chip(r.status)}</span>`:'<span>📝 Belum disimpan</span>'}</div>
+ ${older.length?`<details class="renstraLegacyBox"><summary>${older.length} rekaman Renstra lama tetap tersimpan — lihat sebagai arsip, tidak digabung otomatis</summary><div class="renstraLegacyItems">${older.map(x=>`<button class="button" type="button" data-detail="${esc(x.id)}">${esc(x.data.kode||'Rekaman tanpa kode')} · ${esc(statusName(x.status))}</button>`).join('')}</div></details>`:''}
+ ${r&&r.data?.kode!==RENSTRA_PRIMARY_CODE?`<p class="renstraStatusInfo">Rekaman lama <b>${esc(r.data.kode||'tanpa kode')}</b> digunakan sebagai dasar dokumen induk, sehingga referensi Renja/IKU yang sudah menunjuk rekaman ini tetap berlaku. Kode induk diterapkan otomatis saat simpan. Data Renstra lama lain tidak dihapus.</p>`:''}
+ </section>
  <form id="renstraSheetForm" data-module="renstra" data-workbook="1" data-id="${esc(r?.id||'')}">
- <section class="panel renstraWorkbookIdentity"><header><h2>Identitas dokumen</h2><span class="hint">Diperlukan untuk menyimpan tabel dalam satu rekaman Supabase</span></header><div class="renstraIdentityFields"><label class="field"><span>Kode Renstra / sasaran *</span><input class="control" name="kode" value="${esc(get('kode'))}" required ${!writable?'readonly':''} placeholder="Kode dokumen sesuai sumber"></label><label class="field"><span>Fungsi DPRD *</span><select class="control" name="fungsiDPRD" ${!writable?'disabled':''}>${selectOptions(modules.renstra.fields.fungsiDPRD.options.map(x=>[x,x]),get('fungsiDPRD'),'Pilih fungsi DPRD')}</select></label><label class="field"><span>Tahap dokumen</span><select class="control" name="statusDokumen" ${!writable?'disabled':''}>${selectOptions(modules.renstra.fields.statusDokumen.options.map(x=>[x,x]),get('statusDokumen')||'Rancangan Akhir')}</select></label>${isAdmin()?`<label class="field"><span>Unit pemilik dokumen</span><select class="control" name="sisUnit" ${!writable?'disabled':''}>${selectOptions(UNITS.map(x=>[x,x]),unit)}</select></label>`:''}</div><input type="hidden" name="periodeMulai" value="2025"><input type="hidden" name="periodeAkhir" value="2029"><p class="hint">Setiap pilihan rekaman memiliki tabelnya sendiri. <b>Baris pertama Tabel 3.3</b> digunakan sebagai ringkasan sasaran dan indikator untuk relasi dengan Renja/IKU. Semua baris tabel tetap tersimpan utuh. Simpan menggunakan tombol <b>Simpan seluruh tabel</b>.</p></section>
- <section class="panel renstraWorkbookTables"><header><div><h2>Isi tabel Renstra langsung</h2><p class="hint">Pilih tabel, tambah baris, lalu ketik di sel. Geser tabel ke kanan/kiri pada iPhone untuk melihat kolom lainnya.</p></div><span class="renstraDirtyBadge" id="renstraUnsaved" hidden>● Belum disimpan</span></header><nav class="renstraTableTabs" role="tablist" aria-label="Pilih tabel Renstra">${tabs.map(([key,label])=>`<button type="button" role="tab" aria-selected="${selected===key}" data-renstra-tab="${key}" class="renstraTab ${selected===key?'is-active':''}">${esc(label)}</button>`).join('')}</nav>
- <div class="renstraMobileGuide">↔ Geser mendatar pada tabel untuk berpindah kolom. Ketuk sel untuk mengetik; tidak perlu membuka formulir per baris.</div>
- ${Object.entries(RENSTRA_MATRICES).map(([key])=>renstraMatrixHTML(key,d,true,!writable)).join('')}${renstraNarrativeHTML(d,!writable)}</section>
- <div class="renstraWorkbookBottom"><div class="hint"><b>Perhatian:</b> pagu indikatif, tanggal penetapan, dan hasil reviu yang belum ada sumbernya harus tetap kosong. Evidence asli diunggah melalui detail rekaman.</div>${writable?`<button class="primary renstraSaveButton" type="submit">💾 Simpan seluruh tabel ke Supabase</button>`:'<p class="hint">Rekaman ini hanya dapat dibaca karena status/izin pengguna. Gunakan proses pengembalian dokumen jika perlu revisi.</p>'}</div></form></section>`;
+ <section class="panel renstraWorkbookTables"><header><div><h2>Susun Renstra menurut BAB dan tabel</h2><p class="hint">Pilih bab → pilih tabel → ketik langsung pada sel. Pada iPhone 13, geser tabel ke kanan/kiri untuk melihat kolom lain.</p></div><span class="renstraDirtyBadge" id="renstraUnsaved" hidden>● Belum disimpan</span></header>
+ <nav class="renstraChapterNav" aria-label="Pilih bab Renstra">${RENSTRA_CHAPTER_INFO.map(([id,title,sub])=>`<button type="button" data-renstra-chapter="${id}" class="renstraChapterButton ${id===chapter?'is-active':''}" aria-pressed="${id===chapter}">${title}<small>${esc(sub)}</small></button>`).join('')}</nav>
+ <p class="renstraWorksheetLead" id="renstraChapterLead">${esc(chapterNames[chapter])}</p>
+ <nav class="renstraTableTabs" role="tablist" aria-label="Pilih tabel atau uraian bab">${allTabs}</nav>
+ <div class="renstraMobileGuide">↔ Tabel dapat digeser mendatar; ketuk sel untuk mengetik dan tekan <b>Tambah baris</b> jika diperlukan. Semua tabel disimpan bersama-sama dalam satu dokumen.</div>
+ ${Object.entries(RENSTRA_MATRICES).map(([key])=>renstraMatrixHTML(key,d,true,!writable)).join('')}${renstraNarrativeHTML(d,!writable)}
+ </section>
+ <div class="renstraWorkbookBottom"><div class="hint"><b>Rancangan Akhir:</b> baris Tabel 3.3 dan 4.5 bersumber dari Renstra unggahan. Kolom tanpa sumber, pagu, hasil reviu APIP dan dokumen penetapan tidak boleh diisi dengan data rekaan.</div>${writable?`<button class="primary renstraSaveButton" type="submit">💾 Simpan dokumen Renstra</button>`:'<p class="hint">Dokumen hanya dapat dibaca pada status atau kewenangan akun ini.</p>'}</div>
+ </form></section>`;
 }
 async function renstraSaveWorkbook(form){
- const id=form.dataset.id||null,r=id?find('renstra',id):null,unit=isAdmin()?form.elements.sisUnit?.value:S.profile.unit;
- if(!canWrite('renstra',unit)||r&&!['draft','master'].includes(r.status))throw Error('Data Renstra ini tidak dapat diedit oleh akun Anda.');
- const kode=String(form.elements.kode.value||'').trim(),fungsiDPRD=String(form.elements.fungsiDPRD.value||'').trim();
- if(!kode||!fungsiDPRD)throw Error('Lengkapi Kode Renstra dan Fungsi DPRD pada identitas dokumen.');
- const data={...(r?.data||{}),kode,fungsiDPRD,periodeMulai:2025,periodeAkhir:2029,statusDokumen:form.elements.statusDokumen.value,tabelRenstra:renstraCollectMatrices(form)};
- for(const part of RENSTRA_BAB_FIELDS)for(const key of part[1]){const el=form.elements['narasi_'+key];if(el)data[key]=el.value.trim();}
+ const id=form.dataset.id||null,r=id?find('renstra',id):null;
+ const unit=r?.unit||'Sekretariat DPRD';
+ if(!canWrite('renstra',unit)||r&&!['draft','master'].includes(r.status))throw Error('Dokumen Renstra tidak dapat diedit oleh akun Anda.');
+ const data={...renstraBaseDraft(),...(r?.data||{}),
+  kode:RENSTRA_PRIMARY_CODE,periodeMulai:2025,periodeAkhir:2029,
+  fungsiDPRD:'Dukungan lintas fungsi',tabelRenstra:renstraCollectMatrices(form)};
+ for(const [,keys] of RENSTRA_BAB_FIELDS)for(const key of keys){const el=form.elements['narasi_'+key];if(el)data[key]=el.value.trim();}
  const goal=(data.tabelRenstra['3.3']||[]).find(x=>x.sasaran||x.indikator)||{},iku=(data.tabelRenstra['4.5']||[]).find(x=>x.indikator)||{};
- if(goal.sasaran)data.sasaran=goal.sasaran;if(goal.indikator)data.indikator=goal.indikator;
- if(!data.indikator&&iku.indikator)data.indikator=iku.indikator;
- // Satu kali input: baris utama Tabel 3.3 tetap menjadi sumber scalar yang dibaca modul Renja/IKU/PK lama.
+ // Hanya kolom ringkasan kompatibilitas untuk modul lama; tidak menduplikasi matriks.
+ // Jika belum ada tujuan/sasaran, simpan Bab I–II sebagai draf dengan migrasi SQL validasi.
+ data.sasaran=goal.sasaran||'';data.indikator=goal.indikator||iku.indikator||'';
+ if(goal.tujuan&&!data.tujuan)data.tujuan=goal.tujuan;
  const master=goal.indikator?goal:iku;
  if(master.satuan)data.satuan=master.satuan;
- if(master.baseline2024!==undefined&&master.baseline2024!=='')data.baseline=Number(master.baseline2024);
- for(let year=2025;year<=2030;year++)if(master['target'+year]!==undefined&&master['target'+year]!=='')data['target'+year]=Number(master['target'+year]);
- if(master.target2029!==undefined&&master.target2029!=='')data.targetAkhir=Number(master.target2029);
- const tahunan={...(data.targetTahunan||{})};for(let year=2025;year<=2029;year++)if(master['target'+year]!==undefined&&master['target'+year]!=='')tahunan[year]=Number(master['target'+year]);
- if(Object.keys(tahunan).length)data.targetTahunan=tahunan;
- if(!data.sasaran||!data.indikator)throw Error('Isi minimal satu baris Tabel 3.3 dengan Sasaran Renstra dan Indikator agar dokumen dapat disimpan.');
- if(!data.sumberRujukan)data.sumberRujukan='Inmendagri No. 2 Tahun 2025 Lampiran IV, halaman cetak 41–53; Rancangan Akhir Renstra Sekretariat DPRD Kabupaten Kapuas Hulu 2025–2029';
- if(!data.statusRujukan)data.statusRujukan='Rancangan Akhir — belum ditetapkan';
- // Perbaikan kompatibilitas validasi scalar lama: kolom yang belum ada tetap kosong, bukan undefined.
+ data.baseline=master.baseline2024!==undefined&&master.baseline2024!==''?Number(master.baseline2024):'';
+ const tahunan={};for(let year=2025;year<=2030;year++){
+  data['target'+year]=master['target'+year]!==undefined&&master['target'+year]!==''?Number(master['target'+year]):'';
+  if(year<=2029&&data['target'+year]!=='')tahunan[year]=data['target'+year];
+ }
+ data.targetAkhir=data.target2029;data.targetTahunan=tahunan;
  for(const key of Object.keys(modules.renstra.fields))if(data[key]===undefined)data[key]='';
- if(data.statusDokumen==='Ditetapkan'&&String(data.statusRujukan).toLowerCase().includes('belum ditetapkan'))throw Error('Belum boleh berstatus Ditetapkan. Tautkan dokumen penetapan asli dan perbaiki status rujukan melalui proses verifikasi.');
- if(JSON.stringify(data).length>235000)throw Error('Rekaman Renstra terlalu besar untuk disimpan. Pisahkan bagian dokumen ke dalam rekaman sesuai sasaran yang ada.');
+ if(data.statusDokumen==='Ditetapkan'&&String(data.statusRujukan).toLowerCase().includes('belum ditetapkan'))throw Error('Status penetapan belum didukung bukti resmi.');
+ if(JSON.stringify(data).length>235000)throw Error('Dokumen Renstra melewati ukuran maksimum. Lampirkan dokumen besar di Supabase Storage, bukan menempel seluruh teks pada sel.');
  sisDomainValidate('renstra',data,unit,id);
  const result=await rpc('sis_save_record',{p_module:'renstra',p_record_id:id,p_unit:unit,p_data:data,p_expected_version:r?.version||0});
  S.renstraActiveId=result.id||id;S.renstraDirty=false;
+}
+function renstraReviewWorkbook(){
+ const form=document.querySelector('#renstraSheetForm');if(!form)return;
+ const data=renstraCollectMatrices(form),missing=Object.keys(RENSTRA_MATRICES).filter(k=>!data[k]?.length);
+ const filled=RENSTRA_BAB_FIELDS.flatMap(([,keys])=>keys.filter(k=>String(form.elements['narasi_'+k]?.value||'').trim()));
+ const goal=data['3.3']||[],program=data['4.2']||[],withoutIndicator=goal.filter(r=>r.sasaran&&!r.indikator).length;
+ const absent=missing.length?missing.join(', '):'tidak ada';
+ const warning=withoutIndicator?'\n• '+withoutIndicator+' baris sasaran belum memiliki indikator.':'';
+ alert('Pemeriksaan kelengkapan DRAF Renstra\n\n• Tabel terisi: '+(9-missing.length)+'/9\n• Narasi terisi: '+filled.length+' kolom\n• Matriks tujuan/sasaran: '+goal.length+' baris\n• Matriks program: '+program.length+' baris\n• Tabel kosong: '+absent+warning+'\n\nPemeriksaan ini BUKAN reviu APIP atau pengesahan dokumen. Bukti faktual tetap harus diverifikasi.');
+}
+function renstraAddSourcePrograms(){
+ const form=document.querySelector('#renstraSheetForm');if(!form)return;
+ const host=[...form.querySelectorAll('[data-matrix]')].find(x=>x.dataset.matrix==='4.2'),list=host?.querySelector('[data-matrix-rows]');if(!list)return;
+ const programs=[
+  {kodeProgram:'4.02.01',program:'PROGRAM PENUNJANG URUSAN PEMERINTAHAN DAERAH KABUPATEN/KOTA',keterangan:'Rancangan Akhir Renstra Setwan Tabel 4.4, PDF hlm. 88'},
+  {kodeProgram:'4.02.02',program:'PROGRAM DUKUNGAN PELAKSANAAN TUGAS DAN FUNGSI DPRD',keterangan:'Rancangan Akhir Renstra Setwan Tabel 4.4, PDF hlm. 89'}
+ ];
+ let added=0;for(const obj of programs){if([...list.querySelectorAll('[data-matrix-row]')].some(row=>row.querySelector('[data-matrix-col="kodeProgram"]')?.value===obj.kodeProgram))continue;
+  list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML('4.2',obj,list.children.length));added++;
+ }
+ renstraUpdateCount(host);if(added){renstraMarkDirty();note(added+' baris program dari Renstra sumber ditambahkan sebagai draf. Lengkapi kegiatan, subkegiatan, outcome dan output berdasarkan tabel sumber.');}else note('Program sudah ada, tidak ditambahkan ulang.');
 }
 function renstraAddSourceTargets(table){const form=document.querySelector('#renstraSheetForm');const host=[...form.querySelectorAll('[data-matrix]')].find(x=>x.dataset.matrix===table),list=host?.querySelector('[data-matrix-rows]');if(!list)return;
  const codes=['IKM_SETWAN','SAKIP_SETWAN','KEPUASAN_ANGGOTA_DPRD'];let added=0;
  for(const code of codes){const tt=KINERJA_REF_PREVIEW.targets.filter(x=>x.indicator_code===code);if(!tt.length)continue;
  const exists=[...list.querySelectorAll('[data-matrix-row]')].some(row=>String(row.querySelector('[data-matrix-col="indikator"]')?.value||'').trim().toLowerCase()===tt[0].indicator_name.toLowerCase());if(exists)continue;
  const obj={indikator:tt[0].indicator_name};if(table==='4.5')obj.satuan=tt[0].unit;
+ if(table==='3.3'){const matched=renstraSeedFromDocument()['3.3'].find(x=>x.indikator===obj.indikator);if(matched){obj.tujuan=matched.tujuan;obj.sasaran=matched.sasaran;}}
  if(table==='3.3'){const base=tt.find(x=>x.year===2024);if(base)obj.baseline2024=base.value;}
  for(let year=2025;year<=2030;year++){const t=tt.find(x=>x.year===year);if(t)obj['target'+year]=t.value;}
  if(list.querySelectorAll('[data-matrix-row]').length>=80)throw Error('Tabel sudah mencapai batas 80 baris');list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML(table,obj,list.children.length));added++;
@@ -940,7 +1036,18 @@ function renstraAddSourceTargets(table){const form=document.querySelector('#rens
  renstraUpdateCount(host);if(added){renstraMarkDirty();note(added+' baris indikator dimasukkan dari Rancangan Akhir Renstra; sasaran dan tujuan harus diperiksa dan dilengkapi.');}else note('Indikator dari sumber sudah ada pada tabel ini; tidak diduplikasi.');
 }
 function renstraMarkDirty(){S.renstraDirty=true;const badge=document.getElementById('renstraUnsaved');if(badge)badge.hidden=false;}
-function renstraSwitchTab(key){if(!RENSTRA_MATRICES[key]&&key!=='narasi')return;S.renstraTab=key;document.querySelectorAll('[data-sheet-panel]').forEach(x=>x.hidden=x.dataset.sheetPanel!==key);document.querySelectorAll('[data-renstra-tab]').forEach(x=>{const selected=x.dataset.renstraTab===key;x.classList.toggle('is-active',selected);x.setAttribute('aria-selected',String(selected));});}
+function renstraSwitchChapter(chapter){if(!RENSTRA_CHAPTER_TABS[chapter])return;
+ const previous=S.renstraTab,tab=RENSTRA_CHAPTER_TABS[chapter].some(x=>x[0]===previous)?previous:RENSTRA_CHAPTER_TABS[chapter][0][0];renstraSwitchTab(tab);
+}
+function renstraSwitchTab(key){
+ const chapter=renstraChapterForTab(key);if(!RENSTRA_CHAPTER_TABS[chapter].some(x=>x[0]===key))return;
+ S.renstraTab=key;
+ document.querySelectorAll('[data-sheet-panel]').forEach(x=>x.hidden=x.dataset.sheetPanel!==key);
+ document.querySelectorAll('[data-renstra-tab]').forEach(x=>{const selected=x.dataset.renstraTab===key;x.hidden=x.dataset.tabChapter!==chapter;x.classList.toggle('is-active',selected);x.setAttribute('aria-selected',String(selected));});
+ document.querySelectorAll('[data-renstra-chapter]').forEach(x=>{const selected=x.dataset.renstraChapter===chapter;x.classList.toggle('is-active',selected);x.setAttribute('aria-pressed',String(selected));});
+ const chapterLead={bab1:'Latar belakang, dasar hukum, maksud, tujuan dan sistematika.',bab2:'Gambaran pelayanan, sumber daya, permasalahan dan isu strategis.',bab3:'Tujuan, sasaran, indikator dan target, penahapan dan arah kebijakan.',bab4:'Program, kegiatan, subkegiatan, target, pagu, IKU dan IKK.',bab5:'Penutup, pengendalian, reviu APIP dan catatan verifikasi.'};
+ const lead=document.querySelector('#renstraChapterLead');if(lead)lead.textContent=chapterLead[chapter];
+}
 function renstraCSV(table){const form=document.querySelector('#renstraSheetForm'),def=RENSTRA_MATRICES[table];if(!form||!def)return;const host=[...form.querySelectorAll('[data-matrix]')].find(x=>x.dataset.matrix===table),cols=def.columns;const safe=v=>/^[=+@\-\t\r]/.test(String(v))?"'"+v:v;
  const all=[['No',...cols.map(c=>c[1])]];host.querySelectorAll('[data-matrix-row]').forEach((row,i)=>all.push([i+1,...cols.map(([key])=>safe(row.querySelector(`[data-matrix-col="${key}"]`)?.value||''))]));csvExport('SIS-DPR_Renstra_Tabel_'+table.replace('.','-')+'.csv',all);
 }
@@ -1122,8 +1229,11 @@ function attachEvents(){document.addEventListener('click',async e=>{
  const link=Object.entries(modules[target].fields).find(([name,opt])=>opt.type==='ref'&&opt.target===parent.module);
  if(!link)throw Error('Modul tujuan tidak memiliki relasi ke data sumber.');
  navigate(target);sisRenderForm(target,null,{[link[0]]:parent.id});const form=document.querySelector('#recordForm');if(form)sisAutofillFromSource(form,link[0]);return;}
+ if(el.dataset.renstraChapter){renstraSwitchChapter(el.dataset.renstraChapter);return}
  if(el.dataset.renstraTab){renstraSwitchTab(el.dataset.renstraTab);return}
+ if(el.dataset.renstraReview){renstraReviewWorkbook();return}
  if(el.dataset.renstraNew){if(S.renstraDirty&&!confirm('Ada isian belum disimpan. Buat lembar Renstra baru dan abaikan perubahan?'))return;S.renstraActiveId='new';S.renstraDirty=false;render();return}
+ if(el.dataset.renstraPrograms){renstraAddSourcePrograms();return}
  if(el.dataset.renstraTargets){renstraAddSourceTargets(el.dataset.renstraTargets);return}
  if(el.dataset.renstraCsv){renstraCSV(el.dataset.renstraCsv);return}
  if(el.dataset.renstraAdd){const host=el.closest('[data-matrix]'),list=host?.querySelector('[data-matrix-rows]');if(!list)return;const table=el.dataset.renstraAdd;const n=list.querySelectorAll('[data-matrix-row]').length;if(n>=80)throw Error('Batas 80 baris per tabel.');list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML(table,{},n));renstraUpdateCount(host);if(host.closest('#renstraSheetForm'))renstraMarkDirty();return}
