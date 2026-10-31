@@ -327,6 +327,17 @@ label.field{min-width:0} .field>.control{min-width:0}
  .renstra42DataTable .renstra42Breadcrumb{font-size:12px;line-height:1.55}
  .renstra42DataTable .renstra42Subcell::before{content:'SUBKEGIATAN · TERHUBUNG KE KEGIATAN INDUK'}
 }
+
+/* Diagram 3D JavaScript: hanya pada workspace Renstra, tidak memengaruhi formulir lain */
+.renstraDiagramPanel{min-width:0;max-width:100%;padding:12px 0}.renstraDiagramHeading{background:#e8f5f5;border:1px solid #cce2e4;border-radius:12px;padding:13px 16px;margin-bottom:16px;color:#1a565c}.renstraDiagramHeading p{margin:4px 0 0;font-size:12px}
+.renstraFigureBlock{border:1px solid #cddde1;background:#fff;border-radius:15px;padding:14px;min-width:0;max-width:100%;margin:0 0 18px;overflow:hidden}.renstraFigureBlock figcaption{font-weight:800;font-size:14px;color:#173c4d;margin-bottom:10px}.renstraFigureBlock figcaption small{display:block;font-weight:400;font-size:11px;color:#617888}.renstra3dStage{perspective:1450px;overflow:visible;width:100%;max-width:1120px;margin:0 auto;display:grid;place-items:center}.renstra3dPlane{width:100%;transform-origin:50% 50%;will-change:transform;transition:transform .22s ease-out}.renstra3dSvg{width:100%;height:auto;display:block;overflow:visible;filter:drop-shadow(0 10px 12px rgba(16,57,68,.09))}.renstraFigNode rect{transition:filter .2s}.renstraFigNode:hover rect{filter:brightness(1.08)}.renstra3dControls{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:9px 0}.renstra3dControls label{display:flex;align-items:center;gap:10px;font-weight:750;font-size:12px}.renstra3dControls input{width:125px;accent-color:#0b7773}.renstraFigureNote{font-size:12px;color:#566f7c;background:#f4f9fa;border-radius:8px;padding:9px 12px;margin:5px 0 0}.renstraPrintActions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.renstraPrintActions button{min-height:43px}.renstraPrintActions .primary{background:#0b6b65}
+@media(max-width:820px){.renstraFigureBlock{padding:10px}.renstra3dControls{gap:7px}.renstra3dControls label{width:100%;justify-content:space-between}.renstra3dControls input{width:55%}.renstraPrintActions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.renstraPrintActions button{font-size:12px;padding:8px}.renstraPrintActions button:first-child{grid-column:1/-1}.renstra3dSvg{min-width:0}}
+@media print{.renstra3dPlane{transform:none!important}.renstra3dControls,.renstraPrintActions,.renstraFigureOriginal{display:none!important}}
+
+.renstraFigureOriginal{margin:10px 0;border:1px solid #dbe5e8;border-radius:9px;padding:8px 11px;background:#f7fbfc}.renstraFigureOriginal summary{cursor:pointer;font-size:12px;font-weight:800;color:#24556a;padding:6px}.renstraFigureOriginal img{display:block;max-width:100%;height:auto;margin:9px auto;background:#fff}.renstraFigureOriginal small{color:#536d79;display:block;margin:6px 0}
+
+/* Diagram dapat digeser pada iPhone sehingga label tidak mengecil berlebihan. */
+@media(max-width:820px){.renstraFigureBlock .renstra3dStage{display:block;overflow-x:auto;overflow-y:hidden;max-width:100%;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}.renstraFigureBlock .renstra3dPlane{width:730px;min-width:730px}.renstraFigureBlock .renstra3dSvg{width:730px;height:auto;max-width:none}.renstraFigureBlock figcaption:after{content:' · Geser gambar ↔';font-weight:500;font-size:11px;color:#4e7a86}}
 </style></head><body><div id="authPage"></div><div id="application" hidden><aside id="sidebar" class="sidebar"></aside><div id="shade" hidden></div><div class="shell"><header class="topbar"><div class="topLeft"><button id="menuToggle" type="button" class="menuButton" aria-label="Buka menu navigasi" aria-controls="sidebar" aria-expanded="false">☰</button><div><span class="crumb">SIS-DPR / Sekretariat DPRD Kabupaten Kapuas Hulu</span><div class="topTitle" id="topTitle">Dashboard</div></div></div><div class="topRight"><span id="userIndicator"></span><span id="connection"></span></div></header><div id="offlineBanner" class="offlineBanner" role="status" hidden>📶 Tidak ada koneksi internet. SIS-DPR memerlukan internet untuk membaca dan menyimpan data Supabase.</div><main id="view" class="view"></main></div><nav id="bottomNav" class="bottomNav" aria-label="Navigasi cepat mobile"></nav></div><div id="dialog"></div><div id="toasts" aria-live="polite"></div><div id="loading" hidden><span>Memuat...</span></div><script>
 'use strict';
 (()=>{
@@ -409,7 +420,7 @@ const ROLE_NAMES={admin:'Administrator',operator:'Operator',kabag:'Kepala Bagian
 const UNITS=['Sekretariat DPRD','Bagian Umum dan Keuangan','Bagian Persidangan dan Perundang-undangan','Bagian Fasilitasi Penganggaran dan Pengawasan'];
 const DOCS={
   rencanasumberdaya:[['ringkasan','Matriks Kebutuhan Sumber Daya']],feedbackberkelanjutan:[['ringkasan','Jadwal dan Draf Dialog Kinerja']],tatakeloladata:[['ringkasan','Peta Tata Kelola Data dan e-SAKIP']],evaluasisakip:[['ringkasan','Instrumen Evaluasi Mandiri SAKIP']],r3k:[['ringkasan','Matriks R3K Akselerasi']],inovasilayanan:[['ringkasan','Draf Proposal Inovasi']],crosscutting:[['ringkasan','Matriks Komitmen Lintas Sektor']],direktifpimpinan:[['ringkasan','Lembar Penugasan Khusus']],
- renstra:[['ringkasan','Lembar Sasaran Renstra'],['matriks-inmendagri','Matriks Renstra Bab II–IV (Inmendagri 2/2025)']],renja:[['ringkasan','Matriks Renja Tahunan']],iku:[['ringkasan','Kartu IKU Sekwan']],pksekwan:[['ringkasan','Draf Perjanjian Kinerja']],pohonkinerja:[['ringkasan','Lembar Cascading Kinerja']],rencanaaksi:[['ringkasan','Matriks Rencana Aksi Triwulan']],mph:[['ringkasan','Matriks Pembagian Peran & Hasil']],skpsekwan:[['ringkasan','Draf SKP Sekwan']],manualindikator:[['ringkasan','Pedoman Manual Indikator']],manajemenrisiko:[['ringkasan','Register dan Peta Risiko']],
+ renstra:[['dokumen-lengkap','Naskah Renstra lengkap (PDF)'],['ringkasan','Lembar Sasaran Renstra'],['matriks-inmendagri','Matriks Renstra Bab II–IV (Inmendagri 2/2025)']],renja:[['ringkasan','Matriks Renja Tahunan']],iku:[['ringkasan','Kartu IKU Sekwan']],pksekwan:[['ringkasan','Draf Perjanjian Kinerja']],pohonkinerja:[['ringkasan','Lembar Cascading Kinerja']],rencanaaksi:[['ringkasan','Matriks Rencana Aksi Triwulan']],mph:[['ringkasan','Matriks Pembagian Peran & Hasil']],skpsekwan:[['ringkasan','Draf SKP Sekwan']],manualindikator:[['ringkasan','Pedoman Manual Indikator']],manajemenrisiko:[['ringkasan','Register dan Peta Risiko']],
  kegiatan:[['rencana','Rencana Kegiatan'],['ringkasan','Ringkasan Kegiatan']],
  perjalanan:[['surat_tugas','Draf Surat Tugas'],['spd','Draf Surat Perjalanan Dinas'],['rincian','Rincian Perjalanan Dinas']],
  rapat:[['undangan','Draf Undangan Rapat'],['risalah','Ringkasan Rapat']],
@@ -1605,8 +1616,8 @@ const RENSTRA_PRIMARY_CODE='RENSTRA-SETWAN-2025-2029';
 const RENSTRA_CHAPTER_TABS={
  bab1:[['bab1','Uraian BAB I']],
  bab2:[['bab2','Uraian BAB II'],['2.1','Tabel 2.1 · Isu strategis']],
- bab3:[['3.3','Tabel 3.3 · Tujuan & sasaran'],['3.4','Tabel 3.4 · Penahapan'],['3.5','Tabel 3.5 · Arah kebijakan'],['bab3','Uraian BAB III']],
- bab4:[['4.2','Tabel 4.2 · Cascading program'],['4.3','Tabel 4.3 · Target & pagu'],['4.4','Tabel 4.4 · Prioritas'],['4.5','Tabel 4.5 · IKU'],['4.6','Tabel 4.6 · IKK'],['bab4','Uraian BAB IV']],
+ bab3:[['diagram3','Gambar 3.1 & 3.2 (3D)'],['3.3','Tabel 3.3 · Tujuan & sasaran'],['3.4','Tabel 3.4 · Penahapan'],['3.5','Tabel 3.5 · Arah kebijakan'],['bab3','Uraian BAB III']],
+ bab4:[['diagram4','Gambar 4.1 (3D)'],['4.2','Tabel 4.2 · Cascading program'],['4.3','Tabel 4.3 · Target & pagu'],['4.4','Tabel 4.4 · Prioritas'],['4.5','Tabel 4.5 · IKU'],['4.6','Tabel 4.6 · IKK'],['bab4','Uraian BAB IV']],
  bab5:[['bab5','Uraian BAB V & reviu']]
 };
 const RENSTRA_CHAPTER_INFO=[
@@ -1662,6 +1673,130 @@ function renstraNarrativeHTML(data,readonly){
   return `<section class="renstraSheetNarrative" data-sheet-panel="${tab}" ${(S.renstraTab||'3.3')!==tab?'hidden':''} aria-label="${esc(title)}"><div class="renstraSourceBanner">${esc(title)} · Isi uraian dari naskah Renstra Setwan dan bahan verifikasi. Bagian yang belum didukung bukti biarkan kosong.</div><div class="renstraNarrativeFields">${keys.map(key=>{const meta=modules.renstra.fields[key];return `<label class="field"><span>${esc(meta.label)}</span><textarea name="narasi_${esc(key)}" class="control" rows="5" ${readonly?'readonly':''} placeholder="Isi dari Renstra dan dokumen sumber yang terverifikasi...">${esc(data[key]??'')}</textarea></label>`}).join('')}</div></section>`;
  }).join('');
 }
+/* Diagram rujukan Renstra Inmendagri Nomor 2/2025: bukan data target fiktif.
+ * Gambar 3.1 dan 3.2: PDF halaman 49 (cetak 45); Gambar 4.1: PDF halaman 52 (cetak 48).
+ * SVG dibuat dan dimanipulasi dengan JavaScript; seluruh grafis tetap vektor saat dicetak.
+ */
+const RENSTRA_FIGURES={
+ '3.1':{
+  name:'Konsep Renstra Perangkat Daerah',source:'Inmendagri 2/2025, Lampiran IV, Gambar 3.1, halaman cetak 45 (PDF 49)',
+  explanation:'Sasaran RPJMD dan NSPK menjadi perhatian dalam perumusan tujuan. Isu strategis, arah kebijakan RPJMD, strategi, outcome dan output membentuk alur kebijakan serta cascading Renstra.',
+  nodes:[
+   ['rpjmd','SASARAN\nRPJMD',70,48,185,70,'blue'],['nspk','NSPK',355,48,145,70,'blue'],['arahR','ARAH KEBIJAKAN\nRPJMD',635,48,210,70,'blue'],['isu','ISU STRATEGIS\nMasalah · Dinamika · Potensi',865,48,205,70,'blue'],
+   ['tujuan','TUJUAN',92,251,177,78,'teal'],['arah','ARAH\nKEBIJAKAN',636,251,188,78,'teal'],['sasaran','SASARAN',92,412,177,78,'teal'],['strategi','STRATEGI\nTahapan · Fokus · Program',635,412,246,78,'teal'],['outcome','OUTCOME',92,565,177,70,'green'],['output','OUTPUT',371,565,177,70,'green']
+  ],
+  edges:[['rpjmd','tujuan','reference'],['nspk','tujuan','reference'],['nspk','arah','reference'],['arahR','arah','reference'],['isu','strategi','reference'],['tujuan','sasaran','cascade'],['sasaran','outcome','cascade'],['outcome','output','cascade'],['arah','tujuan','supports'],['arah','sasaran','supports'],['strategi','tujuan','supports'],['strategi','sasaran','supports'],['arah','strategi','reference'],['output','strategi','reference']]
+ },
+ '3.2':{
+  name:'Kerangka Keterkaitan Sasaran RPJMD dengan Tujuan Renstra PD',source:'Inmendagri 2/2025, Lampiran IV, Gambar 3.2, halaman cetak 45 (PDF 49)',
+  explanation:'Bagian atas menggambarkan keterkaitan visi/misi, tujuan, sasaran, dan program pada RPJMD. Bagian bawah menempatkan tujuan dan sasaran Renstra PD dengan dukungan NSPK serta outcome/programnya.',
+  bands:[['RPJMD',16,292],['RENSTRA PD',319,332]],
+  nodes:[
+   ['visi','VISI / MISI',40,110,145,65,'blue'],['tujuanR','TUJUAN RPJMD',235,110,160,65,'gold'],['s1','SASARAN RPJMD 1',462,35,190,56,'blue'],['s2','SASARAN RPJMD 2',462,109,190,56,'blue'],['s3','SASARAN RPJMD 3',462,183,190,56,'blue'],['pr1','OUTCOME /\nPROGRAM A',748,35,190,56,'green'],['pr2','OUTCOME /\nPROGRAM B',748,109,190,56,'green'],['pr3','OUTCOME /\nPROGRAM C',748,183,190,56,'green'],
+   ['nspk','NSPK / TUPOKSI\nURUSAN PD',40,528,211,70,'blue'],['tujuanPD','TUJUAN RENSTRA PD',310,430,206,78,'teal'],['sasPD1','SASARAN RENSTRA 1',600,381,195,66,'teal'],['sasPD2','SASARAN RENSTRA 2',600,480,195,66,'teal'],['out1','OUTCOME / PROGRAM A',843,356,210,58,'green'],['out2','OUTCOME / PROGRAM B',843,427,210,58,'green'],['out3','OUTCOME / PROGRAM C',843,498,210,58,'green']
+  ],
+  edges:[['visi','tujuanR','cascade'],['tujuanR','s1','cascade'],['tujuanR','s2','cascade'],['tujuanR','s3','cascade'],['s1','pr1','supports'],['s2','pr2','supports'],['s3','pr3','supports'],['s2','tujuanPD','reference'],['nspk','tujuanPD','reference'],['tujuanPD','sasPD1','cascade'],['tujuanPD','sasPD2','cascade'],['sasPD1','out1','supports'],['sasPD1','out2','supports'],['sasPD2','out3','supports']]
+ },
+ '4.1':{
+  name:'Kerangka Perumusan Program/Kegiatan/Subkegiatan Renstra PD',source:'Inmendagri 2/2025, Lampiran IV, Gambar 4.1, halaman cetak 48 (PDF 52)',
+  explanation:'Tupoksi PD menjadi dasar tujuan yang memperhatikan Sasaran RPJMD. Tujuan diturunkan ke sasaran, kemudian outcome dan output. Outcome dikaitkan dengan program PD; output dengan kegiatan dan subkegiatan.',
+  nodes:[
+   ['tupoksi','TUPOKSI PD',65,90,185,78,'blue'],['tujuan','TUJUAN',365,90,185,78,'teal'],['sasaran','SASARAN',670,90,185,78,'green'],
+   ['sasRPJMD','SASARAN\nRPJMD',65,256,185,78,'blue'],['outcome','OUTCOME',670,274,185,78,'green'],['program','PROGRAM PD',935,274,175,78,'blue'],
+   ['output','OUTPUT',670,470,185,78,'green'],['keg','KEGIATAN &\nSUBKEGIATAN',935,470,175,78,'blue']
+  ],
+  edges:[['tupoksi','tujuan','cascade'],['sasRPJMD','tujuan','reference'],['tujuan','sasaran','cascade'],['sasaran','outcome','cascade'],['outcome','program','supports'],['outcome','output','cascade'],['output','keg','supports']]
+ }
+};
+function renstraFigurePoint(n){return {x:n[2],y:n[3],w:n[4],h:n[5]}}
+function renstraFigurePath(from,to){
+ const a=renstraFigurePoint(from),b=renstraFigurePoint(to),ax=a.x+a.w/2,ay=a.y+a.h/2,bx=b.x+b.w/2,by=b.y+b.h/2;
+ const dx=bx-ax,dy=by-ay;let x1=ax,y1=ay,x2=bx,y2=by;
+ if(Math.abs(dx)>Math.abs(dy)*1.08){x1=ax+Math.sign(dx)*a.w/2;y1=ay;x2=bx-Math.sign(dx)*b.w/2;y2=by;}
+ else{y1=ay+Math.sign(dy)*a.h/2;x1=ax;y2=by-Math.sign(dy)*b.h/2;x2=bx;}
+ return `M ${x1} ${y1} L ${x2} ${y2}`;
+}
+function renstraFigureSVG(key){
+ const fig=RENSTRA_FIGURES[key];if(!fig)return '';
+ const prefix='rs'+key.replace('.','')+'-';const nodes=new Map(fig.nodes.map(v=>[v[0],v]));
+ const wrapText=(label,x,y,w,h)=>{const lines=String(label).split('\n');const cy=y+h/2-(lines.length-1)*10;
+  return `<text x="${x+w/2}" y="${cy}" fill="#fff" font-size="${lines.some(x=>x.length>25)?14:17}" font-weight="750" font-family="Arial,system-ui,sans-serif" text-anchor="middle">${lines.map((line,i)=>`<tspan x="${x+w/2}" dy="${i?20:0}">${esc(line)}</tspan>`).join('')}</text>`};
+ const svgNodes=fig.nodes.map(n=>{const [id,label,x,y,w,h,color]=n;const gradient=prefix+color;
+  return `<g class="renstraFigNode" data-diagram-node="${esc(id)}"><rect x="${x+8}" y="${y+10}" width="${w}" height="${h}" rx="16" fill="#0b3041" opacity=".20"/><rect x="${x}" y="${y+7}" width="${w}" height="${h}" rx="15" fill="#173b49" opacity=".45"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="15" fill="url(#${gradient})" stroke="#fff" stroke-opacity=".5" stroke-width="1.2"/>${wrapText(label,x,y,w,h)}</g>`;
+ }).join('');
+ const colors={cascade:'#d6a621',reference:'#198ab1',supports:'#0c806f'};
+ const edges=fig.edges.map(([f,t,kind])=>{const a=nodes.get(f),b=nodes.get(t);if(!a||!b)return '';
+  const color=colors[kind]||colors.cascade,marker=prefix+kind;
+  return `<path d="${renstraFigurePath(a,b)}" fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" ${kind==='reference'?'stroke-dasharray="7 8"':''} marker-end="url(#${marker})" opacity=".9"/>`;
+ }).join('');
+ const bands=(fig.bands||[]).map(([title,y,h],i)=>`<rect x="15" y="${y}" width="1094" height="${h}" rx="20" fill="${i?'#eef9f7':'#edf4fe'}" opacity=".97"/><text x="32" y="${y+30}" fill="#204b5c" font-size="23" font-weight="900" font-family="Arial,sans-serif">${esc(title)}</text>`).join('');
+ return `<svg class="renstra3dSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1130 690" role="img" aria-label="Gambar ${esc(key)} ${esc(fig.name)}"><title>Gambar ${esc(key)}: ${esc(fig.name)}</title><desc>${esc(fig.explanation)}</desc><defs><linearGradient id="${prefix}blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#218bd6"/><stop offset="1" stop-color="#07568a"/></linearGradient><linearGradient id="${prefix}teal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2bada4"/><stop offset="1" stop-color="#085d64"/></linearGradient><linearGradient id="${prefix}green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#49b87b"/><stop offset="1" stop-color="#117452"/></linearGradient><linearGradient id="${prefix}gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e4bd50"/><stop offset="1" stop-color="#976b16"/></linearGradient>${Object.entries(colors).map(([kind,color])=>`<marker id="${prefix+kind}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="${color}"/></marker>`).join('')}</defs>${bands}<g class="renstraFigEdges">${edges}</g><g class="renstraFigNodes">${svgNodes}</g></svg>`;
+}
+function renstraFigureBlock(key,{print=false}={}){
+ const fig=RENSTRA_FIGURES[key];if(!fig)return '';
+ return `<figure class="renstraFigureBlock" data-figure="${esc(key)}"><figcaption><b>Gambar ${esc(key)} — ${esc(fig.name)}</b><small>${esc(fig.source)}</small></figcaption><div class="renstra3dStage"><div class="renstra3dPlane">${renstraFigureSVG(key)}</div></div>${print?'':`<div class="renstra3dControls"><label>Sudut 3D <input aria-label="Kemiringan 3D gambar ${esc(key)}" type="range" min="0" max="25" step="1" value="8" data-renstra-figure-angle="${esc(key)}"></label><button type="button" data-renstra-figure-flat="${esc(key)}" class="button">Tampilan 2D / 3D</button><button type="button" data-renstra-figure-print="${esc(key)}" class="button">🖨 Cetak Gambar ${esc(key)}</button></div>`}${print?'':`<details class="renstraFigureOriginal"><summary>Lihat Gambar ${esc(key)} asli dari Inmendagri 2/2025</summary><img loading="lazy" decoding="async" src="./assets/inmendagri_gambar_${esc(key.replace('.','_'))}.png" alt="Reproduksi Gambar ${esc(key)} dari pedoman Inmendagri Nomor 2 Tahun 2025"/><small>Rujukan visual asli untuk memeriksa kesesuaian diagram 3D. Gambar ini tidak menggantikan naskah sumber.</small></details>`}<p class="renstraFigureNote">${esc(fig.explanation)}</p></figure>`;
+}
+function renstraDiagramPanel(chapter){
+ const keys=chapter==='bab3'?['3.1','3.2']:['4.1'];return `<section class="renstraSheetPanel renstraDiagramPanel" data-sheet-panel="diagram${chapter.slice(-1)}" ${(S.renstraTab||'3.3')!==`diagram${chapter.slice(-1)}`?'hidden':''}><div class="renstraDiagramHeading"><strong>Diagram konsep sesuai Inmendagri No. 2 Tahun 2025</strong><p>Diagram mengikuti isi gambar pedoman; efek 3D dibuat dengan JavaScript dan dapat diratakan ke 2D untuk membaca atau mencetak.</p></div>${keys.map(key=>renstraFigureBlock(key)).join('')}</section>`;
+}
+function renstraRotateFigure(panel,angle,flat){const plane=panel?.querySelector('.renstra3dPlane');if(!plane)return;plane.style.transform=flat?'none':`perspective(1450px) rotateX(8deg) rotateY(${-Number(angle)||0}deg) scale(.965)`;panel.dataset.flat=flat?'1':'0';}
+
+/* Cetak browser ke PDF: seluruh Bab I-V, tabel dan diagram; cetak hanya sebagai
+ * naskah untuk pemeriksaan. Tidak mengklaim tanda tangan elektronik ataupun pengesahan. */
+const RENSTRA_PRINT_CHAPTERS=[
+ {id:'bab1',name:'BAB I — PENDAHULUAN',keys:['latarBelakang','dasarHukum','maksudTujuan','sistematika'],tables:[],figures:[]},
+ {id:'bab2',name:'BAB II — GAMBARAN PELAYANAN, PERMASALAHAN DAN ISU STRATEGIS',keys:['tugasFungsi','sumberDaya','evaluasi2020_2024','kelompokSasaran','permasalahan'],tables:['2.1'],figures:[]},
+ {id:'bab3',name:'BAB III — TUJUAN, SASARAN, STRATEGI DAN ARAH KEBIJAKAN',keys:['tujuan','strategi','arahKebijakan','lokus'],tables:['3.3','3.4','3.5'],figures:['3.1','3.2']},
+ {id:'bab4',name:'BAB IV — PROGRAM, KEGIATAN, SUBKEGIATAN DAN KINERJA',keys:['sumberProgram','programPrioritas'],tables:['4.2','4.3','4.4','4.5','4.6'],figures:['4.1']},
+ {id:'bab5',name:'BAB V — PENUTUP DAN VERIFIKASI',keys:['penutupRenstra','reviuAPIP','konsistensiRPJMD','penyelarasanRPJMN','catatanVerifikasi'],tables:[],figures:[]}
+];
+function renstraPrintableTable(key,records){
+ const def=RENSTRA_MATRICES[key];if(!def)return '';
+ const rows=Array.isArray(records)?records:[];
+ if(key==='3.3')return renstra33PrintableHTML(rows);
+ if(key==='4.2')return renstra42PrintableHTML(rows);
+ const cols=def.columns;
+ return `<section class="rsPrintMatrix" aria-label="Tabel ${esc(key)}"><h3>${esc(def.label)}</h3><p class="rsSource">${esc(def.source||'')}</p><table><thead><tr><th>No.</th>${cols.map(c=>`<th>${esc(c[1])}</th>`).join('')}</tr></thead><tbody>${rows.length?rows.map((r,i)=>`<tr><td>${i+1}</td>${cols.map(([name])=>`<td>${esc(r[name]??'')}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${cols.length+1}">Belum ada data pada tabel ini.</td></tr>`}</tbody></table></section>`;
+}
+function renstraPrintData(recordId=''){
+ const r=recordId?find('renstra',recordId):renstraWorkbookCurrent();const activeForm=document.getElementById('renstraSheetForm');const form=activeForm&&(!recordId||activeForm.dataset.id===recordId)?activeForm:null;
+ const d={...renstraBaseDraft(),...(r?.data||{})};
+ if(form){d.tabelRenstra=renstraCollectMatrices(form);form.querySelectorAll('[name^="narasi_"]').forEach(el=>d[el.name.slice(7)]=el.value);}
+ return {record:r,data:d,unsaved:!!(form&&S.renstraDirty)};
+}
+function renstraPrintHTML(mode='full',customFigure='',recordId=''){
+ const {record,data,unsaved}=renstraPrintData(recordId);const chap=renstraChapterForTab(S.renstraTab||'3.3'),tab=S.renstraTab||'3.3';
+ const c=S.settings.find(x=>x.key==='identity')?.value||{};const selected=mode==='full'?RENSTRA_PRINT_CHAPTERS:mode==='chapter'?RENSTRA_PRINT_CHAPTERS.filter(x=>x.id===chap):RENSTRA_PRINT_CHAPTERS.filter(x=>x.id===(customFigure?(customFigure[0]==='3'?'bab3':'bab4'):chap));
+ const isActive=mode==='active',isFigure=mode==='figure';
+ const printChapter=ch=>{
+  const heading=`<h2>${esc(ch.name)}</h2>`;
+  const fields=(!isActive&&!isFigure||tab===ch.id)&&!isFigure?ch.keys.map(k=>{const label=modules.renstra.fields[k]?.label||k;return `<div class="rsNarrative"><h3>${esc(label)}</h3><p>${esc(data[k]||'(Belum diisi / belum diverifikasi)').replace(/\n/g,'<br>')}</p></div>`}).join(''):'';
+  const figures=(isFigure?[customFigure]:isActive?(tab==='diagram3'?['3.1','3.2']:tab==='diagram4'?['4.1']:[]):ch.figures).filter(Boolean).map(key=>`<div class="rsPrintFigure">${renstraFigureBlock(key,{print:true})}</div>`).join('');
+  const tables=(isFigure?[]:isActive&&RENSTRA_MATRICES[tab]?[tab]:isActive?[]:ch.tables).map(key=>`<div class="rsPrintWide">${renstraPrintableTable(key,data.tabelRenstra?.[key]||[])}</div>`).join('');
+  return `<section class="rsPrintChapter">${heading}${fields}${figures}${tables}</section>`;
+ };
+ const body=selected.map(printChapter).join('');
+ const title=mode==='full'?'RENSTRA SEKRETARIAT DPRD KABUPATEN KAPUAS HULU 2025–2029':mode==='chapter'?`RENSTRA 2025–2029 · ${chap.toUpperCase()}`:mode==='figure'?`GAMBAR ${customFigure} · RENSTRA 2025–2029`:`RENSTRA 2025–2029 · ${tab.toUpperCase()}`;
+ const status=record?.status?statusName(record.status):'Draf baru (belum disimpan)';
+ const cover=mode==='full'?`<section class="rsPrintCover"><div class="rsCoverSeal">SEKRETARIAT DPRD<br>KABUPATEN KAPUAS HULU</div><div class="rsCoverCenter"><p>DOKUMEN PERENCANAAN STRATEGIS</p><h1>RENCANA STRATEGIS<br>SEKRETARIAT DPRD<br>KABUPATEN KAPUAS HULU</h1><h2>2025–2029</h2></div><p class="rsCoverStatus">NASKAH CETAK UNTUK PEMERIKSAAN<br>${esc(data.statusDokumen||'Rancangan Akhir')} · ${esc(status)}</p><p>Putussibau</p></section><section class="rsPrintContents"><h2>DAFTAR ISI — SUSUNAN NASKAH</h2>${RENSTRA_PRINT_CHAPTERS.map(x=>`<p>${esc(x.name)}</p>`).join('')}<p>Gambar 3.1, 3.2 dan 4.1 mengikuti ilustrasi Inmendagri Nomor 2 Tahun 2025.</p></section>`:'';
+ return `<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><style>
+ @page{size:A4 portrait;margin:17mm 15mm 18mm} @page wide{size:A3 landscape;margin:13mm} *{box-sizing:border-box}
+ body{font:11pt/1.5 "Times New Roman",Georgia,serif;color:#17252b;margin:0;background:#fff} .rsToolbar{font:14px Arial,sans-serif;padding:13px 18px;background:#e5f3f2;border-bottom:1px solid #b8d2d2;display:flex;gap:12px;align-items:center}.rsToolbar button{background:#076a67;color:#fff;border:0;padding:11px 18px;border-radius:7px;font-weight:700}.rsToolbar small{color:#345763}
+ .rsPrintCover{height:248mm;display:flex;flex-direction:column;text-align:center;justify-content:space-between;align-items:center;padding:27mm 12mm 18mm;break-after:page}.rsCoverSeal{font:800 18pt/1.6 Arial,sans-serif}.rsCoverCenter{margin:auto 0}.rsCoverCenter h1{font:800 21pt/1.4 Arial,sans-serif;letter-spacing:.8px}.rsCoverCenter h2{font:700 27pt Arial,sans-serif}.rsCoverStatus{border:1px solid #111;padding:12px;max-width:520px;font:11pt Arial,sans-serif}
+ .rsPrintContents{break-after:page} .rsPrintChapter{break-before:auto;min-width:0}.rsPrintChapter+.rsPrintChapter{break-before:page}.rsPrintChapter>h2{text-align:center;font-size:14pt;letter-spacing:.4px;margin:9mm 0 12mm;text-transform:uppercase}.rsPrintChapter h3{font-size:11pt;margin:9mm 0 2mm}.rsNarrative p{margin:2mm 0 6mm;text-align:justify;white-space:normal;overflow-wrap:anywhere}.rsSource{font:8pt Arial,sans-serif;color:#4e5f6f}.rsPrintNotice{border:1px solid #b28b31;padding:9px;font:9pt Arial,sans-serif;margin:8mm 0 12mm;background:#fff9e8}.rsPrintFoot{font:8pt Arial,sans-serif;line-height:1.4;margin-top:14mm;padding-top:5mm;border-top:1px solid #aaa}.rsSign{margin:28mm 0 10mm auto;width:75mm;text-align:center;font:10pt Arial,sans-serif}
+ .rsPrintFigure{margin:8mm 0;page-break-inside:avoid}.renstraFigureBlock{margin:0}.renstraFigureBlock figcaption{text-align:center;margin-bottom:5mm;font:700 12pt Arial,sans-serif}.renstraFigureBlock figcaption small{display:block;color:#4e5f6f;font-size:8pt;margin-top:3mm;font-weight:400}.renstraFigureNote{font:9pt Arial,sans-serif;margin:4mm 0}.renstra3dStage{width:100%}.renstra3dPlane{transform:none!important}.renstra3dSvg{display:block;width:100%;height:auto;max-height:185mm}
+ .rsPrintWide{page:wide;break-before:page}.rsPrintWide section{break-inside:auto}.rsPrintWide h2,.rsPrintWide h3{font:700 12pt Arial,sans-serif;margin:5mm 0 4mm;text-align:center}.rsPrintWide table{border-collapse:collapse;width:100%;font:8pt Arial,sans-serif;table-layout:auto}.rsPrintWide th,.rsPrintWide td{border:1px solid #546775;padding:5px;vertical-align:top;overflow-wrap:anywhere;white-space:pre-wrap}.rsPrintWide th{background:#e8f2f3;font-size:7.7pt;break-inside:avoid}.rsPrintWide tr{break-inside:avoid}.rsPrintWide .scroll{overflow:visible}.rsPrintWide .renstra33PrintTable{font-size:7pt}.rsPrintWide .renstra42PrintTable{font-size:8pt}
+ @media print{.rsToolbar{display:none!important}.rsPrintNotice{background:#fff}.rsPrintWide{page:wide}.rsPrintCover{page:initial}.rsPrintChapter{page:initial} .rsPrintFigure{page:initial}}
+ @media screen{body{padding:0 24px 35px}.rsToolbar{margin:0 -24px 20px}.rsPrintCover,.rsPrintChapter,.rsPrintContents{max-width:900px;margin:auto}.rsPrintWide{overflow-x:auto;max-width:100%;background:#fff;padding:10px 0}.rsPrintWide table{min-width:950px}.rsPrintFigure{max-width:920px;margin:20px auto}}
+ </style></head><body><div class="rsToolbar"><button type="button" onclick="window.print()">Cetak / Simpan sebagai PDF</button><small>Safari iPhone: Bagikan → Cetak → Simpan ke File sebagai PDF. Periksa skala dan orientasi halaman sebelum menyimpan.</small></div>${cover}<div class="rsPrintNotice"><b>STATUS: ${esc(data.statusDokumen||'Rancangan Akhir')} — ${esc(status)}${unsaved?' — ADA PERUBAHAN BELUM TERSIMPAN':''}.</b> Dokumen ini adalah keluaran cetak aplikasi untuk pemeriksaan dan pembahasan. Bukan dokumen penetapan atau salinan bertanda tangan. Pengesahan, nomor peraturan, tanda tangan, dan bukti reviu harus berasal dari pejabat/dokumen yang berwenang. Tahun 2030 merupakan kolom kesinambungan sesuai tabel pedoman.</div>${body}<div class="rsPrintFoot"><b>Dasar format:</b> Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025, Lampiran Bagian IV halaman cetak 41–53. <b>Sumber materi:</b> Rancangan Akhir Renstra Sekretariat DPRD Kabupaten Kapuas Hulu 2025–2029 (sepanjang terisi dan diverifikasi).<p>Rekaman: ${esc(record?.id||'belum disimpan')} · Versi: ${esc(record?.version||'—')} · Status: ${esc(status)}.</p></div><div class="rsSign">Diperiksa di Putussibau, __________<br>Pejabat yang berwenang,<br><br><br><br>________________________<br>Nama/NIP diisi setelah verifikasi</div></body></html>`;
+}
+function renstraOpenPrint(mode='full',figure='',recordId=''){
+ const html=renstraPrintHTML(mode,figure,recordId);
+ const w=window.open('','_blank');if(!w){note('Jendela cetak diblokir. Izinkan pop-up pada Safari atau Chrome lalu ulangi.','error');return;}
+ w.document.open();w.document.write(html);w.document.close();
+ const record=recordId?find('renstra',recordId):renstraWorkbookCurrent();if(record?.id)rpc('sis_log_document',{p_record_id:record.id,p_title:'Pratinjau cetak Renstra '+mode+(figure?' Gambar '+figure:'')}).catch(e=>console.warn('Log cetak Renstra:',e.message));
+}
+
 function renstraWorkbookPage(){
  const r=renstraWorkbookCurrent(),d={...(r?.data||renstraBaseDraft()),...(S.renstraRestored?.data||{})},unit=r?.unit||'Sekretariat DPRD';
  const writable=canWrite('renstra',unit)&&(!r||['draft','master'].includes(r.status));
@@ -1671,7 +1806,7 @@ function renstraWorkbookPage(){
  const allTabs=Object.entries(RENSTRA_CHAPTER_TABS).flatMap(([ch,tabs])=>tabs.map(([id,label])=>`<button type="button" role="tab" aria-selected="${id===selected}" data-tab-chapter="${ch}" data-renstra-tab="${id}" class="renstraTab ${id===selected?'is-active':''}" ${ch!==chapter?'hidden':''}>${esc(label)}</button>`)).join('');
  return `<section class="renstraWorkbook" aria-label="Dokumen Renstra Setwan 2025–2029">
  <div class="pageIntro sisModuleIntro"><div><p class="sisEyebrow">PERENCANAAN KINERJA · DOKUMEN INDUK</p><h1>📘 Renstra Sekretariat DPRD 2025–2029</h1><p><b>Satu dokumen induk</b> untuk seluruh tujuan, sasaran, program, kegiatan, subkegiatan dan indikator. Input langsung pada tabel yang disusun menurut <b>Inmendagri Nomor 2 Tahun 2025</b>.</p></div></div>
- <section class="panel renstraWorkbookTop"><div class="renstraDocumentHeader"><div><h2 style="margin:0">Dokumen induk Renstra Sekretariat DPRD</h2><p class="hint">Kabupaten Kapuas Hulu · Periode 2025–2029 · Data berasal dari Rancangan Akhir, bukan dokumen penetapan final.</p></div><div style="display:flex;flex-wrap:wrap;gap:8px"><button type="button" class="button" data-renstra-review="1">✓ Periksa kelengkapan</button>${r?`<button type="button" class="button" data-detail="${esc(r.id)}">📎 Detail & evidence</button>`:''}</div></div>
+ <section class="panel renstraWorkbookTop"><div class="renstraDocumentHeader"><div><h2 style="margin:0">Dokumen induk Renstra Sekretariat DPRD</h2><p class="hint">Kabupaten Kapuas Hulu · Periode 2025–2029 · Data berasal dari Rancangan Akhir, bukan dokumen penetapan final.</p></div><div style="display:flex;flex-wrap:wrap;gap:8px"><button type="button" class="button" data-renstra-review="1">✓ Periksa kelengkapan</button>${r?`<button type="button" class="button" data-detail="${esc(r.id)}">📎 Detail & evidence</button>`:''}<div class="renstraPrintActions"><button type="button" class="primary" data-renstra-print="full">🖨 PDF Renstra lengkap</button><button type="button" class="button" data-renstra-print="chapter">PDF BAB aktif</button><button type="button" class="button" data-renstra-print="active">PDF tabel/gambar aktif</button></div></div></div>
  <div class="renstraDocumentMeta"><span>📅 2025–2029</span><span>📘 Pedoman Inmendagri 2/2025</span><span>📄 Sumber Rancangan Akhir Renstra Setwan</span><span>🏢 Sekretariat DPRD</span>${r?`<span>${chip(r.status)}</span>`:'<span>📝 Belum disimpan</span>'}</div>
  ${older.length?`<details class="renstraLegacyBox"><summary>${older.length} rekaman Renstra lama tetap tersimpan — lihat sebagai arsip, tidak digabung otomatis</summary><div class="renstraLegacyItems">${older.map(x=>`<button class="button" type="button" data-detail="${esc(x.id)}">${esc(x.data.kode||'Rekaman tanpa kode')} · ${esc(statusName(x.status))}</button>`).join('')}</div></details>`:''}
  ${r&&r.data?.kode!==RENSTRA_PRIMARY_CODE?`<p class="renstraStatusInfo">Rekaman lama <b>${esc(r.data.kode||'tanpa kode')}</b> digunakan sebagai dasar dokumen induk, sehingga referensi Renja/IKU yang sudah menunjuk rekaman ini tetap berlaku. Kode induk diterapkan otomatis saat simpan. Data Renstra lama lain tidak dihapus.</p>`:''}
@@ -1683,7 +1818,7 @@ function renstraWorkbookPage(){
  <p class="renstraWorksheetLead" id="renstraChapterLead">${esc(chapterNames[chapter])}</p>
  <nav class="renstraTableTabs" role="tablist" aria-label="Pilih tabel atau uraian bab">${allTabs}</nav>
  <div class="renstraMobileGuide">↔ Tabel dapat digeser mendatar; ketuk sel untuk mengetik dan tekan <b>Tambah baris</b> jika diperlukan. Semua tabel disimpan bersama-sama dalam satu dokumen. Jika sesi terputus, pulihkan draf setelah login ulang; untuk penyimpanan resmi tekan Simpan dokumen Renstra.</div>
- ${Object.entries(RENSTRA_MATRICES).map(([key])=>renstraMatrixHTML(key,d,true,!writable)).join('')}${renstraNarrativeHTML(d,!writable)}
+ ${Object.entries(RENSTRA_MATRICES).map(([key])=>renstraMatrixHTML(key,d,true,!writable)).join('')}${renstraNarrativeHTML(d,!writable)}${renstraDiagramPanel('bab3')}${renstraDiagramPanel('bab4')}
  </section>
  <div class="renstraWorkbookBottom"><div class="hint"><b>Rancangan Akhir:</b> baris Tabel 3.3 dan 4.5 bersumber dari Renstra unggahan. Kolom tanpa sumber, pagu, hasil reviu APIP dan dokumen penetapan tidak boleh diisi dengan data rekaan.</div>${writable?`<button class="primary renstraSaveButton" type="submit">💾 Simpan dokumen Renstra</button>`:'<p class="hint">Dokumen hanya dapat dibaca pada status atau kewenangan akun ini.</p>'}</div>
  </form></section>`;
@@ -1870,7 +2005,7 @@ function printRenstraMatrices(r){
  const w=window.open('','_blank');if(!w){note('Izinkan pop-up untuk mencetak matriks.','error');return}w.document.open();w.document.write(p);w.document.close();rpc('sis_log_document',{p_record_id:r.id,p_title:'Draf Matriks Renstra Inmendagri 2/2025'}).catch(e=>console.warn('Audit matriks Renstra',e));
 }
 
-function printDocument(id,type){const r=S.records.find(x=>x.id===id);if(!r)return;if(r.module==='renstra'&&type==='matriks-inmendagri')return printRenstraMatrices(r);const label=(DOCS[r.module]||[['ringkasan','Lembar Ringkasan']]).find(x=>x[0]===type)?.[1]||'Lembar Ringkasan';const c=S.settings.find(x=>x.key==='identity')?.value||{};
+function printDocument(id,type){const r=S.records.find(x=>x.id===id);if(!r)return;if(r.module==='renstra'&&type==='dokumen-lengkap')return renstraOpenPrint('full','',id);if(r.module==='renstra'&&type==='matriks-inmendagri')return printRenstraMatrices(r);const label=(DOCS[r.module]||[['ringkasan','Lembar Ringkasan']]).find(x=>x[0]===type)?.[1]||'Lembar Ringkasan';const c=S.settings.find(x=>x.key==='identity')?.value||{};
  const val=(k)=>r.data[k]??'—';let custom='';if(r.module==='perjalanan'){
  const ps=find(r.data.pelakuTipe==='Anggota DPRD'?'anggota':'pegawai',r.data.pelakuId);const who=ps?.data?.nama||'Belum terisi';
  custom=`<p><b>Pelaksana:</b> ${esc(who)}<br><b>Tujuan:</b> ${esc(val('tujuan'))}<br><b>Keperluan:</b> ${esc(val('keperluan'))}<br><b>Tanggal:</b> ${esc(val('tanggalMulai'))} s.d. ${esc(val('tanggalSelesai'))}</p>`;
@@ -1988,6 +2123,9 @@ function attachEvents(){document.addEventListener('click',async e=>{
  const link=Object.entries(modules[target].fields).find(([name,opt])=>opt.type==='ref'&&opt.target===parent.module);
  if(!link)throw Error('Modul tujuan tidak memiliki relasi ke data sumber.');
  navigate(target);sisRenderForm(target,null,{[link[0]]:parent.id});const form=document.querySelector('#recordForm');if(form)sisAutofillFromSource(form,link[0]);return;}
+ if(el.dataset.renstraPrint){renstraOpenPrint(el.dataset.renstraPrint);return}
+ if(el.dataset.renstraFigurePrint){renstraOpenPrint('figure',el.dataset.renstraFigurePrint);return}
+ if(el.dataset.renstraFigureFlat){const panel=el.closest('[data-figure]');if(panel){const slider=panel.querySelector('[data-renstra-figure-angle]');renstraRotateFigure(panel,Number(slider?.value||8),panel.dataset.flat!=='1')}return}
  if(el.dataset.renstraChapter){renstraSwitchChapter(el.dataset.renstraChapter);return}
  if(el.dataset.renstraTab){renstraSwitchTab(el.dataset.renstraTab);return}
  if(el.dataset.renstraReview){renstraReviewWorkbook();return}
@@ -2049,7 +2187,7 @@ function attachEvents(){document.addEventListener('click',async e=>{
  if(f.id==='settingsForm')return action(()=>saveSettings(f),'Menyimpan pengaturan...');
  if(f.id==='migrationForm'){const file=f.elements.bundle.files?.[0];if(file&&confirm('Migrasi ke database Supabase? Pastikan backup dari aplikasi lama benar dan proyek sudah dicadangkan.'))await action(()=>migrateLegacy(file),'Migrasi file dan data...');return}
  }catch(err){note(err.message||String(err),'error');console.error(err)}});
- document.addEventListener('input',e=>{if(e.target.closest('#renstraSheetForm'))renstraMarkDirty();if(e.target.closest('#recordForm')){S.formDirty=true;vaultSchedule()} if(e.target.id==='catalogSearch'){S.catalogQuery=e.target.value;const r=$('#catalogResults');if(r)r.innerHTML=catalogResults();return}if(e.target.id==='moduleSearch'){S.search=e.target.value;sisRenderModuleRecords(S.page);return;}});
+ document.addEventListener('input',e=>{if(e.target.matches('[data-renstra-figure-angle]')){const panel=e.target.closest('[data-figure]');renstraRotateFigure(panel,e.target.value,panel?.dataset.flat==='1');return;}if(e.target.closest('#renstraSheetForm'))renstraMarkDirty();if(e.target.closest('#recordForm')){S.formDirty=true;vaultSchedule()} if(e.target.id==='catalogSearch'){S.catalogQuery=e.target.value;const r=$('#catalogResults');if(r)r.innerHTML=catalogResults();return}if(e.target.id==='moduleSearch'){S.search=e.target.value;sisRenderModuleRecords(S.page);return;}});
  document.addEventListener('change',e=>{if(e.target.matches('[data-renstra42-sub-parent]')){try{renstra42MoveSub(e.target)}catch(err){note(err.message||String(err),'error');const host=e.target.closest('[data-matrix="4.2"]');if(host)renstra42Refresh(host,renstra42Read(host));}return;}if(e.target.closest('#recordForm')){S.formDirty=true;vaultSchedule()}if(e.target.closest('#renstraSheetForm'))renstraMarkDirty();if(e.target.matches('input[data-renstra42-goal-key]')){const box=e.target.closest('[data-goals-program]');const n=box?.querySelectorAll('input[data-renstra42-goal-key]:checked').length||0;const el=box?.querySelector('.renstra42SelectedCount');if(el)el.textContent='('+n+' dipilih)';renstraMarkDirty();return;}if(e.target.id==='renstraRecordSelect'){if(S.renstraDirty&&!confirm('Perubahan tabel belum disimpan. Beralih rekaman dan abaikan perubahan?')){e.target.value=S.renstraActiveId||'new';return;}S.renstraActiveId=e.target.value;S.renstraDirty=false;render();return;}if(e.target.id==='moduleStatus'){S.moduleStatus=e.target.value;sisRenderModuleRecords(S.page);return;}if(e.target.name==='targetReferensi'){autofillRenstraTarget(e.target);return}if((e.target.name==='ikuId'||e.target.name==='tahun')&&e.target.closest('form[data-module="pksekwan"]')){prefillPKFromIKU(e.target.closest('form'));return}if(e.target.name==='quarter'&&e.target.closest('#progressForm')){
   const form=e.target.closest('#progressForm'),r=find('rencanaaksi',form.dataset.id),q=Number(e.target.value);
   if(r){form.elements.actual.value=r.data['realisasiTW'+q]||0;form.elements.notes.value=r.data['catatanTW'+q]||'';const label=form.querySelector('#progressTarget');if(label)label.textContent='Target TW '+['','I','II','III','IV'][q]+': '+(r.data['targetTW'+q]||0)+' '+(r.data.satuan||'');}
