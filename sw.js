@@ -1,5 +1,5 @@
 /* SIS-DPR: cache shell publik; operasi Supabase selalu melalui jaringan. */
-const VERSION='sis-dpr-shell-v10-renstra-tabel33-hirarkis-20261031';
+const VERSION='sis-dpr-shell-v12-renstra-multi-indikator-program-20261031';
 const FILES=['/','/index.html','/manifest.webmanifest','/icons/sis-dpr-192.png','/icons/sis-dpr-512.png','/icons/sis-dpr-180.png'];
 self.addEventListener('install', event=>{event.waitUntil(caches.open(VERSION).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('sis-dpr-shell-')&&k!==VERSION).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
