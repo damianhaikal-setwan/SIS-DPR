@@ -294,6 +294,18 @@ label.field{min-width:0} .field>.control{min-width:0}
  .renstra42GoalChoice{min-height:44px}
  .renstra42Sheet .renstraMatrixToolbar .button{min-height:44px}
 }
+
+/* Renstra 4.2: outcome program majemuk dan pemetaan ke indikator. */
+.renstra42Outcomes{display:grid;gap:9px;margin:10px 0 12px;padding:12px;background:#fff;border:1px solid #bdd9ce;border-radius:10px}
+.renstra42OutcomeRow{display:flex;gap:8px;align-items:flex-start;padding:9px;border-radius:8px;background:#eef8f1}
+.renstra42OutcomeRow label{display:block;flex:1;min-width:0;font-size:12px;font-weight:700;color:#26564c}
+.renstra42OutcomeRow textarea{display:block;box-sizing:border-box;width:100%;min-width:0;min-height:56px;margin-top:4px;padding:9px;border:1px solid #aaccc0;border-radius:7px;font:inherit;font-weight:400;background:#fff;resize:vertical}
+.renstra42OutcomeRow button{min-width:42px;min-height:44px;border:1px solid #dfb4b4;background:#fff5f5;color:#a02020;border-radius:7px;cursor:pointer;font-size:20px}
+.renstra42Outcomes .renstra42IndicatorAdd{width:100%;min-height:48px;padding:10px;border-width:2px}
+.renstra42IndicatorFields{display:grid;gap:8px;flex:1;min-width:0}
+.renstra42IndicatorFields label{display:block;min-width:0;font-size:12px;font-weight:650;color:#345c63}
+.renstra42IndicatorFields select{display:block;box-sizing:border-box;width:100%;min-width:0;min-height:44px;margin-top:4px;padding:7px;border:1px solid #a8c8c7;border-radius:7px;background:#fff;color:#183943}
+@media(max-width:820px){.renstra42OutcomeRow textarea,.renstra42IndicatorFields select{font-size:16px!important}.renstra42Outcomes{padding:12px}.renstra42OutcomeRow{padding:9px}}
 </style></head><body><div id="authPage"></div><div id="application" hidden><aside id="sidebar" class="sidebar"></aside><div id="shade" hidden></div><div class="shell"><header class="topbar"><div class="topLeft"><button id="menuToggle" type="button" class="menuButton" aria-label="Buka menu navigasi" aria-controls="sidebar" aria-expanded="false">☰</button><div><span class="crumb">SIS-DPR / Sekretariat DPRD Kabupaten Kapuas Hulu</span><div class="topTitle" id="topTitle">Dashboard</div></div></div><div class="topRight"><span id="userIndicator"></span><span id="connection"></span></div></header><div id="offlineBanner" class="offlineBanner" role="status" hidden>📶 Tidak ada koneksi internet. SIS-DPR memerlukan internet untuk membaca dan menyimpan data Supabase.</div><main id="view" class="view"></main></div><nav id="bottomNav" class="bottomNav" aria-label="Navigasi cepat mobile"></nav></div><div id="dialog"></div><div id="toasts" aria-live="polite"></div><div id="loading" hidden><span>Memuat...</span></div><script>
 'use strict';
 (()=>{
@@ -1076,14 +1088,51 @@ function renstra42GoalTexts(row,field){
  const goals=new Map(renstra42GoalOptions().map(x=>[x.key,x]));
  return [...new Set(renstra42GoalRefs(row).map(key=>goals.get(key)?.[field]||'⚠ Referensi tidak ditemukan: '+key).filter(Boolean))].join('\n');
 }
+/* Outcome adalah entitas turunan program. Alias `outcome` sengaja dipertahankan
+ * agar dokumen lama dan pemetaan modul lain tidak kehilangan nilai awal. */
+function renstra42Outcomes(row){
+ const list=Array.isArray(row?.__outcomeProgramList)?row.__outcomeProgramList:null;
+ if(list&&list.length)return list.map((v,i)=>({id:String(v?.id||String(row?.__programId||'program')+'-outcome-'+(i+1)),nama:String(v?.nama??v?.name??'')}));
+ return [{id:String(row?.__programId||'program')+'-outcome-1',nama:String(row?.outcome||'')}];
+}
+function renstra42OutcomesLabel(row){return renstra42Outcomes(row).filter(v=>v.nama.trim()).map((v,i)=>(i+1)+'. '+v.nama.trim()).join('\n')}
+function renstra42OutcomesEditor(row,readonly){
+ const list=renstra42Outcomes(row),pId=String(row.__programId||'');
+ return `<div class="renstra42Outcomes" data-outcomes-program="${esc(pId)}"><strong class="renstra42IndicatorsTitle">Outcome program (${list.length})</strong><small class="renstra42IndicatorHelp">Satu kode program dapat memiliki beberapa outcome. Setiap outcome mempunyai ID tetap; hubungkan indikator di bawah ke outcome yang diukur.</small>${list.map((it,i)=>`<div class="renstra42OutcomeRow"><label>Outcome ${i+1}<textarea rows="2" data-renstra42-outcome="${esc(it.id)}" data-program-id="${esc(pId)}" placeholder="Outcome sesuai dokumen Renstra" ${readonly?'readonly':''}>${esc(it.nama)}</textarea></label>${readonly||list.length===1?'':`<button type="button" data-renstra42-outcome-remove="${esc(it.id)}" data-parent-id="${esc(pId)}" title="Hapus outcome ${i+1}" aria-label="Hapus outcome program ${i+1}">×</button>`}</div>`).join('')}${readonly?'':`<button type="button" class="renstra42IndicatorAdd" data-renstra42-outcome-add="${esc(pId)}">＋ Tambah outcome program</button>`}</div>`;
+}
+function renstra42OutcomeEdit(kind,programId,outcomeId=''){
+ const host=document.querySelector('#renstraSheetForm [data-matrix="4.2"]');if(!host)return;
+ const rows=renstra42Read(host),group=rows.filter(r=>r.__programId===programId);if(!group.length)throw Error('Program tidak ditemukan.');
+ const outcomes=renstra42Outcomes(group[0]);
+ if(kind==='add'){
+  if(outcomes.length>=15)throw Error('Maksimal 15 outcome untuk satu program.');
+  outcomes.push({id:renstra33NodeId('outcome-program'),nama:''});
+ }else if(kind==='remove'){
+  if(outcomes.length<=1)throw Error('Program harus memiliki setidaknya satu outcome.');
+  if(renstra42Indicators(group[0]).some(x=>x.outcomeId===outcomeId))throw Error('Outcome masih digunakan oleh indikator program. Pindahkan indikator tersebut ke outcome lain sebelum menghapus.');
+  const index=outcomes.findIndex(x=>x.id===outcomeId);if(index<0)throw Error('Outcome tidak ditemukan.');
+  if(!confirm('Hapus outcome program ini dari draf?'))return;
+  outcomes.splice(index,1);
+ }else throw Error('Aksi outcome tidak dikenal.');
+ rows.forEach(r=>{if(r.__programId===programId){r.__outcomeProgramList=outcomes.map(x=>({...x}));r.outcome=outcomes[0]?.nama||'';}});
+ renstra42Refresh(host,rows);
+ if(kind==='add')host.querySelector(`textarea[data-renstra42-outcome="${outcomes.at(-1).id}"]`)?.focus({preventScroll:true});
+}
 function renstra42Indicators(row){
  const list=Array.isArray(row?.__indikatorProgramList)?row.__indikatorProgramList:null;
- if(list&&list.length)return list.map((v,i)=>({id:String(v?.id||row.__programId+'-indikator-'+(i+1)),nama:String(v?.nama??v?.name??'')}));
- return [{id:String(row?.__programId||'program')+'-indikator-1',nama:String(row?.indikatorProgram||'')}];
+ const defaultOutcome=renstra42Outcomes(row)[0].id;
+ if(list&&list.length)return list.map((v,i)=>({id:String(v?.id||row.__programId+'-indikator-'+(i+1)),nama:String(v?.nama??v?.name??''),outcomeId:String(v?.outcomeId??defaultOutcome)}));
+ return [{id:String(row?.__programId||'program')+'-indikator-1',nama:String(row?.indikatorProgram||''),outcomeId:defaultOutcome}];
 }
 function renstra42IndicatorsLabel(row){return renstra42Indicators(row).filter(v=>v.nama.trim()).map((v,i)=>(i+1)+'. '+v.nama.trim()).join('\n')}
-function renstra42IndicatorsEditor(row,readonly){const list=renstra42Indicators(row),pId=String(row.__programId||'');
- return `<div class="renstra42Indicators" data-indicators-program="${esc(pId)}"><span class="renstra42IndicatorsTitle">Indikator program (${list.length})</span>${list.map((it,i)=>`<div class="renstra42IndicatorRow"><label>Indikator ${i+1}<textarea rows="2" data-renstra42-indicator="${esc(it.id)}" data-program-id="${esc(pId)}" placeholder="Nama indikator program sesuai Renstra" ${readonly?'readonly':''}>${esc(it.nama)}</textarea></label>${readonly||list.length===1?'':`<button type="button" data-renstra42-indicator-remove="${esc(it.id)}" data-parent-id="${esc(pId)}" title="Hapus indikator ${i+1}" aria-label="Hapus indikator program ${i+1}">×</button>`}</div>`).join('')}${readonly?'':`<button type="button" class="renstra42IndicatorAdd" data-renstra42-indicator-add="${esc(pId)}">＋ Tambah indikator program</button>`}<small class="renstra42IndicatorHelp">Satu program dapat mempunyai beberapa indikator. Kegiatan di bawahnya memilih salah satu indikator program.</small></div>`;
+function renstra42PerformanceLabel(row){
+ const inds=renstra42Indicators(row);return renstra42Outcomes(row).map((o,i)=>{
+  const matched=inds.filter(x=>x.outcomeId===o.id&&x.nama.trim()).map(x=>'  • '+x.nama.trim());
+  return (i+1)+'. Outcome: '+(o.nama||'(belum diisi)')+(matched.length?'\n'+matched.join('\n'):'');
+ }).join('\n');
+}
+function renstra42IndicatorsEditor(row,readonly){const list=renstra42Indicators(row),outcomes=renstra42Outcomes(row),pId=String(row.__programId||'');
+ return `<div class="renstra42Indicators" data-indicators-program="${esc(pId)}"><span class="renstra42IndicatorsTitle">Indikator program (${list.length})</span>${list.map((it,i)=>`<div class="renstra42IndicatorRow"><div class="renstra42IndicatorFields"><label>Indikator ${i+1}<textarea rows="2" data-renstra42-indicator="${esc(it.id)}" data-program-id="${esc(pId)}" placeholder="Nama indikator program sesuai Renstra" ${readonly?'readonly':''}>${esc(it.nama)}</textarea></label><label>Outcome yang diukur<select data-renstra42-indicator-outcome="${esc(it.id)}" data-program-id="${esc(pId)}" ${readonly?'disabled':''}>${!outcomes.some(o=>o.id===it.outcomeId)?`<option value="${esc(it.outcomeId)}" selected>⚠ Outcome induk tidak ditemukan</option>`:''}${outcomes.map((o,j)=>`<option value="${esc(o.id)}" ${it.outcomeId===o.id?'selected':''}>Outcome ${j+1}${o.nama?' · '+esc(o.nama):' (belum diisi)'}</option>`).join('')}</select></label></div>${readonly||list.length===1?'':`<button type="button" data-renstra42-indicator-remove="${esc(it.id)}" data-parent-id="${esc(pId)}" title="Hapus indikator ${i+1}" aria-label="Hapus indikator program ${i+1}">×</button>`}</div>`).join('')}${readonly?'':`<button type="button" class="renstra42IndicatorAdd" data-renstra42-indicator-add="${esc(pId)}">＋ Tambah indikator program</button>`}<small class="renstra42IndicatorHelp">Indikator dipetakan ke outcome yang diukur. Kegiatan di bawahnya memilih salah satu indikator program.</small></div>`;
 }
 function renstra42KegiatanIndikatorSelect(row,readonly){const list=renstra42Indicators(row),value=String(row.__indikatorProgramId||'');
  const unknown=value&&!list.some(x=>x.id===value);
@@ -1095,7 +1144,7 @@ function renstra42IndicatorEdit(kind,programId,indicatorId=''){
  const indicators=renstra42Indicators(group[0]);
  if(kind==='add'){
   if(indicators.length>=15)throw Error('Maksimal 15 indikator untuk satu program.');
-  indicators.push({id:renstra33NodeId('indikator-program'),nama:''});
+  indicators.push({id:renstra33NodeId('indikator-program'),nama:'',outcomeId:renstra42Outcomes(group[0])[0].id});
  }else if(kind==='remove'){
   if(indicators.length<=1)throw Error('Program harus memiliki minimal satu indikator.');
   if(rows.some(r=>r.__kegiatanId&&r.__programId===programId&&r.__indikatorProgramId===indicatorId))throw Error('Indikator ini masih menjadi induk kegiatan. Pindahkan indikator induk kegiatan terlebih dahulu.');
@@ -1120,10 +1169,11 @@ function renstra42Normalize(input){
   if(!subId&&(r.output||r.indikator)){r.legacyOutput=r.legacyOutput||r.output||'';r.legacyIndikator=r.legacyIndikator||r.indikator||'';}
   r.__sasaranId=r.__sasaranId||'';r.__indikatorRenstraId=r.__indikatorRenstraId||'';
   r.__goalRefs=renstra42GoalRefs(r);
-  if(pId===lastProgramId&&out.length){for(const k of ['kodeProgram','program','outcome','indikatorProgram','sasaran','indikatorRenstra','tujuan','nspk'])if(!r[k])r[k]=out[out.length-1][k]||'';if(!Array.isArray(r.__indikatorProgramList)||!r.__indikatorProgramList.length)r.__indikatorProgramList=out[out.length-1].__indikatorProgramList.map(x=>({...x}));if(!r.__goalRefs.length)r.__goalRefs=[...out[out.length-1].__goalRefs];}
+  if(pId===lastProgramId&&out.length){for(const k of ['kodeProgram','program','outcome','indikatorProgram','sasaran','indikatorRenstra','tujuan','nspk'])if(!r[k])r[k]=out[out.length-1][k]||'';if(!Array.isArray(r.__outcomeProgramList)||!r.__outcomeProgramList.length)r.__outcomeProgramList=renstra42Outcomes(out[out.length-1]).map(x=>({...x}));if(!Array.isArray(r.__indikatorProgramList)||!r.__indikatorProgramList.length)r.__indikatorProgramList=renstra42Indicators(out[out.length-1]).map(x=>({...x}));if(!r.__goalRefs.length)r.__goalRefs=[...out[out.length-1].__goalRefs];}
+  if(!Array.isArray(r.__outcomeProgramList)||!r.__outcomeProgramList.length)r.__outcomeProgramList=renstra42Outcomes(r);
   if(!Array.isArray(r.__indikatorProgramList)||!r.__indikatorProgramList.length)r.__indikatorProgramList=renstra42Indicators(r);
   if(kId&&r.__indikatorProgramId===undefined){const list=renstra42Indicators(r);r.__indikatorProgramId=list[0]?.id||'';}
-  r.indikatorProgram=renstra42Indicators(r)[0]?.nama||'';
+  r.indikatorProgram=renstra42Indicators(r)[0]?.nama||'';r.outcome=renstra42Outcomes(r)[0]?.nama||'';
   if(kId&&kId===lastKegiatanId&&out.length){for(const k of ['kodeKegiatan','kegiatan','outputKegiatan','indikatorKegiatan'])if(!r[k])r[k]=out[out.length-1][k]||'';}
   out.push(r);lastProgram=code||lastProgram;lastProgramId=pId;lastKegiatan=activity||lastKegiatan;lastKegiatanId=kId;
  });
@@ -1140,7 +1190,7 @@ function renstra42GroupCell(kind,r,span,readonly){
  if(kind==='program'){
   fields=renstra42GoalsEditor(r,readonly)+
    renstra42Field(kind,id,'kodeProgram',r.kodeProgram,'Kode program',readonly)+renstra42Field(kind,id,'program',r.program,'Nama program',readonly)+
-   renstra42Field(kind,id,'outcome',r.outcome,'Outcome program',readonly)+renstra42IndicatorsEditor(r,readonly);
+   renstra42OutcomesEditor(r,readonly)+renstra42IndicatorsEditor(r,readonly);
   buttons=`<button type="button" data-renstra42-add="kegiatan" data-parent-id="${esc(id)}">＋ Kegiatan</button>`;
  }else if(kind==='kegiatan'){
   fields=renstra42KegiatanIndikatorSelect(r,readonly)+renstra42Field(kind,id,'kodeKegiatan',r.kodeKegiatan,'Kode kegiatan',readonly)+renstra42Field(kind,id,'kegiatan',r.kegiatan,'Nama kegiatan',readonly)+
@@ -1163,7 +1213,8 @@ function renstra42Read(host){
  if(!host)return [];
  const grouped={program:new Map(),kegiatan:new Map(),sub:new Map(),leaf:new Map()};
  host.querySelectorAll('[data-renstra42-field]').forEach(el=>{const kind=el.dataset.renstra42Group,id=el.dataset.nodeId;if(!grouped[kind]||!id)return;const fields=grouped[kind].get(id)||{};fields[el.dataset.renstra42Field]=String(el.value??'').trim();grouped[kind].set(id,fields)});
- const programsIndicators=new Map();host.querySelectorAll('[data-indicators-program]').forEach(container=>{const items=[...container.querySelectorAll('[data-renstra42-indicator]')].map(el=>({id:el.dataset.renstra42Indicator,nama:el.value.trim()}));programsIndicators.set(container.dataset.indicatorsProgram,items);});
+ const programsOutcomes=new Map();host.querySelectorAll('[data-outcomes-program]').forEach(container=>{const items=[...container.querySelectorAll('[data-renstra42-outcome]')].map(el=>({id:el.dataset.renstra42Outcome,nama:el.value.trim()}));programsOutcomes.set(container.dataset.outcomesProgram,items);});
+ const programsIndicators=new Map();host.querySelectorAll('[data-indicators-program]').forEach(container=>{const items=[...container.querySelectorAll('[data-renstra42-indicator]')].map(el=>({id:el.dataset.renstra42Indicator,nama:el.value.trim(),outcomeId:container.querySelector('[data-renstra42-indicator-outcome="'+el.dataset.renstra42Indicator+'"]')?.value||''}));programsIndicators.set(container.dataset.indicatorsProgram,items);});
  const selectedGoals=new Map();host.querySelectorAll('[data-goals-program]').forEach(container=>{selectedGoals.set(container.dataset.goalsProgram,[...container.querySelectorAll('input[data-renstra42-goal-key]:checked')].map(x=>x.dataset.renstra42GoalKey));});
  const goals=new Map(renstra42GoalOptions().map(v=>[v.key,v]));const rows=[];
  host.querySelectorAll('[data-matrix-row="4.2"]').forEach(tr=>{
@@ -1172,10 +1223,10 @@ function renstra42Read(host){
   const goalKeys=selectedGoals.get(pId)|| (tr.dataset.sasaranId&&tr.dataset.indikatorRenstraId?[tr.dataset.sasaranId+'|'+tr.dataset.indikatorRenstraId]:[]);
   const goalKey=goalKeys[0]||'',goal=goals.get(goalKey)||null;
   const [sasaranId='',indikatorRenstraId='']=goalKey?goalKey.split('|'):[];
-  const indicatorList=programsIndicators.get(pId)||renstra42Indicators(program);const kegiatanIndikatorId=kegiatan.indikatorProgramRef||'';
-  const d={__programId:pId,__kegiatanId:kId,__subId:sId,__sasaranId:sasaranId,__indikatorRenstraId:indikatorRenstraId,__goalRefs:[...goalKeys],__indikatorProgramList:indicatorList.map(x=>({...x})),__indikatorProgramId:kId?kegiatanIndikatorId:'',__legacyUnlinked:tr.dataset.legacyUnlinked==='true'&&!goal,
+  const outcomeList=programsOutcomes.get(pId)||renstra42Outcomes(program);const indicatorList=programsIndicators.get(pId)||renstra42Indicators({...program,__outcomeProgramList:outcomeList,__programId:pId});const kegiatanIndikatorId=kegiatan.indikatorProgramRef||'';
+  const d={__programId:pId,__kegiatanId:kId,__subId:sId,__sasaranId:sasaranId,__indikatorRenstraId:indikatorRenstraId,__goalRefs:[...goalKeys],__outcomeProgramList:outcomeList.map(x=>({...x})),__indikatorProgramList:indicatorList.map(x=>({...x})),__indikatorProgramId:kId?kegiatanIndikatorId:'',__legacyUnlinked:tr.dataset.legacyUnlinked==='true'&&!goal,
    __source:tr.dataset.source||'',...(goal?{nspk:goal.rpjmd,tujuan:goal.tujuan,sasaran:goal.sasaran,indikatorRenstra:goal.indikator}:{}),...program,...kegiatan,...sub,...leaf};
-  delete d.goalRef;delete d.indikatorProgramRef;d.indikatorProgram=indicatorList[0]?.nama||'';
+  delete d.goalRef;delete d.indikatorProgramRef;d.indikatorProgram=indicatorList[0]?.nama||'';d.outcome=outcomeList[0]?.nama||'';
   if(!goal&&goalKey){const old=renstra42Normalize(renstraWorkbookCurrent()?.data?.tabelRenstra?.['4.2']||[]).find(x=>x.__programId===pId);if(old)for(const k of ['nspk','tujuan','sasaran','indikatorRenstra','output','indikator'])d[k]=old[k]||'';}
   // Struktur program baru yang belum diberi nama tetap ditampilkan saat edit,
   // sehingga tombol tambah indikator tidak menghilangkan baris kosong.
@@ -1186,8 +1237,8 @@ function renstra42MatrixHTML(data={},sheet=false,readonly=false){
  const saved=Array.isArray(data.tabelRenstra?.['4.2'])?data.tabelRenstra['4.2']:[];
  const legacy=!saved.length?renstraLegacyMatrixRow('4.2',data):null;const rr=renstra42Normalize(saved.length?saved:(legacy?[legacy]:[]));
  return `<section class="renstraMatrix renstraSheetPanel renstra42Sheet" data-matrix="4.2" data-sheet-panel="4.2" aria-label="Tabel 4.2 hierarki kinerja program" ${sheet&&(S.renstraTab||'3.3')!=='4.2'?'hidden':''}>
- <div class="renstraMatrixTop"><div><strong>Tabel 4.2 — Cascading Sasaran Renstra → Program → Kegiatan → Subkegiatan</strong><p>Pedoman Inmendagri 2/2025, halaman cetak 49. Centang satu atau beberapa indikator Sasaran Renstra dari Tabel 3.3 untuk setiap program. Satu program memiliki banyak indikator program; kegiatan memilih indikator program yang didukung. Subkegiatan mewarisi kegiatan.</p></div><span class="renstraMatrixCount" data-matrix-count>${rr.length} baris</span></div>
- <div class="renstra33Legend">↳ <b>Program</b> dapat mendukung beberapa indikator Sasaran Renstra; <b>Kegiatan</b> menginduk Program + Indikator Program; <b>Subkegiatan</b> menginduk Kegiatan. Semua relasi disimpan dengan ID, bukan mencocokkan nama semata.</div>
+ <div class="renstraMatrixTop"><div><strong>Tabel 4.2 — Cascading Sasaran Renstra → Program → Kegiatan → Subkegiatan</strong><p>Pedoman Inmendagri 2/2025, halaman cetak 49. Centang satu atau beberapa indikator Sasaran Renstra dari Tabel 3.3 untuk setiap program. Satu program dapat memiliki beberapa outcome dan beberapa indikator program; setiap indikator memilih outcome yang diukur. Kegiatan memilih indikator program yang didukung. Subkegiatan mewarisi kegiatan.</p></div><span class="renstraMatrixCount" data-matrix-count>${rr.length} baris</span></div>
+ <div class="renstra33Legend">↳ <b>Program</b> dapat mendukung beberapa indikator Sasaran Renstra, memiliki banyak outcome dan indikator program; <b>Kegiatan</b> menginduk Program + Indikator Program; <b>Subkegiatan</b> menginduk Kegiatan. Semua relasi disimpan dengan ID, bukan mencocokkan nama semata.</div>
  <div class="renstraTableScroller" role="region" tabindex="0" aria-label="Tabel 4.2 hierarki program, geser ke kanan pada ponsel"><table class="renstraDataTable renstra42DataTable"><thead><tr><th class="renstraRowNumber">No.</th><th>PROGRAM<br><small>Induk: sasaran dan indikator Renstra · outcome dan indikator program</small></th><th>KEGIATAN<br><small>Induk: program dan indikator program · output kegiatan</small></th><th>SUBKEGIATAN<br><small>Induk: kegiatan · output dan indikator subkegiatan</small></th><th>KETERANGAN</th><th>AKSI</th></tr></thead><tbody data-matrix-rows>${renstra42TableBody(rr,readonly)}</tbody></table></div>
  <div class="renstraMatrixEmpty" data-matrix-empty ${rr.length?'hidden':''}>Belum ada program. Mulai dari tombol Tambah Program, pilih indikator Sasaran Renstra, lalu turunkan kegiatan dan subkegiatan.</div>
  ${readonly?'':`<div class="renstraMatrixToolbar"><button type="button" class="button" data-renstra42-add="program">＋ Program</button><button type="button" class="button" data-renstra-programs="1">⇩ Ambil 2 program dari sumber (perlu memilih sasaran)</button><button type="button" class="button" data-renstra-csv="4.2">⇩ Ekspor CSV</button></div><p class="hint">Pilih Sasaran Renstra dari Tabel 3.3 terlebih dahulu. Hanya draf yang disimpan, tidak menetapkan program atau pagu baru.</p>`}</section>`;
@@ -1232,10 +1283,15 @@ function renstra42Validate(rows,goals){
  const valid=new Map(goals.map(g=>[g.key,g])),programs=new Map(),activities=new Map(),subcodes=new Set();
  for(const r of renstra42Normalize(rows)){
   const keys=renstra42GoalRefs(r),key=keys.slice().sort().join('|');
+  const outcomes=renstra42Outcomes(r),outcomeNames=outcomes.map(x=>x.nama.trim());
   const indicators=renstra42Indicators(r),names=indicators.map(x=>x.nama.trim());
   if(r.program||r.kodeProgram){
    if(!keys.length||keys.some(k=>!valid.has(k))){if(!r.__legacyUnlinked)throw Error('Program '+(r.program||r.kodeProgram)+' harus terhubung ke minimal satu Sasaran dan Indikator Renstra yang valid pada Tabel 3.3. Periksa semua centang induk.');else continue;}
+   if(!outcomes.length||outcomes.length>15||new Set(outcomes.map(x=>x.id)).size!==outcomes.length)throw Error('Daftar outcome program tidak valid atau memiliki ID ganda.');
+   if(outcomes.length>1&&outcomeNames.some(x=>!x))throw Error('Lengkapi semua nama outcome pada program '+(r.program||r.kodeProgram)+'.');
+   if(new Set(outcomeNames.filter(Boolean).map(x=>x.toLocaleLowerCase('id-ID'))).size!==outcomeNames.filter(Boolean).length)throw Error('Nama outcome program tidak boleh duplikat.');
    if(!names.length||names.some(x=>!x))throw Error('Lengkapi semua nama indikator pada program '+(r.program||r.kodeProgram)+'.');
+   if(indicators.some(x=>!outcomes.some(o=>o.id===x.outcomeId)))throw Error('Terdapat indikator program yang mengacu pada outcome tidak ditemukan pada program '+(r.program||r.kodeProgram)+'.');
    if(new Set(indicators.map(x=>x.id)).size!==indicators.length)throw Error('ID indikator program terduplikasi.');
    if(new Set(names.map(x=>x.toLocaleLowerCase('id-ID'))).size!==names.length)throw Error('Nama indikator program tidak boleh ganda dalam satu program.');
   }
@@ -1244,7 +1300,7 @@ function renstra42Validate(rows,goals){
    if(!r.__indikatorProgramId||!indicators.some(x=>x.id===r.__indikatorProgramId&&x.nama.trim()))throw Error('Pilih salah satu indikator program yang valid untuk kegiatan '+(r.kegiatan||r.kodeKegiatan||'baru')+'.');
   }
   if(r.__subId&&(!r.__kegiatanId||!String(r.kegiatan||'').trim()))throw Error('Subkegiatan '+(r.sub||r.kodeSub||'baru')+' belum memiliki kegiatan induk yang lengkap.');
-  if(r.__programId){const signature=JSON.stringify([key,r.program,indicators]);const old=programs.get(r.__programId);if(old&&old!==signature)throw Error('Satu program memiliki nama/indikator yang tidak konsisten.');programs.set(r.__programId,signature);}
+  if(r.__programId){const signature=JSON.stringify([key,r.program,outcomes,indicators]);const old=programs.get(r.__programId);if(old&&old!==signature)throw Error('Satu program memiliki nama/indikator yang tidak konsisten.');programs.set(r.__programId,signature);}
   if(r.__kegiatanId){const signature=r.__programId+'|'+r.kegiatan+'|'+r.__indikatorProgramId;const old=activities.get(r.__kegiatanId);if(old&&old!==signature)throw Error('Satu kegiatan berada pada program/indikator berbeda.');activities.set(r.__kegiatanId,signature);}
   if(r.__subId){if(subcodes.has(r.__subId))throw Error('Subkegiatan terduplikasi dalam Tabel 4.2.');subcodes.add(r.__subId);}
  }
@@ -1252,7 +1308,7 @@ function renstra42Validate(rows,goals){
 function renstra42CanonicalNodes(p42){
  const canonical=new Map();
  for(const r of renstra42Normalize(p42)){
-  for(const [type,id,title,indicator] of [['program',r.__programId,[r.kodeProgram,r.program].filter(Boolean).join(' · '),renstra42IndicatorsLabel(r)],['kegiatan',r.__kegiatanId,[r.kodeKegiatan,r.kegiatan].filter(Boolean).join(' · '),r.indikatorKegiatan],['subkegiatan',r.__subId,[r.kodeSub,r.sub].filter(Boolean).join(' · '),r.indikator]]){
+  for(const [type,id,title,indicator] of [['program',r.__programId,[r.kodeProgram,r.program].filter(Boolean).join(' · '),renstra42PerformanceLabel(r)],['kegiatan',r.__kegiatanId,[r.kodeKegiatan,r.kegiatan].filter(Boolean).join(' · '),r.indikatorKegiatan],['subkegiatan',r.__subId,[r.kodeSub,r.sub].filter(Boolean).join(' · '),r.indikator]]){
    if(id&&title&&!canonical.has(id))canonical.set(id,{type,program:type.toUpperCase()+' — '+title,indikator:indicator||''});
   }
  }
@@ -1270,7 +1326,7 @@ function renstra43Reconcile(p42,p43){
  });
 }
 function renstra42PrintableHTML(raw,withHeading=true){const rows=renstra42Normalize(raw),p=renstra33GroupSpans(rows,'program'),k=renstra33GroupSpans(rows,'kegiatan');
- return `<section class="renstra42Printed">${withHeading?'<h2>Tabel 4.2 — Cascading program, kegiatan, dan subkegiatan</h2>':''}<div class="scroll"><table class="renstra42PrintTable"><thead><tr><th>No.</th><th>NSPK/SASARAN RPJMD</th><th>TUJUAN RENSTRA</th><th>SASARAN & INDIKATOR RENSTRA</th><th>PROGRAM / OUTCOME / INDIKATOR PROGRAM</th><th>KEGIATAN / OUTPUT</th><th>SUBKEGIATAN / OUTPUT</th><th>KETERANGAN</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td>${i+1}</td>${p.has(i)?`<td rowspan="${p.get(i)}">${esc(renstra42GoalTexts(r,'rpjmd')||r.nspk||'')}</td><td rowspan="${p.get(i)}">${esc(renstra42GoalTexts(r,'tujuan')||r.tujuan||'')}</td><td rowspan="${p.get(i)}">${esc(renstra42GoalRefs(r).map(key=>{const g=renstra42GoalOptions().find(x=>x.key===key);return g?g.sasaran+' — '+g.indikator:'⚠ Referensi tidak ditemukan: '+key;}).join('\n')||[r.sasaran,r.indikatorRenstra].filter(Boolean).join(' — '))}</td><td rowspan="${p.get(i)}">${esc(r.kodeProgram||'')} ${esc(r.program||'')}<hr>Outcome: ${esc(r.outcome||'')}<hr>Indikator program:<div style="white-space:pre-line">${esc(renstra42IndicatorsLabel(r))}</div></td>`:''}${r.__kegiatanId?(k.has(i)?`<td rowspan="${k.get(i)}">${esc(r.kodeKegiatan||'')} ${esc(r.kegiatan||'')}<hr>Output: ${esc(r.outputKegiatan||'')}<hr>Indikator program induk: ${esc(renstra42Indicators(r).find(x=>x.id===r.__indikatorProgramId)?.nama||'')}<hr>Indikator kegiatan: ${esc(r.indikatorKegiatan||'')}</td>`:''):'<td></td>'}<td>${esc(r.kodeSub||'')} ${esc(r.sub||'')}<hr>${esc(r.output||'')}<hr>${esc(r.indikator||'')}</td><td>${esc(r.keterangan||'')}</td></tr>`).join('')||'<tr><td colspan="8">Belum ada baris</td></tr>'}</tbody></table></div></section>`;
+ return `<section class="renstra42Printed">${withHeading?'<h2>Tabel 4.2 — Cascading program, kegiatan, dan subkegiatan</h2>':''}<div class="scroll"><table class="renstra42PrintTable"><thead><tr><th>No.</th><th>NSPK/SASARAN RPJMD</th><th>TUJUAN RENSTRA</th><th>SASARAN & INDIKATOR RENSTRA</th><th>PROGRAM / OUTCOME / INDIKATOR PROGRAM</th><th>KEGIATAN / OUTPUT</th><th>SUBKEGIATAN / OUTPUT</th><th>KETERANGAN</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td>${i+1}</td>${p.has(i)?`<td rowspan="${p.get(i)}">${esc(renstra42GoalTexts(r,'rpjmd')||r.nspk||'')}</td><td rowspan="${p.get(i)}">${esc(renstra42GoalTexts(r,'tujuan')||r.tujuan||'')}</td><td rowspan="${p.get(i)}">${esc(renstra42GoalRefs(r).map(key=>{const g=renstra42GoalOptions().find(x=>x.key===key);return g?g.sasaran+' — '+g.indikator:'⚠ Referensi tidak ditemukan: '+key;}).join('\n')||[r.sasaran,r.indikatorRenstra].filter(Boolean).join(' — '))}</td><td rowspan="${p.get(i)}">${esc(r.kodeProgram||'')} ${esc(r.program||'')}<hr>Outcome program:<div style="white-space:pre-line">${esc(renstra42OutcomesLabel(r))}</div><hr>Indikator program per outcome:<div style="white-space:pre-line">${esc(renstra42Indicators(r).filter(x=>x.nama.trim()).map((x,i)=>(i+1)+'. '+x.nama+' → '+(renstra42Outcomes(r).find(o=>o.id===x.outcomeId)?.nama||'[outcome belum tersedia]')).join('\n'))}</div></td>`:''}${r.__kegiatanId?(k.has(i)?`<td rowspan="${k.get(i)}">${esc(r.kodeKegiatan||'')} ${esc(r.kegiatan||'')}<hr>Output: ${esc(r.outputKegiatan||'')}<hr>Indikator program induk: ${esc(renstra42Indicators(r).find(x=>x.id===r.__indikatorProgramId)?.nama||'')}<hr>Indikator kegiatan: ${esc(r.indikatorKegiatan||'')}</td>`:''):'<td></td>'}<td>${esc(r.kodeSub||'')} ${esc(r.sub||'')}<hr>${esc(r.output||'')}<hr>${esc(r.indikator||'')}</td><td>${esc(r.keterangan||'')}</td></tr>`).join('')||'<tr><td colspan="8">Belum ada baris</td></tr>'}</tbody></table></div></section>`;
 }
 /* Membuat baris Tabel 4.3 berdasarkan node Tabel 4.2, tanpa menyalin target/pagu.
  * Baris dengan angka yang sudah diinput tidak ditimpa saat sinkronisasi ulang. */
@@ -1470,7 +1526,7 @@ function renstraWorkbookPage(){
  ${r&&r.data?.kode!==RENSTRA_PRIMARY_CODE?`<p class="renstraStatusInfo">Rekaman lama <b>${esc(r.data.kode||'tanpa kode')}</b> digunakan sebagai dasar dokumen induk, sehingga referensi Renja/IKU yang sudah menunjuk rekaman ini tetap berlaku. Kode induk diterapkan otomatis saat simpan. Data Renstra lama lain tidak dihapus.</p>`:''}
  </section>
  <form id="renstraSheetForm" data-module="renstra" data-workbook="1" data-id="${esc(r?.id||'')}">
- <section class="panel renstraWorkbookTables"><header><div><h2>Susun Renstra menurut BAB dan tabel</h2><p class="hint">Pilih bab → pilih tabel → ketik langsung pada sel. Pada iPhone, Tabel 4.2 ditampilkan sebagai kartu bertingkat: centang indikator sasaran lalu tekan + Tambah indikator program.</p></div><span class="renstraDirtyBadge" id="renstraUnsaved" hidden>● Belum disimpan</span></header>
+ <section class="panel renstraWorkbookTables"><header><div><h2>Susun Renstra menurut BAB dan tabel</h2><p class="hint">Pilih bab → pilih tabel → ketik langsung pada sel. Pada iPhone, Tabel 4.2 ditampilkan sebagai kartu: centang indikator sasaran, tambahkan outcome dan indikator program, kemudian pilih outcome yang diukur pada tiap indikator.</p></div><span class="renstraDirtyBadge" id="renstraUnsaved" hidden>● Belum disimpan</span></header>
  <nav class="renstraChapterNav" aria-label="Pilih bab Renstra">${RENSTRA_CHAPTER_INFO.map(([id,title,sub])=>`<button type="button" data-renstra-chapter="${id}" class="renstraChapterButton ${id===chapter?'is-active':''}" aria-pressed="${id===chapter}">${title}<small>${esc(sub)}</small></button>`).join('')}</nav>
  <p class="renstraWorksheetLead" id="renstraChapterLead">${esc(chapterNames[chapter])}</p>
  <nav class="renstraTableTabs" role="tablist" aria-label="Pilih tabel atau uraian bab">${allTabs}</nav>
@@ -1516,9 +1572,9 @@ function renstraReviewWorkbook(){
  const filled=RENSTRA_BAB_FIELDS.flatMap(([,keys])=>keys.filter(k=>String(form.elements['narasi_'+k]?.value||'').trim()));
  const goal=data['3.3']||[],program=data['4.2']||[],withoutIndicator=goal.filter(r=>r.sasaran&&!r.indikator).length;
  const orphan=goal.filter(r=>r.indikator&&(!r.__rpjmdId||!r.__tujuanId||!r.tujuan||!r.rpjmd||(/IKU/i.test(r.keterangan||'')&&!r.sasaran))).length;
-  const invalidPrograms=program.filter(r=>(r.program||r.kodeProgram)&&(!renstra42GoalRefs(r).length||!renstra42Indicators(r).some(x=>x.nama.trim()))).length;
+  const invalidPrograms=program.filter(r=>(r.program||r.kodeProgram)&&(!renstra42GoalRefs(r).length||!renstra42Indicators(r).some(x=>x.nama.trim())||renstra42Outcomes(r).length>1&&renstra42Outcomes(r).some(x=>!x.nama.trim()))).length;
  const absent=missing.length?missing.join(', '):'tidak ada';
- const warning=(withoutIndicator?'\n• '+withoutIndicator+' baris sasaran belum memiliki indikator.':'')+(orphan?'\n• '+orphan+' indikator belum memiliki induk yang lengkap.':'')+(invalidPrograms?'\n• '+invalidPrograms+' program belum terkait sasaran/indikator Renstra atau belum memiliki indikator program.':'');
+ const warning=(withoutIndicator?'\n• '+withoutIndicator+' baris sasaran belum memiliki indikator.':'')+(orphan?'\n• '+orphan+' indikator belum memiliki induk yang lengkap.':'')+(invalidPrograms?'\n• '+invalidPrograms+' program belum terkait sasaran/indikator Renstra, belum memiliki indikator program, atau masih memiliki outcome kosong.':'');
  alert('Pemeriksaan kelengkapan DRAF Renstra\n\n• Tabel terisi: '+(9-missing.length)+'/9\n• Narasi terisi: '+filled.length+' kolom\n• Matriks tujuan/sasaran: '+goal.length+' baris\n• Matriks program: '+program.length+' baris\n• Tabel kosong: '+absent+warning+'\n\nPemeriksaan ini BUKAN reviu APIP atau pengesahan dokumen. Bukti faktual tetap harus diverifikasi.');
 }
 function renstraAddSourcePrograms(){
@@ -1583,7 +1639,7 @@ function renstraSwitchTab(key){
  const lead=document.querySelector('#renstraChapterLead');if(lead)lead.textContent=chapterLead[chapter];
 }
 function renstraCSV(table){const form=document.querySelector('#renstraSheetForm'),def=RENSTRA_MATRICES[table];if(!form||!def)return;
- if(table==='4.2'){const host=form.querySelector('[data-matrix="4.2"]'),rr=renstra42Read(host),keys=RENSTRA_MATRICES['4.2'].columns;const safe=v=>/^[=+@\-\t\r]/.test(String(v))?"'"+v:v;csvExport('SIS-DPR_Renstra_Tabel_4-2.csv',[['No',...keys.map(k=>k[1]),'Sasaran ID','Indikator Renstra ID','Program ID','Kegiatan ID','Sub ID','Daftar indikator program','Indikator induk kegiatan ID','Semua ID Sasaran/Indikator Renstra'],...rr.map((r,i)=>[i+1,...keys.map(k=>safe(r[k[0]]||'')),r.__sasaranId,r.__indikatorRenstraId,r.__programId,r.__kegiatanId,r.__subId,safe(renstra42IndicatorsLabel(r)),r.__indikatorProgramId||'',safe(renstra42GoalRefs(r).join('\n'))])]);return;}
+ if(table==='4.2'){const host=form.querySelector('[data-matrix="4.2"]'),rr=renstra42Read(host),keys=RENSTRA_MATRICES['4.2'].columns;const safe=v=>/^[=+@\-\t\r]/.test(String(v))?"'"+v:v;csvExport('SIS-DPR_Renstra_Tabel_4-2.csv',[['No',...keys.map(k=>k[1]),'Sasaran ID','Indikator Renstra ID','Program ID','Kegiatan ID','Sub ID','Daftar outcome program','Daftar outcome (ID; nama)','Daftar indikator program','Indikator → Outcome (ID)','Indikator induk kegiatan ID','Semua ID Sasaran/Indikator Renstra'],...rr.map((r,i)=>[i+1,...keys.map(k=>safe(r[k[0]]||'')),r.__sasaranId,r.__indikatorRenstraId,r.__programId,r.__kegiatanId,r.__subId,safe(renstra42OutcomesLabel(r)),safe(renstra42Outcomes(r).map(o=>o.id+'; '+o.nama).join('\n')),safe(renstra42IndicatorsLabel(r)),safe(renstra42Indicators(r).map(x=>x.id+' → '+x.outcomeId).join('\n')),r.__indikatorProgramId||'',safe(renstra42GoalRefs(r).join('\n'))])]);return;}
  if(table==='3.3'){const host=form.querySelector('[data-matrix=\"3.3\"]'),data=renstra33Read(host),safe=v=>/^[=+@\-\t\r]/.test(String(v))?"'"+v:v;csvExport('SIS-DPR_Renstra_Tabel_3-3.csv',[['NSPK / Sasaran RPJMD','Tujuan Renstra','Sasaran Renstra','Indikator','Satuan','Baseline 2024',...Array.from({length:6},(_,i)=>String(2025+i)),'Keterangan'],...data.map(r=>['rpjmd','tujuan','sasaran','indikator','satuan','baseline2024',...Array.from({length:6},(_,i)=>'target'+(2025+i)),'keterangan'].map(k=>safe(r[k]??'')))]);return;}const host=[...form.querySelectorAll('[data-matrix]')].find(x=>x.dataset.matrix===table),cols=def.columns;const safe=v=>/^[=+@\-\t\r]/.test(String(v))?"'"+v:v;
  const all=[['No',...cols.map(c=>c[1])]];host.querySelectorAll('[data-matrix-row]').forEach((row,i)=>all.push([i+1,...cols.map(([key])=>safe(row.querySelector(`[data-matrix-col="${key}"]`)?.value||''))]));csvExport('SIS-DPR_Renstra_Tabel_'+table.replace('.','-')+'.csv',all);
 }
@@ -1772,7 +1828,9 @@ function attachEvents(){document.addEventListener('click',async e=>{
  if(el.dataset.renstraReview){renstraReviewWorkbook();return}
  if(el.dataset.renstraNew){if(S.renstraDirty&&!confirm('Ada isian belum disimpan. Buat lembar Renstra baru dan abaikan perubahan?'))return;S.renstraActiveId='new';S.renstraDirty=false;render();return}
  if(el.dataset.renstraHierarchyAdd){renstra33Insert(el.dataset.renstraHierarchyAdd,el.dataset.parentId||'');return}
-  if(el.dataset.renstra42IndicatorAdd){renstra42IndicatorEdit('add',el.dataset.renstra42IndicatorAdd);return}
+  if(el.dataset.renstra42OutcomeAdd){renstra42OutcomeEdit('add',el.dataset.renstra42OutcomeAdd);return}
+ if(el.dataset.renstra42OutcomeRemove){renstra42OutcomeEdit('remove',el.dataset.parentId||'',el.dataset.renstra42OutcomeRemove);return}
+ if(el.dataset.renstra42IndicatorAdd){renstra42IndicatorEdit('add',el.dataset.renstra42IndicatorAdd);return}
   if(el.dataset.renstra42IndicatorRemove){renstra42IndicatorEdit('remove',el.dataset.parentId||'',el.dataset.renstra42IndicatorRemove);return}
   if(el.dataset.renstra42Add){renstra42Insert(el.dataset.renstra42Add,el.dataset.parentId||'');return}
   if(el.dataset.renstra42Delete){renstra42Delete(el);return}
