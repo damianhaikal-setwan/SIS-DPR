@@ -1,14 +1,16 @@
-# Rekap Pengujian Antarmuka SIS-DPR
+# Catatan pengujian Renstra
 
-- Pemeriksaan sintaks JavaScript melalui Node: **lulus**.
-- Simulasi Chromium iPhone 13 (390×844): 48 halaman modul + 48 formulir dapat dibuka tanpa error JavaScript dan tanpa horizontal overflow.
-- Simulasi Chromium Android (412×915): 48 halaman modul + 48 formulir dapat dibuka tanpa error JavaScript dan tanpa horizontal overflow.
-- Simulasi Chromium desktop (1280×850): 48 halaman modul + 48 formulir dapat dibuka tanpa error JavaScript.
-- Pengujian 13 halaman khusus (dashboard, katalog, kinerja, referensi, integrasi, persetujuan, bukti, laporan, audit, kewenangan, akun, pengaturan, migrasi): terisi dan tidak menimbulkan exception.
-- Simulasi penyimpanan Rapat → pilih referensi Rapat pada Daftar Hadir: tanggal terisi dari rekaman sumber.
-- Tombol detail Rapat → Buat Daftar Hadir: referensi rapat dan tanggal terbawa tanpa mengetik ulang.
-- Filter status rekaman: bekerja.
-- Penyimpanan data melalui simulasi respons Supabase: **48 dari 48 formulir berhasil disimpan**, tanpa exception JavaScript.
-- Form MPH Admin: error assignment pada `unit` diperbaiki; simulasi simpan berhasil.
+Pengujian 31 Oktober 2026. Browser Chromium simulasi iPhone 13, Supabase dimock.
 
-**Semua uji tersebut menggunakan stub respons Supabase.** Belum ada pengujian keamanan RLS, penyimpanan nyata, kebijakan penyimpanan lampiran, dan performa terhadap data besar pada proyek Supabase operasional.
+- Validasi sintaks JavaScript: PASS
+- Navigasi ke Renstra: PASS
+- Dua belas bagian form: PASS
+- Sembilan matriks isian berulang: PASS
+- SAKIP dari Rancangan Akhir: 2029=74,25; 2030=76,30: PASS
+- Tambah baris tabel 3.3 dan 4.2: PASS
+- Simpan ke mock `sis_save_record`: PASS
+- Baca ulang detail & edit: PASS
+- HTML cetak matriks memuat data tabel: PASS
+- Horizontal overflow viewport iPhone 13: tidak ditemukan
+
+Belum diuji: API Supabase nyata, kebijakan RLS proyek, PDF cetak ke printer fisik, dan Safari iPhone 13 fisik.
