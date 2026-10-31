@@ -1,16 +1,8 @@
-# Catatan pengujian Renstra
+# Pemeriksaan modul Renstra (simulasi browser)
 
-Pengujian 31 Oktober 2026. Browser Chromium simulasi iPhone 13, Supabase dimock.
-
-- Validasi sintaks JavaScript: PASS
-- Navigasi ke Renstra: PASS
-- Dua belas bagian form: PASS
-- Sembilan matriks isian berulang: PASS
-- SAKIP dari Rancangan Akhir: 2029=74,25; 2030=76,30: PASS
-- Tambah baris tabel 3.3 dan 4.2: PASS
-- Simpan ke mock `sis_save_record`: PASS
-- Baca ulang detail & edit: PASS
-- HTML cetak matriks memuat data tabel: PASS
-- Horizontal overflow viewport iPhone 13: tidak ditemukan
-
-Belum diuji: API Supabase nyata, kebijakan RLS proyek, PDF cetak ke printer fisik, dan Safari iPhone 13 fisik.
+- Sintaks JS `node --check`: berhasil.
+- iPhone 13 390×844: tabel 3.3/4.2 disimpan dalam satu rekaman; tab 4.5 dapat ditambah otomatis; dokumen tidak melebar; area tabel dapat digeser.
+- Android 412×915: pengujian yang sama berhasil.
+- Desktop 1440×900: pengujian yang sama berhasil.
+- Tes ini menggunakan simulasi Supabase, bukan endpoint Supabase produksi.
+- Format tabel diambil dari Inmendagri No. 2/2025; angka acuan hanya dari Rancangan Akhir Renstra yang diunggah.
