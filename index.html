@@ -1284,7 +1284,7 @@ function sisAiPage(){
  const options=Object.entries(modules).filter(([key])=>accessible(key)).map(([key,m])=>[key,m.title]);
  const choices=sisAiRecordChoices();
  const fields=sisAiSafeFields();
- return `<div class="aiIntro"><p class="eyebrow">SIS-DPR · ASISTEN PEGAWAI</p><h1>✦ Asisten AI SIS-DPR</h1><p>Tahun Aktif ${esc(sisActiveYear()||'belum diatur')} · Renstra ${esc(sisActivePeriod()?.tahun_mulai||2025)}–${esc(sisActivePeriod()?.tahun_akhir||2029)}. Backend: Cloudflare Worker / Gemma 4. Semua jawaban wajib ditelaah pejabat dan tidak mengubah data resmi.</p>${config.aiBackend==='cloudflare'?(!config.aiWorkerUrl||config.aiWorkerUrl.includes('GANTI_')?'<div class="aiNotice">⚠️ Worker belum di-deploy atau alamat Worker belum diatur di ai-config.js. Tombol tetap dapat digunakan setelah URL diisi.</div>':'<div class="aiNotice">Gemma memproses pertanyaan di Cloudflare. Referensi resmi dicari otomatis dari indeks Supabase sesuai akses login; rekaman pribadi tidak dibaca otomatis. Cuplikan tambahan memerlukan persetujuan.</div>'):'<div class="aiNotice">Backend cadangan Supabase aktif. Untuk pola SIPETAK, gunakan backend Cloudflare dalam ai-config.js.</div>'}</div>
+ return `<div class="aiIntro"><p class="eyebrow">SIS-DPR · ASISTEN PEGAWAI</p><h1>✦ Asisten AI SIS-DPR</h1><p>Tahun Aktif ${esc(sisActiveYear()||'belum diatur')} · Renstra ${esc(sisActivePeriod()?.tahun_mulai||2025)}–${esc(sisActivePeriod()?.tahun_akhir||2029)}. Backend: Cloudflare Pages → Worker / Gemma 4. Semua jawaban wajib ditelaah pejabat dan tidak mengubah data resmi.</p>${config.aiBackend==='cloudflare'?(!config.aiWorkerUrl||config.aiWorkerUrl.includes('GANTI_')?'<div class="aiNotice">⚠️ Worker belum di-deploy atau alamat Worker belum diatur di ai-config.js. Tombol tetap dapat digunakan setelah URL diisi.</div>':'<div class="aiNotice">Gemma memproses pertanyaan di Cloudflare. Referensi resmi dicari otomatis dari indeks Supabase sesuai akses login; rekaman pribadi tidak dibaca otomatis. Cuplikan tambahan memerlukan persetujuan.</div>'):'<div class="aiNotice">Backend cadangan Supabase aktif. Untuk pola SIPETAK, gunakan backend Cloudflare dalam ai-config.js.</div>'}</div>
  <div class="aiActions" role="group" aria-label="Pilih fungsi AI">${SIS_AI_MODES.map(([k,label])=>`<button type="button" data-ai-mode="${k}" aria-pressed="${S.aiMode===k}" ${S.aiPending?'disabled':''}>${label}</button>`).join('')}</div>
  <div class="aiLayout"><section class="panel"><header><h2 class="aiPanelTitle">${esc(SIS_AI_MODES.find(x=>x[0]===S.aiMode)?.[1]||'Tanya AI')}</h2><button type="button" class="button" data-ai-clear="1" ${S.aiPending?'disabled':''}>Bersihkan percakapan</button></header>
  <div id="aiThread" class="aiThread" aria-live="polite" aria-label="Percakapan AI">${S.aiMessages.length?S.aiMessages.map((m,i)=>sisAiMessageHTML(m,i)).join(''):'<div class="empty">Tulis pertanyaan dan setujui teks yang akan dikirim. Tidak ada pembacaan rekaman otomatis.</div>'}</div>
@@ -1308,7 +1308,9 @@ function sisAiEndpoint(){
  if(config.aiBackend==='supabase')return config.url.replace(/\/+$/,'')+'/functions/v1/sis-ai';
  if(config.aiBackend!=='cloudflare')throw Error('Backend AI tidak dikenali. Gunakan supabase atau cloudflare pada ai-config.js.');
  const value=String(config.aiWorkerUrl||'').trim().replace(/\/+$/,'');
- if(!/^https:\/\/[a-z0-9.-]+(?::[0-9]{2,5})?(?:\/api\/ai)?$/i.test(value)||value.includes('GANTI_'))throw Error('URL Cloudflare Worker AI belum benar di ai-config.js.');
+ // Same-origin Pages Function removes browser-to-Worker CORS dependency.
+ if(value==='/api/ai')return value;
+ if(!/^https:\/\/[a-z0-9.-]+(?::[0-9]{2,5})?(?:\/api\/ai)?$/i.test(value)||value.includes('GANTI_'))throw Error('URL AI tidak valid di ai-config.js.');
  return value.endsWith('/api/ai')?value:value+'/api/ai';
 }
 async function sisAiBackendRequest(payload){
@@ -1320,7 +1322,7 @@ async function sisAiBackendRequest(payload){
   if(config.aiBackend==='supabase')headers.apikey=config.key; // publishable key, bukan secret
   let response;
   try{response=await fetch(endpoint,{method:'POST',headers,body:JSON.stringify(payload),cache:'no-store'});}
-  catch(e){throw Error('Backend AI tidak dapat dijangkau. Periksa koneksi, deployment Cloudflare Worker dan aturan origin CORS.');}
+  catch(e){throw Error(endpoint==='/api/ai'?'Gagal menghubungi /api/ai pada website. Periksa deployment Cloudflare Pages Function dan koneksi internet.':'Backend AI tidak dapat dijangkau. Periksa koneksi dan pengaturan origin.');}
   if(response.status===401&&retry&&S.refresh){await refreshSession();return post(false);}
   let result={};try{result=await response.json()}catch{throw Error('Backend AI tidak mengembalikan JSON. Periksa deployment dan URL layanan AI.');}
   if(!response.ok){

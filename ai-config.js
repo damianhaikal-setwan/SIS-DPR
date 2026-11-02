@@ -1,7 +1,6 @@
-/* SIS-DPR SIPETAK · Cloudflare Worker + Gemma 4 26B A4B.
- * Setelah deploy Worker, GANTI_SUBDOMAIN harus diubah menjadi subdomain workers.dev milik Cloudflare.
- * Jangan memasukkan API key Gemini, token Cloudflare, service_role, atau password di sini.
- * Pemulihan darurat: backend lama Supabase tetap berada di repo, tetapi antarmuka SIPETAK hanya mengirim ke Cloudflare.
+/* SIS-DPR: jalur AI satu domain melalui Cloudflare Pages Function.
+ * Perlu Service Binding SIS_DPR_AI -> Worker sis-dpr-ai pada Cloudflare Pages.
+ * Tidak ada token API/secret pada berkas publik ini.
  */
 window.SIS_DPR_AI_BACKEND = 'cloudflare';
-window.SIS_DPR_AI_WORKER_URL = 'https://sis-dpr-ai.damianhaikal77.workers.dev';
+window.SIS_DPR_AI_WORKER_URL = '/api/ai';
