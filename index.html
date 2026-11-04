@@ -1634,6 +1634,13 @@ const RENSTRA_MATRICES={
  '4.6':{label:'Tabel 4.6 — Indikator Kinerja Kunci (IKK)',section:10,source:'Pedoman PDF hlm 56 / halaman cetak 52. Hanya jika relevan',columns:[['indikator','Indikator IKK'],['satuan','Satuan'],...Array.from({length:6},(_,i)=>['target'+(2025+i),'Target '+(2025+i),'number']),['catatan','Dasar kewenangan / keterangan']],map:{indikator:'indikator',satuan:'satuan',catatan:'catatanIKK',...Object.fromEntries(Array.from({length:6},(_,i)=>['target'+(2025+i),'target'+(2025+i)]))},kind:'IKK (jika mengampu urusan)'}
 };
 
+/* Tabel 4.3 memuat node Program + Kegiatan + Subkegiatan dari Tabel 4.2.
+ * Karena satu baris 4.2 bisa menghasilkan tiga node terpisah, batas 80 baris
+ * untuk tabel biasa TIDAK berlaku untuk 4.3. Ini hanya batas pengamanan UI,
+ * bukan target/nomenklatur/pagu baru dari dokumen sumber. */
+const RENSTRA_MATRIX_ROW_LIMITS=Object.freeze({'4.3':400});
+function renstraMatrixMaxRows(table){return RENSTRA_MATRIX_ROW_LIMITS[table]||80;}
+
 /* Tabel 3.3 — hirarki riil (RPJMD → tujuan → sasaran → indikator).
  * Metadata __...Id disimpan pada tabelRenstra['3.3'] sebagai JSONB untuk mempertahankan
  * hubungan ketika nama induk diedit. Baris IKD boleh langsung berada di bawah tujuan.
@@ -2118,9 +2125,11 @@ function renstra43Sync(){
  }
  // Simpan baris lama yang tidak mempunyai node / belum direlasikan; jangan hapus data angkanya.
  const legacy=current.filter(x=>!x.__nodeId||!seen.has(x.__nodeId));
- const result=[...desired,...legacy];if(result.length>80)throw Error('Tabel 4.3 melebihi 80 baris setelah sinkronisasi. Periksa baris lama terlebih dahulu.');
+ const result=[...desired,...legacy];
+ const max=renstraMatrixMaxRows('4.3');
+ if(result.length>max)throw Error('Tabel 4.3 membutuhkan '+result.length+' baris ('+desired.length+' hierarki + '+legacy.length+' baris lama), melebihi kapasitas editor '+max+'. Tidak ada data yang dihapus; ekspor/cadangkan tabel dan tinjau baris lama sebelum melanjutkan.');
  body.innerHTML=result.map((r,i)=>renstraMatrixRowHTML('4.3',r,i)).join('');renstraUpdateCount(host);renstraMarkDirty();
- note('Tabel 4.3 diselaraskan: '+desired.length+' baris terhubung ke Program/Kegiatan/Subkegiatan Tabel 4.2. Target dan pagu yang sudah diisi dipertahankan.');
+ note('Tabel 4.3 berhasil diselaraskan: '+desired.length+' baris hierarki dan '+legacy.length+' baris lama ('+result.length+' total). Target/pagu yang sudah diisi dipertahankan. Tekan Simpan dokumen Renstra untuk menyimpan ke Supabase.');
 }
 
 function renstraMatrixRowHTML(table,row={},index=0,readonly=false){
@@ -2162,7 +2171,7 @@ function renstraCollectMatrices(form){const result={};for(const [table,def] of O
  const key=input.dataset.matrixCol;if(!def.columns.some(c=>c[0]===key))continue;const raw=String(input.value??'').trim();if(!raw)continue;
  if(input.type==='number'){const v=Number(raw);if(!Number.isFinite(v))throw Error('Angka pada '+table+' tidak valid');if(key.startsWith('pagu')&&v<0)throw Error('Pagu pada '+table+' tidak boleh negatif');data[key]=v;}else data[key]=raw;
  }if(Object.keys(data).length)items.push(data);}
- if(items.length>80)throw Error('Tabel '+table+' melebihi 80 baris; pecah rekaman menjadi kelompok kerja sesuai unit.');result[table]=items;
+ if(items.length>renstraMatrixMaxRows(table))throw Error('Tabel '+table+' melebihi kapasitas '+renstraMatrixMaxRows(table)+' baris. Data belum disimpan; cadangkan draf dan periksa baris.');result[table]=items;
  }
  return result;
 }
@@ -3208,9 +3217,9 @@ document.addEventListener('click',async e=>{
  if(el.dataset.renstraPrograms){renstraAddSourcePrograms();return}
  if(el.dataset.renstraTargets){renstraAddSourceTargets(el.dataset.renstraTargets);return}
  if(el.dataset.renstraCsv){renstraCSV(el.dataset.renstraCsv);return}
- if(el.dataset.renstraAdd){const host=el.closest('[data-matrix]'),list=host?.querySelector('[data-matrix-rows]');if(!list)return;const table=el.dataset.renstraAdd;const n=list.querySelectorAll('[data-matrix-row]').length;if(n>=80)throw Error('Batas 80 baris per tabel.');list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML(table,{},n));renstraUpdateCount(host);if(host.closest('#renstraSheetForm'))renstraMarkDirty();return}
+ if(el.dataset.renstraAdd){const host=el.closest('[data-matrix]'),list=host?.querySelector('[data-matrix-rows]');if(!list)return;const table=el.dataset.renstraAdd;const n=list.querySelectorAll('[data-matrix-row]').length;if(n>=renstraMatrixMaxRows(table))throw Error('Batas '+renstraMatrixMaxRows(table)+' baris Tabel '+table+'.');list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML(table,{},n));renstraUpdateCount(host);if(host.closest('#renstraSheetForm'))renstraMarkDirty();return}
  if(el.dataset.renstraRowDelete){if(el.closest('[data-matrix]')?.dataset.matrix==='3.3'){renstra33Delete(el);return;}const host=el.closest('[data-matrix]');el.closest('[data-matrix-row]')?.remove();renstraUpdateCount(host);if(host?.closest('#renstraSheetForm'))renstraMarkDirty();return}
- if(el.dataset.renstraFromSummary){const host=el.closest('[data-matrix]'),form=el.closest('form'),table=el.dataset.renstraFromSummary,content=renstraFromSummary(table,form);if(!Object.keys(content).length)throw Error('Isi dahulu kolom ringkas yang sesuai pada bab ini, atau pilih indikator acuan Renstra.');const list=host.querySelector('[data-matrix-rows]');const n=list.querySelectorAll('[data-matrix-row]').length;if(n>=80)throw Error('Batas 80 baris per tabel.');list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML(table,content,n));renstraUpdateCount(host);return}
+ if(el.dataset.renstraFromSummary){const host=el.closest('[data-matrix]'),form=el.closest('form'),table=el.dataset.renstraFromSummary,content=renstraFromSummary(table,form);if(!Object.keys(content).length)throw Error('Isi dahulu kolom ringkas yang sesuai pada bab ini, atau pilih indikator acuan Renstra.');const list=host.querySelector('[data-matrix-rows]');const n=list.querySelectorAll('[data-matrix-row]').length;if(n>=renstraMatrixMaxRows(table))throw Error('Batas '+renstraMatrixMaxRows(table)+' baris Tabel '+table+'.');list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML(table,content,n));renstraUpdateCount(host);return}
  if(el.dataset.renstraSource){const form=el.closest('form');if(!form||form.dataset.module!=='renstra')return;const values={latarBelakang:'Renstra Sekretariat DPRD Kabupaten Kapuas Hulu 2025–2029 merupakan rencana lima tahun untuk memberikan dukungan administratif dan fasilitasi tugas DPRD serta mengacu pada RPJMD Kabupaten Kapuas Hulu 2025–2029. (Sumber: Rancangan Akhir Renstra, Bab I, PDF hlm. 7–9)',dasarHukum:'Undang-Undang Nomor 25 Tahun 2004; Undang-Undang Nomor 23 Tahun 2014; Permendagri Nomor 86 Tahun 2017; Inmendagri Nomor 2 Tahun 2025; Perbup Kapuas Hulu Nomor 57 Tahun 2021. (Sumber: Rancangan Akhir Renstra, Bab I, PDF hlm. 11–12; periksa perubahan dasar hukum pada dokumen final.)',maksudTujuan:'Arah perencanaan diarahkan pada pelayanan prima kepada Pimpinan dan Anggota DPRD serta mendukung tujuan dan sasaran RPJMD Kabupaten Kapuas Hulu 2025–2029. (Sumber: Rancangan Akhir Renstra, PDF hlm. 12–13)',tugasFungsi:'Administrasi kesekretariatan dan keuangan; dukungan rapat-rapat DPRD; pengoordinasian tenaga ahli; pengawasan dan pengendalian kegiatan; pelaporan berkala. (Sumber: Rancangan Akhir Renstra, Bab II PDF hlm. 16–17; Perbup 57/2021)',kelompokSasaran:'Pimpinan dan Anggota DPRD Kabupaten Kapuas Hulu sebagai penerima layanan administratif dan fasilitasi tugas DPRD. (Sumber: Rancangan Akhir Renstra, Bab I PDF hlm. 7–13)',statusDokumen:'Rancangan Akhir'};let total=0;for(const [field,value] of Object.entries(values)){const input=form.elements[field];if(input&&(!input.value||field==='statusDokumen'&&!input.value)){input.value=value;total++}}note(total+' isian dasar diambil sebagai DRAF dari dokumen Renstra. Periksa/ubah menurut dokumen penetapan yang berlaku.');return}
  if(el.dataset.new)return editModal(el.dataset.new);
  if(el.dataset.detail)return detailModal(el.dataset.detail);
