@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sis-dpr-ai",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": false,
+  "ai": {"binding": "AI"},
+  "vars": {
+    "SUPABASE_URL": "https://yyddgjnwhuyblyovzksd.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_JwB6MlzFtoiW-gZ15wWHow_D2zh5cFx",
+    "SIS_DPR_ALLOWED_ORIGIN": "https://sis-dpr.pages.dev"
+  }
+}

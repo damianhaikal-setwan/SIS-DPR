@@ -1,0 +1,13 @@
+{
+  "name": "sis-dpr-kapuas-hulu",
+  "private": true,
+  "version": "2026.11.04",
+  "type": "module",
+  "description": "SIS-DPR — aplikasi web statis Cloudflare Pages dengan backend AI terpisah",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test",
+    "verify:repo": "node --test tests/structure.test.mjs"
+  },
+  "engines": {"node": ">=22"}
+}

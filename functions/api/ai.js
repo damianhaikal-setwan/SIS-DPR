@@ -15,17 +15,19 @@ function json(data, status = 200) {
     'X-Content-Type-Options': 'nosniff',
   }});
 }
-function trustedRequest(request) {
+function trustedRequest(request, env) {
   const url = new URL(request.url);
+  // Explicit allowlist: never use incoming Origin as the source of truth.
+  const expected = env?.SIS_DPR_APP_ORIGIN || APP_ORIGIN;
   const suppliedOrigin = request.headers.get('Origin');
-  return url.origin === APP_ORIGIN && (!suppliedOrigin || suppliedOrigin === APP_ORIGIN);
+  return url.origin === expected && (!suppliedOrigin || suppliedOrigin === expected);
 }
 function bindingAvailable(env) {
   return !!env?.SIS_DPR_AI && typeof env.SIS_DPR_AI.fetch === 'function';
 }
 /** GET /api/ai: safe status check, without login, credentials, or AI inference. */
 export async function onRequestGet({ request, env }) {
-  if (!trustedRequest(request)) return json({ ok:false, code:'ORIGIN_NOT_ALLOWED', error:'Domain aplikasi tidak dikenali.' }, 403);
+  if (!trustedRequest(request, env)) return json({ ok:false, code:'ORIGIN_NOT_ALLOWED', error:'Domain aplikasi tidak dikenali.' }, 403);
   if (!bindingAvailable(env)) return json({ ok:false, code:'SERVICE_BINDING_MISSING', error:'Service Binding SIS_DPR_AI belum diatur di Cloudflare Pages.' }, 503);
   try {
     const upstream = await env.SIS_DPR_AI.fetch(new Request('https://sis-dpr-ai.internal/health', { method:'GET' }));
@@ -40,7 +42,7 @@ export async function onRequestGet({ request, env }) {
 }
 /** POST /api/ai: forward only approved text and user Bearer token. */
 export async function onRequestPost({ request, env }) {
-  if (!trustedRequest(request)) return json({ code:'ORIGIN_NOT_ALLOWED', error:'Domain aplikasi tidak dikenali.' }, 403);
+  if (!trustedRequest(request, env)) return json({ code:'ORIGIN_NOT_ALLOWED', error:'Domain aplikasi tidak dikenali.' }, 403);
   if (!bindingAvailable(env)) return json({ code:'SERVICE_BINDING_MISSING', error:'Service Binding SIS_DPR_AI belum diatur di Cloudflare Pages.' }, 503);
   const auth = request.headers.get('Authorization') || '';
   if (!/^Bearer\s+[A-Za-z0-9._~+/-]+=*$/i.test(auth)) return json({ code:'LOGIN_REQUIRED', error:'Login SIS-DPR diperlukan.' }, 401);
@@ -60,8 +62,9 @@ export async function onRequestPost({ request, env }) {
   try {
     const upstream = await env.SIS_DPR_AI.fetch(new Request('https://sis-dpr-ai.internal/api/ai', {
       method:'POST',
-      headers: { 'Authorization':auth, 'Content-Type':'application/json', 'Origin':APP_ORIGIN },
+      headers: { 'Authorization':auth, 'Content-Type':'application/json', 'Origin':env?.SIS_DPR_APP_ORIGIN || APP_ORIGIN },
       body:raw,
+      signal: AbortSignal.timeout(38000),
     }));
     const content = await upstream.text();
     if (content.length > MAX_RESPONSE_CHARS) return json({ code:'WORKER_RESPONSE_TOO_LARGE', error:'Respons Worker melebihi batas.' }, 502);

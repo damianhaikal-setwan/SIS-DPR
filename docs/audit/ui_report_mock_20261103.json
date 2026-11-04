@@ -1,0 +1,20 @@
+{
+  "url": "local browser, no production access",
+  "tested": [
+    {
+      "device": "desktop",
+      "workspace": true,
+      "ai_shortcut": true,
+      "module_navigation": true
+    },
+    {
+      "device": "iphone_viewport",
+      "workspace": true,
+      "ai_shortcut": true,
+      "module_navigation": true
+    }
+  ],
+  "errors": [],
+  "linked_activity_tested": true,
+  "module_pages_tested": 50
+}
