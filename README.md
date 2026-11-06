@@ -1,48 +1,43 @@
-# SIS-DPR — Sekretariat DPRD Kabupaten Kapuas Hulu
+# SIS-DPR · Sekretariat DPRD Kabupaten Kapuas Hulu
 
-Aplikasi berbasis web/PWA yang memakai Supabase dan Cloudflare. Repositori ini telah **dirapikan tata letak file** tanpa mengubah logika aplikasi dari paket Tahap 1–4 (3 November 2026).
+Aplikasi web/PWA dengan Supabase dan Cloudflare Pages. Versi sumber **2026.11.06** adalah paket perbaikan/refactor terarah serta pengembangan Persidangan & Perundang-undangan dan Fasilitasi Penganggaran & Pengawasan.
 
-> **PENTING SEBELUM PUSH KE PRODUKSI:** Buka [Panduan migrasi GitHub & Cloudflare](docs/deployment/MIGRASI_GITHUB_PRODUKSI.md). Struktur baru memindahkan aset web dari root ke `public/` sehingga **Cloudflare Pages harus diarahkan ke output `public`**. Jangan commit ke `main` produksi bila pengaturan deployment belum siap.
+**Baca dahulu:** [Rilis Tahap 1–5 dan pengaturan deployment](docs/deployment/RELEASE_TAHAP_1_5_20261106.md).
 
-## Struktur singkat
+## Struktur
 
-| Lokasi | Fungsi | Terpublikasi sebagai situs? |
-|---|---|---|
-| `public/` | `index.html`, PWA, ikon, diagram Inmendagri | **Ya**, melalui Cloudflare Pages |
-| `functions/api/ai.js` | Gateway HTTP `/api/ai` untuk Cloudflare Pages Functions | Endpoint server, bukan berkas publik |
-| `worker/` | Backend AI Worker `sis-dpr-ai` | Deploy **terpisah**, tidak otomatis oleh Pages |
-| `supabase/` | Migrasi SQL dan Edge Function | Jalankan **terpisah** setelah verifikasi |
-| `database/manual/` | SQL warisan untuk penerapan manual saja | Tidak |
-| `tests/` | Pemeriksaan unit dan struktur | Tidak |
-| `docs/` | Panduan, audit, screenshot dan dokumen arsip | Tidak |
-| `.github/workflows/` | CI pengujian lokal tanpa kredensial | Tidak |
+- **Root repo**: `index.html`, `ai-config.js`, `js/`, `sw.js`, `manifest.webmanifest`, `icons/`, `assets/` — aset situs agar cocok dengan konfigurasi Cloudflare Pages produksi saat ini.
+- `functions/`: Cloudflare Pages Function gateway AI (tetap di root, tidak diekspos sebagai file statis).
+- `worker/`: Worker AI yang dideploy terpisah, **tidak diubah** pada rilis ini.
+- `supabase/migrations/`: migrasi backend; guard dua bagian **belum diterapkan** dan memerlukan uji staging.
+- `database/manual/`: SQL lama untuk inspeksi/migrasi manual, bukan untuk dieksekusi otomatis.
+- `tests/`: pengujian unit dan UI Chromium sintetis.
+- `.github/workflows/`: CI Node tanpa kredensial produksi.
 
-## Pengaturan Cloudflare Pages (struktur baru)
+## Cloudflare Pages
 
-- **Root directory**: root repository (kosong atau `/` sesuai form Cloudflare).
-- **Framework preset**: None.
-- **Build command**: `exit 0` (atau kosong, jika sudah tervalidasi dengan Pages Functions).
-- **Build output directory**: `public`.
-- **Pages Function**: tetap `functions/api/ai.js`, bukan `public/functions/`.
-- **Worker AI**: `worker/`, memiliki proses deploy tersendiri.
+| Setting | Nilai |
+|---|---|
+| Framework | None |
+| Root directory | root repo |
+| Build command | **Tetap kosong** (jangan diubah) |
+| Build output directory | **Tetap kosong** (jangan diubah) |
 
-Jangan menyimpan kunci rahasia di `public/`, di `worker/wrangler.jsonc`, atau di GitHub. Supabase **publishable key** boleh terlihat di frontend dan tidak sama dengan service-role secret. Pastikan peran serta RLS menjaga akses. Pindahkan secret sebenarnya ke pengaturan Cloudflare/Supabase.
+**Pertahankan semua pengaturan Cloudflare Pages produksi persis seperti sekarang.** Gunakan branch pengembangan dan uji preview terlebih dahulu; `main` masih otomatis deploy. Jangan menaruh secret dalam file frontend atau di GitHub. Worker AI dan migrasi Supabase tidak dijalankan otomatis dalam paket ini.
 
-## Pemeriksaan lokal
-
-Dengan Node.js 22 atau yang lebih baru:
+## Tes
 
 ```bash
 npm test
+python tests/smoke_ui.py        # opsional; perlu Playwright + Chromium
+python tests/smoke_bagian.py    # opsional; perlu Playwright + Chromium
 ```
 
-Tes tidak membutuhkan database produksi dan tidak menjalankan deployment. Tes browser opsional berada pada `tests/smoke_ui.py` dan memerlukan Python, Playwright, serta browser Chromium.
+Skenario tes browser menggunakan data sintetis; bukan bukti kesuksesan transaksi atau hak akses Supabase produksi.
 
-## Panduan
+## Prinsip kerja
 
-- [Migrasi GitHub/Cloudflare aman](docs/deployment/MIGRASI_GITHUB_PRODUKSI.md)
-- [Peta struktur dan asal file](docs/STRUKTUR_PROYEK.md)
-- [Catatan risiko deployment](docs/deployment/CHECKLIST_RELEASE.md)
-- [Dokumentasi Tahap 1–4 sebelumnya](docs/deployment/PANDUAN_TAHAP_1_SAMPAI_4_ARSIP.md)
-
-**Status:** pembenahan folder & validasi lokal, belum deployment atau pemeriksaan langsung DB produksi. Kode inti Tahap 1–4 tetap dipertahankan.
+- Simpan pekerjaan administrasi pada dua bagian dengan **status langsung**, tanpa mekanisme persetujuan internal berjenjang.
+- Data faktual (kehadiran, hasil rapat, pengawasan) tidak dibuat secara otomatis.
+- Status kerja administratif tidak menggantikan keputusan rapat, persetujuan APBD, atau pengesahan produk hukum DPRD.
+- Data historis dan RLS tidak dilemahkan; backend tetap memerlukan audit langsung sebelum produksi.

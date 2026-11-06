@@ -13,7 +13,7 @@ if True:
   for width,height,mode in [(1365,900,'desktop'),(390,844,'iphone_viewport')]:
    page=browser.new_page(viewport={'width':width,'height':height}, device_scale_factor=1)
    page.on('pageerror', lambda error: report['errors'].append(str(error)))
-   html=(root/'public'/'index.html').read_text().replace('<script src="./ai-config.js"></script>', '<script>'+ (root/'public'/'ai-config.js').read_text() +'</script>')
+   html=(root/'index.html').read_text().replace('<script src="./ai-config.js"></script><script src="./js/sis-workflows.js"></script>', '<script>'+ (root/'ai-config.js').read_text() +'</script><script>'+ (root/'js'/'sis-workflows.js').read_text() +'</script>')
    html=html.replace('attachEvents();S.page=', 'window.__sisTest={state:S,render,navigate,modules};attachEvents();S.page=')
    page.set_content(html, wait_until='domcontentloaded')
    page.evaluate('''() => {

@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-const html=fs.readFileSync('public/index.html','utf8');
+const html=fs.readFileSync('index.html','utf8');
 const source=html.slice(html.indexOf('<script>')+'<script>'.length,html.lastIndexOf('</script>'));
 new vm.Script(source,{filename:'SIS-DPR index inline JS'});
 const modules=[...html.slice(html.indexOf('const modules={'),html.indexOf('const SPECIAL=')).matchAll(/^([a-z][a-z0-9]*):\{title:/gm)].map(m=>m[1]);
@@ -18,6 +18,6 @@ assert(!/\b(delete\s+from\s+public\.sis_records|truncate\s+public\.sis_records|d
 assert(html.includes("el.dataset.vaultRestore&&el.dataset.vaultRestore!=='pb'"));
 assert(html.includes('function workspacePage()'));
 assert(html.includes("case'workspace':return workspacePage()"));
-assert(fs.readFileSync('public/ai-config.js','utf8').includes("'/api/ai'"));
-new vm.Script(fs.readFileSync('public/sw.js','utf8'),{filename:'service worker'});
+assert(fs.readFileSync('ai-config.js','utf8').includes("'/api/ai'"));
+new vm.Script(fs.readFileSync('sw.js','utf8'),{filename:'service worker'});
 console.log('Static: JS syntax OK, 50 modules match SQL, year migration non-destructive, workspace and PB restore wired.');
