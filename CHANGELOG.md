@@ -17,3 +17,11 @@ Basis kode paket pengguna 4 November 2026 (commit ZIP `36b42c55075795e82b98fc38b
 ## Revisi kompatibilitas Cloudflare (tanpa mengubah Settings)
 - Menyesuaikan lokasi berkas frontend ke root berdasarkan konfigurasi produksi yang telah diverifikasi melalui screenshot pengguna.
 - Mengubah uji, CI, dan panduan deploy agar tidak meminta Build output `public`.
+
+## 2026.11.06 — Audit relasi 11 kelompok (paket lanjutan)
+
+- Tambah helper peta relasi 50 modul; audit 11 kelompok, pemeriksaan referensi yang belum terlihat dan koordinasi antarunit.
+- Tambah referensi opsional ke Arsip, Tenaga Ahli, Fraksi dan Tugas Kegiatan; draf turunan berdasarkan metadata.
+- Tidak menambahkan tabel/fungsi SQL atau mengubah Cloudflare; PWA mencakup JS helper baru.
+- Validasi referensi baru/berubah sebelum RPC; ref historis yang tidak diganti tetap dijaga.
+- Tidak mengklaim otomatisasi server, komunikasi realtime, atau integrasi SIPD/e-SAKIP tanpa verifikasi backend.

@@ -1,43 +1,33 @@
-# SIS-DPR · Sekretariat DPRD Kabupaten Kapuas Hulu
+# SIS-DPR — Sekretariat DPRD Kabupaten Kapuas Hulu
 
-Aplikasi web/PWA dengan Supabase dan Cloudflare Pages. Versi sumber **2026.11.06** adalah paket perbaikan/refactor terarah serta pengembangan Persidangan & Perundang-undangan dan Fasilitasi Penganggaran & Pengawasan.
+Paket pengembangan lintas **11 kelompok menu dan 50 modul data**, berbasis aplikasi SIS-DPR yang ada. Versi integrasi **2026.11.06** tetap menggunakan frontend HTML/JavaScript di root, Supabase untuk autentikasi, data dan RLS, serta Cloudflare Pages/Worker seperti konfigurasi produksi yang sudah berjalan.
 
-**Baca dahulu:** [Rilis Tahap 1–5 dan pengaturan deployment](docs/deployment/RELEASE_TAHAP_1_5_20261106.md).
+## Penting sebelum commit
 
-## Struktur
+**JANGAN ubah pengaturan Cloudflare yang sudah berjalan.** `index.html` dan `ai-config.js`, `js/`, `assets/`, `icons/`, `sw.js`, `manifest.webmanifest` berada di **root GitHub**. `functions/`, `worker/`, `supabase/`, `tests/`, `docs/` tetap di root. Build command, build output, dan root directory Cloudflare tetap kosong; production branch tetap `main` sesuai dashboard pengguna.
 
-- **Root repo**: `index.html`, `ai-config.js`, `js/`, `sw.js`, `manifest.webmanifest`, `icons/`, `assets/` — aset situs agar cocok dengan konfigurasi Cloudflare Pages produksi saat ini.
-- `functions/`: Cloudflare Pages Function gateway AI (tetap di root, tidak diekspos sebagai file statis).
-- `worker/`: Worker AI yang dideploy terpisah, **tidak diubah** pada rilis ini.
-- `supabase/migrations/`: migrasi backend; guard dua bagian **belum diterapkan** dan memerlukan uji staging.
-- `database/manual/`: SQL lama untuk inspeksi/migrasi manual, bukan untuk dieksekusi otomatis.
-- `tests/`: pengujian unit dan UI Chromium sintetis.
-- `.github/workflows/`: CI Node tanpa kredensial produksi.
+Baca [Audit 11 Kelompok](docs/integrasi/AUDIT_11_KELOMPOK_20261106.md) dan [Panduan rilis sebelumnya](docs/deployment/RELEASE_TAHAP_1_5_20261106.md) sebelum menggabungkan kode.
 
-## Cloudflare Pages
+## Pengembangan baru
 
-| Setting | Nilai |
-|---|---|
-| Framework | None |
-| Root directory | root repo |
-| Build command | **Tetap kosong** (jangan diubah) |
-| Build output directory | **Tetap kosong** (jangan diubah) |
+- `js/sis-integration.js`: indeks relasi deklaratif untuk seluruh 50 modul, analisis relasi terlihat, referensi yang belum dapat diverifikasi (termasuk efek RLS), dan koordinasi lintas unit.
+- Menu **Integrasi & Otomatisasi** menampilkan seluruh 11 kelompok, pengujian keterhubungan, serta ekspor ringkasan CSV yang tidak menyalin isi record.
+- Formulir generik melakukan pemeriksaan referensi yang baru ditambah atau diubah. Status/relasi historis tidak diubah secara otomatis.
+- Modul Arsip, Tenaga Ahli, Fraksi dan Tugas Kegiatan diberi referensi opsional untuk keterhubungan; pilihan otomatisasi tidak membuat dokumen, kegiatan, pembayaran, atau kehadiran fiktif.
+- Navigasi cepat mengutamakan integrasi; halaman persetujuan lama tetap ada sebagai riwayat, sambil menunggu audit RPC dan RLS sebelum pelepasan proses lama secara menyeluruh.
 
-**Pertahankan semua pengaturan Cloudflare Pages produksi persis seperti sekarang.** Gunakan branch pengembangan dan uji preview terlebih dahulu; `main` masih otomatis deploy. Jangan menaruh secret dalam file frontend atau di GitHub. Worker AI dan migrasi Supabase tidak dijalankan otomatis dalam paket ini.
-
-## Tes
+## Pengujian lokal
 
 ```bash
 npm test
-python tests/smoke_ui.py        # opsional; perlu Playwright + Chromium
-python tests/smoke_bagian.py    # opsional; perlu Playwright + Chromium
+npm run build
+python tests/smoke_ui.py
+python tests/smoke_bagian.py
+python tests/smoke_integrasi11.py
 ```
 
-Skenario tes browser menggunakan data sintetis; bukan bukti kesuksesan transaksi atau hak akses Supabase produksi.
+Uji Playwright menggunakan Chromium sintetis (termasuk ukuran layar iPhone), **bukan Safari asli**, tidak melakukan CRUD produksi. Prosedur pemeriksaan skema server ada pada [`SQL_DIAGNOSTIK_READ_ONLY.sql`](docs/integrasi/SQL_DIAGNOSTIK_READ_ONLY.sql).
 
-## Prinsip kerja
+## Batas keandalan
 
-- Simpan pekerjaan administrasi pada dua bagian dengan **status langsung**, tanpa mekanisme persetujuan internal berjenjang.
-- Data faktual (kehadiran, hasil rapat, pengawasan) tidak dibuat secara otomatis.
-- Status kerja administratif tidak menggantikan keputusan rapat, persetujuan APBD, atau pengesahan produk hukum DPRD.
-- Data historis dan RLS tidak dilemahkan; backend tetap memerlukan audit langsung sebelum produksi.
+Integrasi basis data dan otomatisasi nyata **belum terbukti berjalan end-to-end di Supabase produksi** tanpa pengujian berwenang terhadap RLS, RPC, tabel dan data. SIPD/e-SAKIP/pesan real-time/push notification bukan konektor aktif dalam paket ini. Tidak ada migrasi SQL yang dilaksanakan dan tidak ada secret ditambahkan.
