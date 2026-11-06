@@ -1,7 +1,7 @@
 {
   "name": "sis-dpr-kapuas-hulu",
   "private": true,
-  "version": "2026.11.06-integrasi11",
+  "version": "2026.11.07-form-guard",
   "type": "module",
   "description": "SIS-DPR — aplikasi web statis Cloudflare Pages dengan backend AI terpisah",
   "scripts": {
