@@ -1,23 +1,23 @@
 {
-  "id": "./",
-  "name": "SIPETAK Pribadi — Ruang Kerja Penelaah Teknis Kebijakan dan Asisten Sekwan",
-  "short_name": "SIPETAK",
-  "description": "Ruang kerja pribadi ASN: telaahan, persidangan, agenda Sekwan, RHK, SLA, transkripsi suara dan brankas terenkripsi Supabase opsional.",
-  "lang": "id-ID",
-  "start_url": "./index.html",
-  "scope": "./",
+  "id": "/",
+  "name": "SIS-DPR — Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu",
+  "short_name": "SIS-DPR",
+  "description": "Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu — data terpusat di Supabase",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#f7f7ff",
-  "theme_color": "#6756e8",
+  "background_color": "#f0f4f8",
+  "theme_color": "#0a6369",
+  "lang": "id",
   "icons": [
     {
-      "src": "./icons/icon-192.png",
+      "src": "/icons/sis-dpr-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./icons/icon-512.png",
+      "src": "/icons/sis-dpr-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
