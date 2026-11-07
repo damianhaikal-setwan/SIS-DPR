@@ -221,7 +221,7 @@ async function vaultRefreshLogin(){if(!S.profile||!S.refresh)return;if(Date.now(
 
 
 const KINERJA_REF_PREVIEW={"sources":[{"code":"RENSTRA_2025_2029","title":"Rancangan Akhir Renstra Sekretariat DPRD Kabupaten Kapuas Hulu 2025–2029","document_status":"Rancangan Akhir","page_count":91,"page_guide":"Bab III hlm. 19–25; lampiran Tabel 4.5 PDF hlm. 91","scope_note":"Belum boleh diklaim sebagai Renstra ditetapkan. Tabel 4.5 juga menampilkan tahun 2030 di luar judul periode.","storage_path":"RENSTRA_2025_2029.pdf"},{"code":"INMENDAGRI_2_2025","title":"Instruksi Menteri Dalam Negeri Nomor 2 Tahun 2025","document_status":"Salinan pedoman","page_count":94,"page_guide":"Lampiran bagian IV: penyusunan Renstra PD, PDF hlm. 45–57","scope_note":"Pedoman penyusunan RPJMD/Renstra PD 2025–2029; halaman skema dan tabel menjadi acuan struktur, bukan sumber angka target spesifik Setwan.","storage_path":"INMENDAGRI_2_2025.pdf"},{"code":"PERMENDAGRI_86_2017_RENJA","title":"Cuplikan Lampiran Permendagri Nomor 86 Tahun 2017 — Renja PD","document_status":"Cuplikan, bukan naskah lengkap","page_count":9,"page_guide":"Halaman peraturan 399–407; tabel T-C.29 sampai T-C.33","scope_note":"Dokumen lampiran hanya 9 halaman; gunakan format evaluasi dan Renja, tanpa menganggapnya naskah peraturan lengkap.","storage_path":"PERMENDAGRI_86_2017_RENJA.pdf"}],"targets":[{"source_code":"RENSTRA_2025_2029","indicator_code":"IKM_SETWAN","indicator_name":"Indeks Kepuasan Masyarakat terhadap Layanan Kantor","unit":"Nilai","year":2024,"value":0,"value_kind":"baseline","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"IKM_SETWAN","indicator_name":"Indeks Kepuasan Masyarakat terhadap Layanan Kantor","unit":"Nilai","year":2025,"value":82.9,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"IKM_SETWAN","indicator_name":"Indeks Kepuasan Masyarakat terhadap Layanan Kantor","unit":"Nilai","year":2026,"value":83.1,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"IKM_SETWAN","indicator_name":"Indeks Kepuasan Masyarakat terhadap Layanan Kantor","unit":"Nilai","year":2027,"value":83.35,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"IKM_SETWAN","indicator_name":"Indeks Kepuasan Masyarakat terhadap Layanan Kantor","unit":"Nilai","year":2028,"value":83.7,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"IKM_SETWAN","indicator_name":"Indeks Kepuasan Masyarakat terhadap Layanan Kantor","unit":"Nilai","year":2029,"value":84.25,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"IKM_SETWAN","indicator_name":"Indeks Kepuasan Masyarakat terhadap Layanan Kantor","unit":"Nilai","year":2030,"value":84.5,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"SAKIP_SETWAN","indicator_name":"Nilai Sakip","unit":"Angka","year":2024,"value":60.55,"value_kind":"baseline","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"SAKIP_SETWAN","indicator_name":"Nilai Sakip","unit":"Angka","year":2025,"value":64.5,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"SAKIP_SETWAN","indicator_name":"Nilai Sakip","unit":"Angka","year":2026,"value":67.3,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"SAKIP_SETWAN","indicator_name":"Nilai Sakip","unit":"Angka","year":2027,"value":70.4,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"SAKIP_SETWAN","indicator_name":"Nilai Sakip","unit":"Angka","year":2028,"value":72.2,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"SAKIP_SETWAN","indicator_name":"Nilai Sakip","unit":"Angka","year":2029,"value":74.25,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"SAKIP_SETWAN","indicator_name":"Nilai Sakip","unit":"Angka","year":2030,"value":76.3,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"KEPUASAN_ANGGOTA_DPRD","indicator_name":"Tingkat Kepuasan Anggota DPRD terhadap Pelayanan Sekretariat DPRD","unit":"Indeks","year":2024,"value":74.83,"value_kind":"baseline","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"KEPUASAN_ANGGOTA_DPRD","indicator_name":"Tingkat Kepuasan Anggota DPRD terhadap Pelayanan Sekretariat DPRD","unit":"Indeks","year":2025,"value":76.3,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"KEPUASAN_ANGGOTA_DPRD","indicator_name":"Tingkat Kepuasan Anggota DPRD terhadap Pelayanan Sekretariat DPRD","unit":"Indeks","year":2026,"value":77.45,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"KEPUASAN_ANGGOTA_DPRD","indicator_name":"Tingkat Kepuasan Anggota DPRD terhadap Pelayanan Sekretariat DPRD","unit":"Indeks","year":2027,"value":78.5,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"KEPUASAN_ANGGOTA_DPRD","indicator_name":"Tingkat Kepuasan Anggota DPRD terhadap Pelayanan Sekretariat DPRD","unit":"Indeks","year":2028,"value":79.55,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"KEPUASAN_ANGGOTA_DPRD","indicator_name":"Tingkat Kepuasan Anggota DPRD terhadap Pelayanan Sekretariat DPRD","unit":"Indeks","year":2029,"value":80.25,"value_kind":"rancangan_target","source_pdf_page":91},{"source_code":"RENSTRA_2025_2029","indicator_code":"KEPUASAN_ANGGOTA_DPRD","indicator_name":"Tingkat Kepuasan Anggota DPRD terhadap Pelayanan Sekretariat DPRD","unit":"Indeks","year":2030,"value":81.45,"value_kind":"rancangan_target","source_pdf_page":91}],"catalog":[{"module":"renstra","item":"Dokumen rancangan/final Renstra beserta status penetapan","source_code":"RENSTRA_2025_2029","source_pdf_page":1,"evidence_type":"rujukan"},{"module":"renstra","item":"Matriks tujuan-sasaran-indikator-target per tahun Tabel 4.5","source_code":"RENSTRA_2025_2029","source_pdf_page":91,"evidence_type":"rujukan"},{"module":"renstra","item":"Berita acara verifikasi/penetapan Renstra asli","source_code":"INMENDAGRI_2_2025","source_pdf_page":53,"evidence_type":"faktual"},{"module":"renja","item":"Evaluasi Renja n-2 dan perkiraan n-1 (T-C.29)","source_code":"PERMENDAGRI_86_2017_RENJA","source_pdf_page":4,"evidence_type":"faktual"},{"module":"renja","item":"Analisis pelayanan, review RKPD (T-C.30, T-C.31)","source_code":"PERMENDAGRI_86_2017_RENJA","source_pdf_page":5,"evidence_type":"faktual"},{"module":"renja","item":"Matriks program kegiatan dan pendanaan (T-C.33)","source_code":"PERMENDAGRI_86_2017_RENJA","source_pdf_page":9,"evidence_type":"rujukan"},{"module":"iku","item":"Tabel IKU target 2025–2029/baseline 2024","source_code":"RENSTRA_2025_2029","source_pdf_page":91,"evidence_type":"rujukan"},{"module":"iku","item":"Laporan hasil survei/penilaian SAKIP aktual","source_code":"RENSTRA_2025_2029","source_pdf_page":91,"evidence_type":"faktual"},{"module":"pksekwan","item":"IKU dan target pada tahun PK sesuai Renstra","source_code":"RENSTRA_2025_2029","source_pdf_page":91,"evidence_type":"rujukan"},{"module":"pksekwan","item":"Dokumen PK ditandatangani pejabat yang berwenang","source_code":"RENSTRA_2025_2029","source_pdf_page":26,"evidence_type":"faktual"},{"module":"pohonkinerja","item":"Bagan hubungan tujuan-sasaran-outcome-output","source_code":"INMENDAGRI_2_2025","source_pdf_page":49,"evidence_type":"rujukan"},{"module":"pohonkinerja","item":"BA cascading & pembagian hasil aktual","source_code":"INMENDAGRI_2_2025","source_pdf_page":52,"evidence_type":"faktual"},{"module":"rencanaaksi","item":"Rencana aksi TW I–IV terkait target tahunan","source_code":"RENSTRA_2025_2029","source_pdf_page":91,"evidence_type":"rujukan"},{"module":"rencanaaksi","item":"Bukti realisasi/penyelesaian per triwulan","source_code":"RENSTRA_2025_2029","source_pdf_page":91,"evidence_type":"faktual"},{"module":"mph","item":"Matriks kontribusi tiga Bagian pada indikator","source_code":"RENSTRA_2025_2029","source_pdf_page":27,"evidence_type":"rujukan"},{"module":"mph","item":"Kesepakatan pembagian peran yang ditandatangani","source_code":"RENSTRA_2025_2029","source_pdf_page":27,"evidence_type":"faktual"},{"module":"skpsekwan","item":"Keselarasan hasil kerja individu dan PK/IKU","source_code":"RENSTRA_2025_2029","source_pdf_page":26,"evidence_type":"rujukan"},{"module":"skpsekwan","item":"SKP dan hasil dialog kinerja asli","source_code":"RENSTRA_2025_2029","source_pdf_page":26,"evidence_type":"faktual"},{"module":"manualindikator","item":"Definisi, rumus, satuan, baseline dan target IKU","source_code":"RENSTRA_2025_2029","source_pdf_page":91,"evidence_type":"rujukan"},{"module":"manualindikator","item":"Instrumen survei, metodologi, raw data, verifikasi","source_code":"RENSTRA_2025_2029","source_pdf_page":91,"evidence_type":"faktual"},{"module":"manajemenrisiko","item":"Permasalahan dan isu strategis Renstra","source_code":"RENSTRA_2025_2029","source_pdf_page":23,"evidence_type":"rujukan"},{"module":"manajemenrisiko","item":"Register risiko, rencana mitigasi dan bukti kendali","source_code":"RENSTRA_2025_2029","source_pdf_page":23,"evidence_type":"faktual"}]};
-const S={aiMode:'chat',aiModule:'',aiRecordId:'',aiIncludeRecord:false,aiExcerpt:'',aiApproved:false,aiSelectedFields:[],aiMessages:[],aiPending:false,aiDraft:'',aiFormSuggestions:[],renjaYear:new Date().getFullYear(),yearState:null,yearPeriods:[],yearHistory:[],yearReady:false,showYearHistory:false,renjaActiveId:null,renjaTab:'bab1',renjaDirty:false,renjaRestored:null,bridgeRenjaId:'',bridgeIkuId:'',bridgePkId:'',bridgePohonId:'',navStack:[],kinerjaYear:new Date().getFullYear(),token:null,refresh:null,expires:0,profile:null,user:null,records:[],approvals:[],attachments:[],rules:[],settings:[],audit:[],users:[],page:'workspace',wsActivity:'',search:'',moduleStatus:'',catalogQuery:'',catalogGroup:'semua',modal:null,busy:false,menu:false,lastLoad:null,migrationSummary:'',activation:null,kinerjaSources:[],kinerjaTargets:[],kinerjaCatalog:[],kinerjaRefReady:false,autoOutputs:[],autoWork:[],dpaLines:[],dpaLedger:[],dpaLedgerReady:false,dpaLineDirty:false,automationReady:false};
+const S={aiMode:'chat',aiModule:'',aiRecordId:'',aiIncludeRecord:false,aiExcerpt:'',aiApproved:false,aiSelectedFields:[],aiMessages:[],aiPending:false,aiDraft:'',aiFormSuggestions:[],renjaYear:new Date().getFullYear(),yearState:null,yearPeriods:[],yearHistory:[],yearReady:false,showYearHistory:false,renjaActiveId:null,renjaTab:'bab1',renjaDirty:false,renjaRestored:null,bridgeRenjaId:'',bridgeIkuId:'',bridgePkId:'',bridgePohonId:'',navStack:[],kinerjaYear:new Date().getFullYear(),token:null,refresh:null,expires:0,profile:null,user:null,records:[],approvals:[],attachments:[],rules:[],settings:[],audit:[],users:[],page:'workspace',wsActivity:'',search:'',moduleStatus:'',catalogQuery:'',catalogGroup:'semua',modal:null,busy:false,menu:false,lastLoad:null,migrationSummary:'',activation:null,renstraLoadError:'',kinerjaSources:[],kinerjaTargets:[],kinerjaCatalog:[],kinerjaRefReady:false,autoOutputs:[],autoWork:[],dpaLines:[],dpaLedger:[],dpaLedgerReady:false,dpaLineDirty:false,automationReady:false};
 const isAdmin=()=>S.profile?.app_role==='admin';
 const role=()=>S.profile?.app_role||'';
 const canWrite=(m,unit)=>isAdmin()||(['operator','kabag'].includes(role())&&S.profile.unit===unit)||(role()==='keuangan'&&S.profile.unit===unit&&['program','anggaran','dpa','perjalanan','realisasi','spj'].includes(m));
@@ -285,7 +285,7 @@ function loading(v,text='Memuat data...'){S.busy=v;const b=$('#loading');b.hidde
 async function raw(path,{method='GET',body,headers={},auth=true,retry=true}={}){
  let h={'apikey':config.key,...headers};if(auth&&S.token)h.Authorization='Bearer '+S.token;
  if(body!==undefined&&!(body instanceof Blob)&&!(body instanceof File)&&typeof body!=='string'){body=JSON.stringify(body);h['Content-Type']='application/json'}
- const controller=new AbortController(), timeoutMs=body instanceof Blob||body instanceof File?60000:25000;
+ const controller=new AbortController(), timeoutMs=body instanceof Blob||body instanceof File||path==='/rest/v1/rpc/sis_save_renstra_document'?60000:25000;
  const timeoutId=setTimeout(()=>controller.abort(),timeoutMs);
  let res;
  try{res=await fetch(config.url+path,{method,headers:h,body,signal:controller.signal})}
@@ -322,6 +322,20 @@ async function authLogin(email,password){
 }
 async function rpc(name,args){if(name==='sis_save_record'&&args?.p_data)sisAssertNewYear(args.p_module,args.p_data,args.p_record_id);return raw('/rest/v1/rpc/'+name,{method:'POST',body:args,headers:{Prefer:'return=representation'}})}
 async function listAll(table,params=''){let result=[],offset=0;while(true){const separator=params?'&':'?';const batch=await raw('/rest/v1/'+table+(params||'?select=*')+separator+'limit=1000&offset='+offset);if(!Array.isArray(batch))throw Error('Respon '+table+' tidak berupa daftar');result.push(...batch);if(batch.length<1000)break;offset+=1000;if(offset>100000)throw Error('Batas pemuatan data terlampaui')}return result}
+const SIS_OPTIONAL_KINERJA_MISSING=new Set();
+async function sisLoadOptionalKinerjaTable(name){
+ if(SIS_OPTIONAL_KINERJA_MISSING.has(name))return null;
+ try{return await listAll(name)}catch(err){
+  if(err.httpStatus===404&&['PGRST205','42P01',''].includes(err.apiCode||'')){
+   SIS_OPTIONAL_KINERJA_MISSING.add(name);
+   console.info('Referensi '+name+' belum tersedia pada skema Supabase; digunakan pratinjau lokal.');
+   return null;
+  }
+  // Kesalahan izin/jaringan tidak disamakan dengan tabel tidak ada.
+  console.warn('Gagal membaca registri '+name+':',err.message);
+  return null;
+ }
+}
 async function sync(){loading(true,'Sinkronisasi Supabase...');try{
  const [records,approvals,attachments,rules,settings,audit,users]=await Promise.all([
  listAll('sis_records','?select=*&order=updated_at.desc'),listAll('sis_approvals'),listAll('sis_attachments'),listAll('sis_authority_rules','?select=*&order=priority.desc'),listAll('sis_settings'),listAll('sis_audit','?select=*&order=at.desc'),isAdmin()?listAll('sis_profiles'):Promise.resolve([])
@@ -350,15 +364,38 @@ async function sync(){loading(true,'Sinkronisasi Supabase...');try{
  ]);
  // Registri referensi hanya dimuat ketika halaman yang membutuhkannya dibuka.
  // Hindari 404 tabel referensi yang belum dipasang saat mengakses Asisten AI.
- const loadKinerjaRefs=['referensikinerja','renstra','iku','renja','pksekwan','kinerja'].includes(S.page);
+ const loadKinerjaRefs=S.page==='referensikinerja';
  const refData=loadKinerjaRefs?await Promise.all([
-   listAll('sis_kinerja_sources').catch(e=>{console.info('Registri referensi belum dipasang:',e.message);return null}),
-   listAll('sis_kinerja_targets').catch(()=>null),
-   listAll('sis_kinerja_evidence_catalog').catch(()=>null)
+   sisLoadOptionalKinerjaTable('sis_kinerja_sources'),
+   sisLoadOptionalKinerjaTable('sis_kinerja_targets'),
+   sisLoadOptionalKinerjaTable('sis_kinerja_evidence_catalog')
  ]):[S.kinerjaRefReady?S.kinerjaSources:null,S.kinerjaRefReady?S.kinerjaTargets:null,S.kinerjaRefReady?S.kinerjaCatalog:null];
-  Object.assign(S,{records,approvals,attachments,rules,settings,audit,users,autoOutputs:autoOutputs||[],autoWork:autoWork||[],automationReady:autoOutputs!==null&&autoWork!==null,
+  // Renstra besar disimpan atomik pada tabel dokumen terlindungi, bukan di JSON induk.
+  // Jika ada metadata dokumen terpisah tetapi payload gagal dibaca, hentikan sinkronisasi:
+  // jangan pernah membuka formulir parsial yang dapat menimpa tabel lama.
+  let renstraLoadError='';
+  if(records.some(r=>r.module==='renstra'&&r.data?.renstraWorkbookRef===true)){
+   try{
+    const workbooks=await listAll('sis_renstra_workbooks','?select=record_id,payload,record_version');
+    globalThis.SISRenstraSave.mergeWorkbooks(records,workbooks);
+   }catch(err){
+    // Halaman lain tetap dapat bekerja, tetapi Renstra terkunci sampai
+    // dokumen lengkap berhasil dimuat (jangan menimpa tabel dengan {}).
+    renstraLoadError='Isi dokumen Renstra belum dapat dibaca lengkap dari Supabase. Hubungi administrator untuk memeriksa hak akses/tabel dokumen, lalu Sinkronkan. Jangan menyimpan Renstra parsial.';
+    console.error('Sinkronisasi Renstra dihentikan untuk melindungi dokumen:',err.message);
+   }
+  }
+  Object.assign(S,{renstraLoadError,records,approvals,attachments,rules,settings,audit,users,autoOutputs:autoOutputs||[],autoWork:autoWork||[],automationReady:autoOutputs!==null&&autoWork!==null,
     dpaLines:dpaFinance[0]||[],dpaLedger:Array.isArray(dpaFinance[1])?dpaFinance[1]:[],dpaLedgerReady:dpaFinance.every(x=>x!==null),
     kinerjaSources:refData[0]||[],kinerjaTargets:refData[1]||[],kinerjaCatalog:refData[2]||[],kinerjaRefReady:refData.every(x=>x!==null),lastLoad:new Date()});
+  // Bila sinkronisasi dokumen terpisah gagal, formulir hidup dipertahankan
+  // agar perubahan lokal tidak hilang, tetapi Simpan DIKUNCI sampai lengkap.
+  const liveRenstraForm=document.getElementById('renstraSheetForm');
+  if(liveRenstraForm){
+   const saveBtn=liveRenstraForm.querySelector('.renstraSaveButton');
+   if(saveBtn)saveBtn.disabled=!!renstraLoadError;
+   if(renstraLoadError)renstraShowSaveFeedback('error','Renstra belum dapat disimpan',renstraLoadError,'Dokumen sisi Supabase belum termuat lengkap');
+  }
   // Jangan redraw saat pengguna mengetik: Safari akan menghapus node input yang belum dikirim.
   if(!$('#application').hidden&&((S.renstraDirty&&document.querySelector('#renstraSheetForm'))||(S.renjaDirty&&document.querySelector('#renjaWorkbookForm'))||(S.formDirty&&document.querySelector('#recordForm'))||(S.dpaLineDirty&&document.querySelector('#sisDpaLedgerForm'))))updateNetworkIndicator();else render();
  }finally{loading(false)}}
@@ -403,7 +440,7 @@ function navigate(p,opts={}){
  if(!opts.back&&S.page!==p)S.navStack.push(S.page);
  if(S.navStack.length>30)S.navStack.shift();
  S.renstraDirty=false;S.renstraBaseVersion=null;S.renstraRestored=null;S.renjaDirty=false;S.renjaRestored=null;
- S.page=p;S.search='';S.moduleStatus='';setMobileMenu(false);closeModal();history.replaceState({},'','#'+p);render();window.scrollTo(0,0);if(['referensikinerja','renstra','iku','renja','pksekwan','kinerja'].includes(p)&&!S.kinerjaRefReady&&!S.busy){sync().catch(e=>console.info('Registri referensi belum tersedia:',e.message));}return true;
+ S.page=p;S.search='';S.moduleStatus='';setMobileMenu(false);closeModal();history.replaceState({},'','#'+p);render();window.scrollTo(0,0);if(p==='referensikinerja'&&!S.kinerjaRefReady&&!S.busy){sync().catch(e=>console.info('Registri referensi belum tersedia:',e.message));}return true;
 }
 function sisBack(){const previous=S.navStack.pop()||'katalog';if(navigate(previous,{back:true})===false)S.navStack.push(previous)}
 function sisBackBar(){if(S.page==='dashboard'||S.page==='workspace')return '';
@@ -2267,6 +2304,7 @@ function renstraOpenPrint(mode='full',figure='',recordId=''){
 }
 
 function renstraWorkbookPage(){
+ if(S.renstraLoadError)return `<section class="panel" role="alert"><h1>⚠ Dokumen Renstra belum dapat dibuka lengkap</h1><p>${esc(S.renstraLoadError)}</p><p>Modul lain tetap tersedia. Tidak ada data Renstra yang dihapus atau diganti.</p><button type="button" class="button" data-do="sync-renstra">↻ Sinkronkan kembali</button></section>`;
  const r=renstraWorkbookCurrent(),d={...(r?.data||renstraBaseDraft()),...(S.renstraRestored?.data||{})},unit=r?.unit||'Sekretariat DPRD';
  const writable=canWrite('renstra',unit)&&(!r||['draft','master'].includes(r.status));
  const selected=RENSTRA_CHAPTER_TABS[renstraChapterForTab(S.renstraTab||'3.3')].some(x=>x[0]===S.renstraTab)?S.renstraTab:'3.3';
@@ -2293,6 +2331,7 @@ function renstraWorkbookPage(){
  </form></section>`;
 }
 async function renstraSaveWorkbook(form){
+ if(S.renstraLoadError)throw Error('Renstra belum dapat disimpan karena dokumen lengkap tidak termuat. Sinkronkan sampai seluruh tabel tersedia, lalu tinjau draf sebelum menyimpan.');
  const id=form.dataset.id||null,r=id?find('renstra',id):null;
  const unit=r?.unit||'Sekretariat DPRD';
  if(r&&S.renstraDirty&&S.renstraBaseVersion!==undefined&&S.renstraBaseVersion!==null&&r.version!==S.renstraBaseVersion)throw Error('Versi Renstra di Supabase berubah sejak draf ini dibuat. Cadangan lokal aman; tinjau perubahan server sebelum menyimpan untuk menghindari penimpaan data.');
@@ -2320,11 +2359,15 @@ async function renstraSaveWorkbook(form){
  for(const key of Object.keys(modules.renstra.fields))if(data[key]===undefined)data[key]='';
  if(data.statusDokumen==='Ditetapkan'&&String(data.statusRujukan).toLowerCase().includes('belum ditetapkan'))throw Error('Status penetapan belum didukung bukti resmi.');
  const payloadBytes=new TextEncoder().encode(JSON.stringify(data)).byteLength;
- if(payloadBytes>2*1024*1024)throw Error('Dokumen Renstra melebihi batas pengamanan 2 MB ('+Math.ceil(payloadBytes/1024)+' KB). Cadangkan/ekspor data dan hubungi admin untuk penyimpanan besar; tabel tidak boleh dipotong atau dihapus otomatis.');
+ if(payloadBytes>6*1024*1024)throw Error('Dokumen Renstra berukuran '+Math.ceil(payloadBytes/1024)+' KB, melewati batas keamanan 6 MB. Ekspor dan tinjau data, jangan menghapus tabel otomatis.');
  sisDomainValidate('renstra',data,unit,id);
- const result=await rpc('sis_save_record',{p_module:'renstra',p_record_id:id,p_unit:unit,p_data:data,p_expected_version:r?.version||0});
+ // Satu transaksi server: RPC lama menyimpan METADATA ringkas di sis_records,
+ // lalu dokumen lengkap disimpan di sis_renstra_workbooks. Server menggagalkan
+ // seluruh transaksi bila salah satu langkah gagal: tidak ada penyimpanan parsial.
+ const result=await rpc('sis_save_renstra_document',{p_record_id:id,p_unit:unit,p_data:data,p_expected_version:r?.version||0});
  const saved=Array.isArray(result)?result[0]:result;
- S.renstraActiveId=saved?.id||id||'new';S.renstraDirty=false;S.renstraBaseVersion=null;S.renstraRestored=null;
+ if(!saved?.id||!Number.isInteger(Number(saved.version)))throw Error('RPC Renstra tidak mengembalikan ID dan versi rekaman yang sah. Periksa status dokumen melalui Sinkronisasi sebelum mencoba Simpan kembali.');
+ S.renstraActiveId=saved.id;S.renstraDirty=false;S.renstraBaseVersion=null;S.renstraRestored=null;
  try{await vaultDelete('renstra',id||'new')}catch(err){console.warn('Renstra tersimpan; pembersihan cadangan lokal gagal:',err.message)}
  return saved;
 }
@@ -2355,7 +2398,7 @@ async function renstraActionSave(form){
   if(document.getElementById('renstraSaveFeedback'))renstraShowSaveFeedback('error',result.title,result.message+' '+result.unsaved,result.reference);
   else note(result.title+'. '+result.message+' '+result.reference,'error');
   return false;
- }finally{loading(false);if(button?.isConnected){button.disabled=false;button.removeAttribute('aria-busy');}}
+ }finally{loading(false);if(button?.isConnected){button.disabled=!!S.renstraLoadError;button.removeAttribute('aria-busy');}}
 }
 function renstraReviewWorkbook(){
  const form=document.querySelector('#renstraSheetForm');if(!form)return;
@@ -3367,7 +3410,7 @@ document.addEventListener('click',async e=>{
   if(el.dataset.refOpen){await action(()=>openKinerjaPDF(el.dataset.refOpen,el.dataset.refPage),'Membuka PDF privat...',{close:false,refresh:false,success:''});return}
   switch(el.dataset.do){case 'kinerja-tc30':exportKinerjaOtherTC('TC30');break;case 'kinerja-tc31':exportKinerjaOtherTC('TC31');break;case 'kinerja-tc32':exportKinerjaOtherTC('TC32');break;case 'kinerja-tc29':exportRenjaReferenceCSV('TC29');break;case 'kinerja-tc33':exportRenjaReferenceCSV('TC33');break;case 'seed-kinerja-ref':if(!isAdmin())throw Error('Hanya Admin');if(confirm('Buat 3 draf Renstra dan 3 draf IKU dari RANCANGAN AKHIR? Draf tidak dianggap disahkan dan data yang sudah ada tidak ditimpa.'))await action(async()=>{const result=await rpc('sis_seed_kinerja_reference_drafts',{});note('Draf dibuat: Renstra '+result.renstra_added+' dan IKU '+result.iku_added)},'Membuat draf acuan...');break;case 'toggle-menu':setMobileMenu(!S.menu);renderMobileNav();break;case 'logout': S.aiMessages=[];S.aiDraft='';S.aiModule='';S.aiRecordId='';S.aiIncludeRecord=false;S.aiExcerpt='';S.aiApproved=false;S.aiSelectedFields=[];vaultFlush();await DRAFT_VAULT.queue.catch(()=>{});vaultResetSession();S.token=null;S.refresh=null;S.user=null;S.profile=null;S.activation=null;S.records=[];S.yearState=null;S.yearPeriods=[];S.yearHistory=[];S.yearReady=false;S.showYearHistory=false;S.renstraRestored=null;S.renstraDirty=false;S.renstraBaseVersion=null;S.renjaDirty=false;S.renjaRestored=null;S.formDirty=false;S.formBaseVersion=null;closeModal();renderGate();break;
   case 'copy-auth-uid':if(S.activation?.id){try{await navigator.clipboard.writeText(S.activation.id);note('UUID akun disalin.')}catch{window.prompt('Salin UUID akun ini:',S.activation.id)}}break;
- case 'sync':await action(async()=>{},'Sinkronisasi...',{close:false,success:'Data terbaru berhasil dimuat dari Supabase.'});break;
+ case 'sync':await action(async()=>{},'Sinkronisasi...',{close:false,success:'Data terbaru berhasil dimuat dari Supabase.'});break;case 'sync-renstra':await sync();if(S.renstraLoadError)note('Dokumen Renstra masih tidak dapat dibaca lengkap. Periksa migrasi dan hak akses Supabase.','error');else note('Dokumen Renstra berhasil disinkronkan.');break;
  case 'csv':exportModule(el.dataset.module);break;
  case 'kinerja-csv':csvExport('SIS-DPR_Rencana_Aksi_'+S.kinerjaYear+'.csv',[['Kode','Tahun','Renja','PK','Kegiatan','TW1 Target','TW1 Realisasi','TW2 Target','TW2 Realisasi','TW3 Target','TW3 Realisasi','TW4 Target','TW4 Realisasi','Satuan','Bagian'],...rows('rencanaaksi').filter(r=>Number(r.data.tahun)===S.kinerjaYear).map(r=>[r.data.kode,r.data.tahun,titleOf('renja',find('renja',r.data.renjaId)),titleOf('pksekwan',find('pksekwan',r.data.pkId)),r.data.kegiatan,...[1,2,3,4].flatMap(q=>[r.data['targetTW'+q]||0,r.data['realisasiTW'+q]||0]),r.data.satuan,r.unit])]);break;
    case 'report-csv':csvExport('SIS-DPR_laporan_'+(sisActiveYear()||'semua')+'.csv',[['Modul','Jumlah','Draf'],...Object.keys(modules).map(k=>[modules[k].title,sisYearRows(k).length,sisYearRows(k).filter(r=>r.status==='draft').length])]);break;
