@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- Aktivasi ulang Service Binding SIS_DPR_AI -->
 
-<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a6369"><meta name="sis-dpr-build" content="SIS-DPR-T1-5-20261106"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="application-name" content="SIS-DPR"><meta name="apple-mobile-web-app-title" content="SIS-DPR"><meta name="mobile-web-app-capable" content="yes"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/sis-dpr-180.png"><link rel="icon" type="image/png" sizes="192x192" href="./icons/sis-dpr-192.png"><meta name="description" content="Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu terintegrasi Supabase"><title>SIS-DPR · Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu</title><style>:root{--bg:#f0f4f8;--card:#fff;--ink:#152439;--muted:#65758a;--line:#dae3ed;--brand:#087b78;--brand2:#0c5764;--soft:#e4f4f0;--nav:#102238;--red:#aa3443;--orange:#fff3de;--shadow:0 8px 26px rgba(18,37,64,.05)}
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a6369"><meta name="sis-dpr-build" content="SIS-DPR-20261107-CRUD-RENSTRA-400"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="application-name" content="SIS-DPR"><meta name="apple-mobile-web-app-title" content="SIS-DPR"><meta name="mobile-web-app-capable" content="yes"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/sis-dpr-180.png"><link rel="icon" type="image/png" sizes="192x192" href="./icons/sis-dpr-192.png"><meta name="description" content="Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu terintegrasi Supabase"><title>SIS-DPR · Sistem Informasi Sekretariat DPRD Kabupaten Kapuas Hulu</title><style>:root{--bg:#f0f4f8;--card:#fff;--ink:#152439;--muted:#65758a;--line:#dae3ed;--brand:#087b78;--brand2:#0c5764;--soft:#e4f4f0;--nav:#102238;--red:#aa3443;--orange:#fff3de;--shadow:0 8px 26px rgba(18,37,64,.05)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--bg);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;min-height:40px;touch-action:manipulation}button:disabled{opacity:.5;cursor:not-allowed}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(21px,3vw,28px);line-height:1.2}h2{font-size:16px}small,.hint,.muted{color:var(--muted)}code{overflow-wrap:anywhere}button{border:1px solid var(--line);background:#fff;border-radius:11px;color:var(--ink);padding:9px 14px;font-size:13px;font-weight:700;white-space:normal}button:hover{filter:brightness(.96)}.primary{background:var(--brand);border-color:var(--brand);color:white}.button{background:#fff}.danger{background:#fff0f1;color:var(--red);border-color:#f2cfd3}.wide{width:100%}.light{background:#fff;color:var(--brand);border-color:#fff}.iconButton{width:42px;min-width:42px;padding:7px}.control{border:1px solid #d1dce8;border-radius:11px;min-height:43px;padding:10px 12px;background:#fff;color:var(--ink);width:100%;font-size:16px;outline:none}.control:focus{border-color:#087b78;box-shadow:0 0 0 3px #087b7822}.sidebar{position:fixed;inset:0 auto 0 0;width:265px;background:var(--nav);color:#d2e1f0;overflow:auto;z-index:80;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:11px;padding:23px 17px 20px;border-bottom:1px solid #ffffff1a}.brand b{font-size:18px;color:#fff;display:block}.brand small{font-size:10px;line-height:1.4;color:#a9c0d6;display:block}.logo,.loginLogo{background:linear-gradient(150deg,#1db9a3,#075e6a);border-radius:14px;color:#fff;display:grid;place-items:center;flex:0 0 auto;font-size:22px;font-weight:900;height:48px;width:48px}.navGroup{padding:8px 10px}.navHead{margin:7px 5px 6px;color:#97b0c6;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.55px}.navLink{display:block;background:transparent;color:#d1e1ef;border:0;text-align:left;border-radius:9px;width:100%;min-height:37px;padding:9px 13px;font-weight:500;white-space:normal}.navLink.active{background:#18535c;color:#fff;font-weight:800}.navLink.home{padding:13px 19px;text-align:left}.navLink:hover{background:#ffffff1c}.sideFoot{margin-top:auto;padding:16px;color:#a7bbc9;font-size:11px;border-top:1px solid #ffffff17}.logout{display:block;margin-top:10px;background:transparent;border-color:#557088;color:#fff;font-size:12px}.shell{margin-left:265px;min-height:100vh;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border-bottom:1px solid var(--line);padding:12px 26px;min-height:74px;position:sticky;top:0;z-index:50}.topLeft{display:flex;align-items:center;gap:12px}.crumb{font-size:11px;color:var(--muted)}.topTitle{font-size:18px;font-weight:850}.topRight{text-align:right;font-size:12px}.topRight span{display:block}.statusDot{background:#27ad76;border-radius:50%;width:8px;height:8px;display:inline-block;margin-right:4px}.view{max-width:1500px;margin:auto;padding:24px}.menuButton{display:none;min-width:42px}.welcome{background:linear-gradient(112deg,#076760,#0b465a);color:#fff;border-radius:18px;padding:26px 29px;margin-bottom:17px;display:flex;align-items:center;justify-content:space-between;gap:12px}.welcome h1{margin:0 0 8px}.welcome p:last-child{opacity:.88;margin:0}.eyebrow{font-size:10px;letter-spacing:1.3px;font-weight:800;margin-bottom:9px}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.metric{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:var(--shadow);overflow:hidden}.metricIcon{width:38px;height:38px;background:var(--soft);color:var(--brand);display:grid;place-items:center;border-radius:10px;margin-bottom:10px;font-size:18px}.metric strong{font-size:clamp(17px,1.7vw,25px);overflow-wrap:anywhere;line-height:1.23;margin-bottom:5px}.metric span:last-of-type{font-size:12px;color:var(--muted)}.metric small{font-size:11px;margin-top:5px}.panel{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:18px 20px;margin-bottom:17px;box-shadow:var(--shadow);min-width:0}.panel>header,.dialog>header,.panel header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.panel h2{margin-bottom:12px}.panel header h2{margin:0}.split{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,1fr);gap:17px}.listRow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.listRow:last-child{border-bottom:0}.listRow>div{min-width:0;flex:1}.listRow b{display:block;overflow-wrap:anywhere}.listRow small{display:block;font-size:11px;overflow-wrap:anywhere}.pageIntro{margin:1px 0 18px}.pageIntro h1{margin-bottom:6px}.pageIntro p{color:var(--muted);margin:0}.toolbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:12px 0}.grow{flex:1;min-width:170px}.recordGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.record{border:1px solid var(--line);border-radius:13px;padding:15px;min-width:0}.recordTop{display:flex;gap:12px;justify-content:space-between;align-items:flex-start}.recordTop>div{min-width:0}.recordTop b{font-size:14px;display:block;overflow-wrap:anywhere}.recordTop small{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:11px;margin-top:5px}.recordFoot{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:14px;border-top:1px solid var(--line);padding-top:10px}.recordFoot>span{font-size:10px;color:var(--muted);max-width:65%;overflow-wrap:anywhere}.chip{display:inline-flex;padding:4px 8px;font-size:10px;font-weight:800;white-space:nowrap;border-radius:8px;background:#edf2f7;color:#53657b}.chip.draft,.chip.diajukan{background:#fff1d5;color:#895b09}.chip.diverifikasi{background:#e6efff;color:#3a65a0}.chip.disetujui,.chip.selesai{background:#def8eb;color:#13694e}.chip.arsip{background:#e1f2f4;color:#0a636f}.empty{color:var(--muted);text-align:center;padding:32px 12px}.warn{background:var(--orange);border-left:3px solid #d49335;padding:16px 18px;border-radius:10px;margin:14px 0}.tableScroll{overflow:auto;max-width:100%;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;width:100%;min-width:650px;text-align:left;font-size:12px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);background:#f8fafc;font-size:11px;font-weight:800}td{overflow-wrap:anywhere}.field{display:flex;flex-direction:column;gap:5px;margin:4px 0;font-size:12px;font-weight:700}.field small{font-weight:400}.field.full,.full{grid-column:1/-1}.formGrid,.detailGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.detailItem{background:#f5f8fb;border-radius:9px;padding:10px 11px;overflow-wrap:anywhere}.detailItem small{display:block;font-size:11px}.detailItem b{font-size:13px;white-space:pre-line}.backdrop{position:fixed;inset:0;background:#071429b5;z-index:200;display:flex;justify-content:center;align-items:center;padding:13px;overflow-y:auto}.dialog{width:min(850px,100%);max-height:min(91vh,950px);overflow-y:auto;overscroll-behavior:contain;border-radius:17px;background:#fff;padding:21px;box-shadow:0 22px 65px #0004}.dialog h2{margin:0}.dialog footer{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:9px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}.sectionLabel{font-weight:850;margin:22px 0 10px;font-size:13px}.stepList{display:flex;flex-wrap:wrap;gap:7px}.step{padding:7px 12px;background:#eef3f7;border-radius:999px;color:#657184;font-size:11px;font-weight:750}.step.current{background:#fff1d5;color:#835508}.step.complete{background:#ddf6ea;color:#12704f}.upload{display:grid;gap:10px;background:#f5f9fc;border:1px dashed #cbd9e5;border-radius:12px;padding:14px}.toast{background:#0a5750;color:#fff;padding:12px 17px;border-radius:12px;box-shadow:0 7px 25px #0003;margin-bottom:8px;max-width:440px;font-size:13px}.toast.error{background:#9a3342}#toasts{position:fixed;bottom:calc(13px + env(safe-area-inset-bottom));right:13px;z-index:999;max-width:calc(100vw - 25px)}#loading{position:fixed;inset:0;background:#eef5f8bd;z-index:1000;display:flex;align-items:center;justify-content:center;gap:11px;font-weight:800}#loading[hidden]{display:none}#loading span{background:#fff;padding:15px 24px;border-radius:13px;box-shadow:0 10px 30px #0002}#authPage{min-height:100dvh;display:grid;place-items:center;padding:25px;background:linear-gradient(160deg,#e9f7f4,#f2f5f9 56%,#dfeaf2)}#authPage[hidden],#application[hidden]{display:none}.loginCard{width:min(460px,100%);background:#fff;border-radius:23px;padding:34px;box-shadow:0 18px 55px #13384a1e}.loginIdentity{text-align:center;margin-bottom:24px}.loginLogo{width:65px;height:65px;margin:0 auto 13px;font-size:26px}.loginIdentity h1{font-size:27px;margin:0 0 7px;color:#0a5f62}.loginIdentity p{color:var(--muted);line-height:1.5}.loginCard form{display:grid;gap:10px}.loginCard label{font-weight:750;font-size:12px}.loginCard button{margin-top:10px}.loginCard .hint{margin:20px 0 0;font-size:12px}.loginInfo{text-align:center;font-size:11px;color:#7b8ba0;border-top:1px solid var(--line);padding-top:18px;margin-top:24px}#shade[hidden]{display:none}
 @media(max-width:1180px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}}
 @media(max-width:820px){.sidebar{transform:translateX(-105%);transition:transform .25s;width:min(290px,86vw)}.sidebar.open{transform:translateX(0)}.shell{margin:0}.menuButton{display:inline-flex;justify-content:center;align-items:center}.topbar{padding:9px 13px;min-height:66px}.view{padding:16px}.topTitle{font-size:15px}.crumb,.desktopOnly{display:none}#shade:not([hidden]){position:fixed;inset:0;background:#0714299e;z-index:70}.welcome{padding:21px}.recordGrid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
@@ -473,8 +473,27 @@ label.field{min-width:0} .field>.control{min-width:0}
 .sisBridgeLinks{max-height:330px;overflow-y:auto}
 .sisBridgeLinks .integrationLink{min-height:39px;text-align:left}
 @media(max-width:540px){.sisBridgeGrid{grid-template-columns:minmax(0,1fr)}.sisBridgeNumbers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Status Simpan Renstra: ringkas, tidak menutupi konten atau navigation iPhone. */
+#toasts{width:min(360px,calc(100vw - 24px))}
+.toast{max-width:100%;max-height:98px;overflow:auto;overflow-wrap:anywhere;line-height:1.4;font-size:12px}
+.renstraWorkbookBottom:has(.renstraSaveFeedback:not([hidden])){flex-wrap:wrap}
+.renstraSaveFeedback[hidden]{display:none!important}
+.renstraSaveFeedback{flex:1 0 100%;max-width:100%;border-radius:9px;padding:9px 11px;box-sizing:border-box;font-size:12px;line-height:1.4;overflow-wrap:anywhere;background:#eff7fb;border:1px solid #a9d5e0;color:#20536b}
+.renstraSaveFeedback.error{background:#fff6f4;border-color:#f0bbba;color:#843337}
+.renstraSaveFeedback.warning{background:#fff9ec;border-color:#e7c87e;color:#785413}
+.renstraSaveFeedback strong{font-size:12px;display:block}
+.renstraSaveFeedback p{margin:3px 0 0}
+.renstraSaveFeedback small{display:block;margin-top:3px;font-size:10px;opacity:.82}
+@media(max-width:820px){
+ #toasts{width:auto;max-width:none;right:10px;left:10px}
+ .renstraWorkbookBottom:has(.renstraSaveFeedback:not([hidden])){display:block}
+ .renstraSaveFeedback{max-height:112px;overflow-y:auto;margin-bottom:7px;padding:7px 9px;font-size:11px}
+ .renstraSaveFeedback strong{font-size:11px}
+ .renstraSaveButton[aria-busy="true"]{opacity:.7}
+}
 </style></head><body><div id="authPage"></div><div id="application" hidden><aside id="sidebar" class="sidebar"></aside><div id="shade" hidden></div><div class="shell"><header class="topbar"><div class="topLeft"><button id="menuToggle" type="button" class="menuButton" aria-label="Buka menu navigasi" aria-controls="sidebar" aria-expanded="false">☰</button><div><span class="crumb">SIS-DPR / Sekretariat DPRD Kabupaten Kapuas Hulu</span><div class="topTitle" id="topTitle">Dashboard</div></div></div><div class="topRight"><span id="userIndicator"></span><span id="connection"></span></div></header><div id="offlineBanner" class="offlineBanner" role="status" hidden>📶 Tidak ada koneksi internet. SIS-DPR memerlukan internet untuk membaca dan menyimpan data Supabase.</div><main id="view" class="view"></main></div><nav id="bottomNav" class="bottomNav" aria-label="Navigasi cepat mobile"></nav></div><div id="dialog"></div><div id="toasts" aria-live="polite"></div><div id="loading" hidden><span>Memuat...</span></div><script src="./ai-config.js"></script><script src="./js/sis-workflows.js"></script>
-<script src="./js/sis-form-guards.js"></script><script src="./js/sis-integration.js"></script><script src="./js/sis-kinerja-finance.js"></script><script>
+<script src="./js/sis-form-guards.js"></script><script src="./js/sis-integration.js"></script><script src="./js/sis-crud-guards.js"></script><script src="./js/sis-kinerja-finance.js"></script><script src="./js/sis-renstra-save.js"></script><script>
 'use strict';
 (()=>{
 const f=(label,type='text',opts={})=>({label,type,...opts});
@@ -751,15 +770,33 @@ const titleOf=(m,r)=>m==='dpa'&&r?.data?.nomor?[(r.data.tahap||'DPA'),r.data.nom
 const statusName=s=>({draft:'Draf',master:'Data Master',diajukan:'Diajukan',diverifikasi:'Dalam Verifikasi',disetujui:'Disetujui',selesai:'Selesai',arsip:'Arsip'})[s]||s;
 const chip=s=>`<span class="chip ${esc(s||'master')}">${esc(statusName(s||'master'))}</span>`;
 const unitDefault=m=>['feedbackberkelanjutan','tatakeloladata','evaluasisakip','direktifpimpinan'].includes(m)?UNITS[0]:['crosscutting','r3k'].includes(m)?UNITS[3]:['inovasilayanan'].includes(m)?UNITS[2]:['rencanasumberdaya'].includes(m)?UNITS[1]:['renstra','renja','iku','pksekwan','skpsekwan','manualindikator'].includes(m)?UNITS[0]:m==='rapat'||['kehadiran','risalah','tindaklanjut','perda','dim','publikasi'].includes(m)?UNITS[2]:['aspirasi','bahasanggaran','pengawasan','tindakpengawasan','laporanfasilitasi'].includes(m)?UNITS[3]:m==='kegiatan'||m==='tugaskegiatan'?UNITS[0]:UNITS[1];
-function note(message,type='ok'){const el=document.createElement('div');el.className='toast '+(type==='error'?'error':'');el.textContent=message;$('#toasts').append(el);setTimeout(()=>el.remove(),6500)}
+function note(message,type='ok'){
+ const el=document.createElement('div');el.className='toast '+(type==='error'?'error':'');
+ const text=String(message||'').replace(/\s+/g,' ').trim();el.textContent=text.length>240?text.slice(0,237)+'…':text;
+ el.setAttribute('role',type==='error'?'alert':'status');$('#toasts').append(el);
+ setTimeout(()=>el.remove(),6500);
+}
 function loading(v,text='Memuat data...'){S.busy=v;const b=$('#loading');b.hidden=!v;b.querySelector('span').textContent=text}
 async function raw(path,{method='GET',body,headers={},auth=true,retry=true}={}){
  let h={'apikey':config.key,...headers};if(auth&&S.token)h.Authorization='Bearer '+S.token;
  if(body!==undefined&&!(body instanceof Blob)&&!(body instanceof File)&&typeof body!=='string'){body=JSON.stringify(body);h['Content-Type']='application/json'}
- let res=await fetch(config.url+path,{method,headers:h,body});
+ const controller=new AbortController(), timeoutMs=body instanceof Blob||body instanceof File?60000:25000;
+ const timeoutId=setTimeout(()=>controller.abort(),timeoutMs);
+ let res;
+ try{res=await fetch(config.url+path,{method,headers:h,body,signal:controller.signal})}
+ catch(err){
+   const write=!['GET','HEAD'].includes(method.toUpperCase());
+   throw Error(err?.name==='AbortError'
+    ?(write?'Permintaan melewati batas waktu. Status penyimpanan BELUM PASTI; sinkronkan dan periksa rekaman sebelum mengulang agar tidak terjadi duplikasi.':'Permintaan terlalu lama. Periksa jaringan lalu muat ulang.')
+    :('Koneksi Supabase terganggu'+(write?'; hasil operasi belum dapat dipastikan. Periksa rekaman sebelum mencoba lagi.':'.')+' '+(err?.message||'')));
+ }finally{clearTimeout(timeoutId)}
  if(res.status===401&&retry&&S.refresh&&auth){await refreshSession();return raw(path,{method,body,headers,auth,retry:false})}
  const text=await res.text();let payload=null;try{payload=text?JSON.parse(text):null}catch{payload=text}
- if(!res.ok)throw new Error((payload?.message||payload?.error_description||payload?.error||payload?.hint||'Permintaan ditolak')+' (HTTP '+res.status+')');
+ if(!res.ok){
+  const err=new Error(String(payload?.message||payload?.error_description||payload?.error||'Permintaan ditolak').slice(0,500)+' (HTTP '+res.status+')');
+  err.httpStatus=res.status;err.apiCode=typeof payload?.code==='string'?payload.code.slice(0,40):'';err.apiPath=path.split('?')[0];
+  throw err;
+ }
  return payload;
 }
 async function refreshSession(){if(!S.refresh)throw Error('Sesi habis. Masuk kembali.');const x=await raw('/auth/v1/token?grant_type=refresh_token',{method:'POST',body:{refresh_token:S.refresh},auth:false,retry:false});S.token=x.access_token;S.refresh=x.refresh_token;S.expires=Date.now()+(x.expires_in||3600)*1000}
@@ -821,6 +858,13 @@ async function sync(){loading(true,'Sinkronisasi Supabase...');try{
   if(!$('#application').hidden&&((S.renstraDirty&&document.querySelector('#renstraSheetForm'))||(S.renjaDirty&&document.querySelector('#renjaWorkbookForm'))||(S.formDirty&&document.querySelector('#recordForm'))||(S.dpaLineDirty&&document.querySelector('#sisDpaLedgerForm'))))updateNetworkIndicator();else render();
  }finally{loading(false)}}
 function closeModal(){S.modal=null;$('#dialog').innerHTML=''}
+function sisTryCloseModal(){
+ if(S.busy)return false;
+ const dialog=document.querySelector('#dialog');
+ const pending=(S.formDirty&&!!dialog?.querySelector('#recordForm'))||(S.dpaLineDirty&&!!dialog?.querySelector('#sisDpaLedgerForm'));
+ if(pending&&!confirm('Ada perubahan yang belum disimpan. Tutup formulir? Cadangan perangkat mungkin tersedia, tetapi perubahan belum tersimpan di Supabase.'))return false;
+ vaultFlush();S.formDirty=false;S.dpaLineDirty=false;closeModal();return true;
+}
 function frame(html){S.modal=true;$('#dialog').innerHTML=`<div class="backdrop" id="dialogBackdrop"><section class="dialog" role="dialog" aria-modal="true">${html}</section></div>`}
 function pageName(p){return SPECIAL[p]||modules[p]?.title||'Dashboard'}
 function accessible(p){return !['akun','kewenangan','migrasi'].includes(p)||isAdmin()}
@@ -845,6 +889,9 @@ function updateNetworkIndicator(){
  }
 }
 function navigate(p,opts={}){
+ if((S.formDirty&&document.querySelector('#recordForm'))||(S.dpaLineDirty&&document.querySelector('#sisDpaLedgerForm'))){
+  if(!sisTryCloseModal())return false;
+ }
  if(S.page==='renja'&&p!=='renja'&&S.renjaDirty){vaultFlush();if(!confirm('Perubahan Renja belum disimpan. Cadangan lokal tersedia jika browser mendukung. Tinggalkan halaman?'))return false}
  if(S.page==='renstra'&&p!=='renstra'&&S.renstraDirty){vaultFlush();if(!confirm('Perubahan Renstra belum disimpan. Draf dicadangkan di perangkat ini bila tersedia. Berpindah halaman?'))return false}
  if(!SPECIAL[p]&&!modules[p])p='workspace';if(!accessible(p))p='workspace';
@@ -2422,7 +2469,7 @@ function renstraDetailMatrices(r){const all=r.data?.tabelRenstra;if(!all||!Objec
 }
 function sisRenderForm(k,id,seedData=null){if(k==='dpa'){const r=id?find('dpa',id):null;return r?.data?.mode==='RENJA_TERPADU'?sisDpaTerpaduEditor(r.data.renjaId,'',id):sisDpaTerpaduEditor(seedData?.renjaId||'',seedData?.renjaBarisId||'');}if(k==='program'||k==='anggaran')throw Error('Master berasal dari T-C.33 Renja.');const mod=moduleOf(k),r=id?find(k,id):null;if(!mod)return;
  if(id&&!r)return note('Data tidak ditemukan','error');const unit=r?.unit||(isAdmin()?unitDefault(k):S.profile.unit);
- if(!canWrite(k,unit))return note('Tidak berwenang mengubah unit ini','error');if(r&&!['draft','master'].includes(r.status))return note('Data telah diajukan; tidak bisa diedit sebelum dikembalikan.','error');
+ if(!canWrite(k,unit))return note('Tidak berwenang mengubah unit ini','error');if(r&&!['draft','master'].includes(r.status))return note('Tahap dokumen sudah terkunci; hubungi pengelola data untuk koreksi sesuai kewenangan.','error');
  const values=sisDataDefaults(k,r,unit);if(seedData&&!r)Object.assign(values,seedData);if(k==='renstra'&&!r){values.periodeMulai=2025;values.periodeAkhir=2029;values.statusDokumen='Rancangan Akhir';values.statusRujukan='Rancangan Akhir — belum ditetapkan';values.sumberRujukan='Rancangan Akhir Renstra Setwan 2025–2029; pedoman Inmendagri 2/2025 Lampiran IV halaman cetak 41–53';}const sections=sisSections(k);
  const blocks=sections.map((part,n)=>`<${k==='renstra'?'details':'section'} class="sisFormSection ${k==='renstra'?'renstraChapter':''}" ${k==='renstra'&&(n===0||n===4)?'open':''}><${k==='renstra'?'summary':'div'} class="sisSectionTitle"><span class="sisSectionNumber">${n+1}</span><div><h3>${esc(part.title)}</h3><p>${n===0?'Isikan identitas data yang benar; seluruh relasi menggunakan rekaman sumber.':/aktual|realisasi|hasil/i.test(part.title)?'Pisahkan rencana dari hasil aktual dan lengkapi evidence setelah pelaksanaan.':'Lengkapi bagian ini sesuai dokumen dan sumber data yang tersedia.'}</p></div></${k==='renstra'?'summary':'div'}><div class="formGrid">${part.keys.map(key=>sisFormFieldHTML(k,key,mod.fields[key],values)).join('')}</div>${k==='renstra'?renstraMatricesForSection(n,values):''}</${k==='renstra'?'details':'section'}>`).join('');
  const note=SIS_MODULE_NOTES[k]||mod.sotk||'Pastikan setiap isian sesuai dokumen sumber dan kewenangan pelaksana.';
@@ -2737,7 +2784,7 @@ function renstraWorkbookPage(){
  <div class="renstraMobileGuide">↔ Tabel dapat digeser mendatar; ketuk sel untuk mengetik dan tekan <b>Tambah baris</b> jika diperlukan. Semua tabel disimpan bersama-sama dalam satu dokumen. Jika sesi terputus, pulihkan draf setelah login ulang; untuk penyimpanan resmi tekan Simpan dokumen Renstra.</div>
  ${Object.entries(RENSTRA_MATRICES).map(([key])=>renstraMatrixHTML(key,d,true,!writable)).join('')}${renstraNarrativeHTML(d,!writable)}${renstraDiagramPanel('bab3')}${renstraDiagramPanel('bab4')}
  </section>
- <div class="renstraWorkbookBottom"><div class="hint"><b>Rancangan Akhir:</b> baris Tabel 3.3 dan 4.5 bersumber dari Renstra unggahan. Kolom tanpa sumber, pagu, hasil reviu APIP dan dokumen penetapan tidak boleh diisi dengan data rekaan.</div>${writable?`<button class="primary renstraSaveButton" type="submit">💾 Simpan dokumen Renstra</button>`:'<p class="hint">Dokumen hanya dapat dibaca pada status atau kewenangan akun ini.</p>'}</div>
+ <div class="renstraWorkbookBottom"><div id="renstraSaveFeedback" class="renstraSaveFeedback" role="status" aria-live="polite" hidden></div><div class="hint"><b>Rancangan Akhir:</b> baris Tabel 3.3 dan 4.5 bersumber dari Renstra unggahan. Kolom tanpa sumber, pagu, hasil reviu APIP dan dokumen penetapan tidak boleh diisi dengan data rekaan.</div>${writable?`<button class="primary renstraSaveButton" type="submit">💾 Simpan dokumen Renstra</button>`:'<p class="hint">Dokumen hanya dapat dibaca pada status atau kewenangan akun ini.</p>'}</div>
  </form></section>`;
 }
 async function renstraSaveWorkbook(form){
@@ -2771,7 +2818,39 @@ async function renstraSaveWorkbook(form){
  if(payloadBytes>2*1024*1024)throw Error('Dokumen Renstra melebihi batas pengamanan 2 MB ('+Math.ceil(payloadBytes/1024)+' KB). Cadangkan/ekspor data dan hubungi admin untuk penyimpanan besar; tabel tidak boleh dipotong atau dihapus otomatis.');
  sisDomainValidate('renstra',data,unit,id);
  const result=await rpc('sis_save_record',{p_module:'renstra',p_record_id:id,p_unit:unit,p_data:data,p_expected_version:r?.version||0});
- await vaultDelete('renstra',id||'new');S.renstraActiveId=result.id||id;S.renstraDirty=false;S.renstraBaseVersion=null;S.renstraRestored=null;
+ const saved=Array.isArray(result)?result[0]:result;
+ S.renstraActiveId=saved?.id||id||'new';S.renstraDirty=false;S.renstraBaseVersion=null;S.renstraRestored=null;
+ try{await vaultDelete('renstra',id||'new')}catch(err){console.warn('Renstra tersimpan; pembersihan cadangan lokal gagal:',err.message)}
+ return saved;
+}
+function renstraShowSaveFeedback(kind,title,description,reference=''){
+ const el=document.getElementById('renstraSaveFeedback');if(!el)return;
+ el.hidden=false;el.className='renstraSaveFeedback '+kind;
+ el.replaceChildren();const strong=document.createElement('strong');strong.textContent=title;el.append(strong);
+ const p=document.createElement('p');p.textContent=description;el.append(p);
+ if(reference){const small=document.createElement('small');small.textContent=reference;el.append(small);}
+}
+async function renstraActionSave(form){
+ if(S.busy)return false;
+ const button=form?.querySelector('.renstraSaveButton');if(button){button.disabled=true;button.setAttribute('aria-busy','true');}
+ const feedback=document.getElementById('renstraSaveFeedback');if(feedback){feedback.hidden=true;feedback.replaceChildren();}
+ loading(true,'Menyimpan seluruh tabel Renstra...');
+ try{
+  await renstraSaveWorkbook(form);
+  try{await sync();note('Dokumen Renstra berhasil disimpan di Supabase.');}
+  catch(err){console.warn('Renstra tersimpan, pemuatan ulang gagal:',err);
+   if(document.getElementById('renstraSaveFeedback'))renstraShowSaveFeedback('warning','Renstra tersimpan, tetapi daftar belum terbarui','Jangan simpan ulang. Gunakan menu Sinkronisasi untuk memperbarui tampilan.');
+   else note('Renstra tersimpan, tetapi daftar belum terbarui. Sinkronkan; jangan simpan ulang.','error');}
+  return true;
+ }catch(err){
+  const result=globalThis.SISRenstraSave?.diagnose(err)||{title:'Renstra belum tersimpan',message:'Periksa kode HTTP dan detail kesalahan di Network.',unsaved:'Isian masih di layar.',reference:'',status:0,code:'',endpoint:''};
+  console.error('Simpan Renstra gagal:',{status:result.status,code:result.code,endpoint:result.endpoint},err);
+  // Simpan draf perangkat jika tersedia. Jangan ubah status data dan jangan retry POST otomatis.
+  if(S.renstraDirty)try{vaultFlush()}catch(e){console.warn('Cadangan draf Renstra belum tersimpan:',e.message)}
+  if(document.getElementById('renstraSaveFeedback'))renstraShowSaveFeedback('error',result.title,result.message+' '+result.unsaved,result.reference);
+  else note(result.title+'. '+result.message+' '+result.reference,'error');
+  return false;
+ }finally{loading(false);if(button?.isConnected){button.disabled=false;button.removeAttribute('aria-busy');}}
 }
 function renstraReviewWorkbook(){
  const form=document.querySelector('#renstraSheetForm');if(!form)return;
@@ -3378,8 +3457,27 @@ function printDocument(id,type){const r=S.records.find(x=>x.id===id);if(!r)retur
 </style></head><body><div class="actions"><button onclick="print()">Cetak / Simpan PDF</button></div><header><b>${esc(c.instansi||'SEKRETARIAT DEWAN PERWAKILAN RAKYAT DAERAH')}</b><br>${esc(c.daerah||'KABUPATEN KAPUAS HULU')} · ${esc(c.provinsi||'KALIMANTAN BARAT')}<br>${esc(c.alamat||'Alamat instansi belum diatur')}</header><h1>${esc(label)}</h1><div class="warn"><b>DRAF ADMINISTRATIF — BELUM DISAHKAN.</b> Periksa format, nomor naskah, kewenangan, pejabat penandatangan, serta bukti sumber sebelum diterbitkan.</div>${custom}<table>${trs}</table><p>Rekaman: ${esc(r.id)} · Status: ${esc(statusName(r.status))}</p><div class="sign">${esc(c.kota||'Putussibau')}, ________________<br>${esc(c.jabatan||'Pejabat berwenang')}<br><br><br><br><b>${esc(c.pejabat||'(NAMA BELUM DIISI)')}</b><br>NIP: ${esc(c.nip||'—')}</div></body></html>`;
  const w=window.open('','_blank');if(!w){note('Izinkan pop-up untuk mencetak dokumen.','error');return}w.document.open();w.document.write(html);w.document.close();rpc('sis_log_document',{p_record_id:id,p_title:label}).catch(e=>console.warn('Audit dokumen',e));
 }
-async function action(fn,description='Menyimpan perubahan...'){if(S.busy)return;loading(true,description);try{await fn();closeModal();await sync();note('Perubahan tersimpan di Supabase.')}catch(e){note(e.message||String(e),'error');console.error(e)}finally{loading(false)}}
-async function saveForm(form){const k=form.dataset.module,id=form.dataset.id,mod=modules[k],record=id?find(k,id):null;if(record&&S.formBaseVersion!==undefined&&S.formBaseVersion!==null&&record.version!==S.formBaseVersion)throw Error('Data Supabase sudah diubah sejak formulir dibuka. Cadangan lokal tetap ada; periksa perubahan sebelum menyimpan.');let unit=record?.unit||S.profile.unit;const data=record?.data?{...record.data}:{};for(const [name,opt] of Object.entries(mod.fields)){let v=form.elements[name]?.value??'';if(opt.type==='number'&&v!=='')v=Number(v);data[name]=typeof v==='string'?v.trim():v;if(opt.required&&(v===''||v===null))throw Error(opt.label+' wajib diisi');}
+async function action(fn,description='Menyimpan perubahan...',options={}){
+ if(S.busy)return false;
+ const {close=true,refresh=true,success='Perubahan tersimpan di Supabase.'}=options;
+ loading(true,description);
+ try{
+  await fn();
+  if(close)closeModal();
+  if(refresh){
+   try{await sync()}
+   catch(err){
+    console.error('Operasi berhasil, sinkronisasi layar gagal:',err);
+    note('Aksi sudah berhasil dikirim ke Supabase, tetapi daftar gagal dimuat ulang. Gunakan Sinkronisasi; jangan mengulang penyimpanan sebelum memeriksa hasil.','error');
+    return true;
+   }
+  }
+  if(success)note(success);
+  return true;
+ }catch(err){note(err?.message||String(err),'error');console.error(err);return false}
+ finally{loading(false)}
+}
+async function saveForm(form){const k=form.dataset.module,id=form.dataset.id,mod=modules[k],record=id?find(k,id):null;if(id&&!record)throw Error('Rekaman sudah tidak tersedia. Sinkronkan sebelum menyimpan perubahan.');if(record&&S.formBaseVersion!==undefined&&S.formBaseVersion!==null&&record.version!==S.formBaseVersion)throw Error('Data Supabase sudah diubah sejak formulir dibuka. Cadangan lokal tetap ada; periksa perubahan sebelum menyimpan.');let unit=record?.unit||S.profile.unit;const data=record?.data?{...record.data}:{};for(const [name,opt] of Object.entries(mod.fields)){let v=form.elements[name]?.value??'';if(opt.type==='number'&&v!=='')v=Number(v);data[name]=typeof v==='string'?v.trim():v;if(opt.required&&(v===''||v===null))throw Error(opt.label+' wajib diisi');}
  // Jejak draf yang dihasilkan lintas Kinerja, DPA, Kegiatan, dan Keuangan.
  // Sumber dicek ulang sebelum menyimpan; tidak membuat transaksi atau bukti otomatis.
  if(!record&&form.dataset.sisFlow){
@@ -3561,6 +3659,7 @@ document.addEventListener('click',async e=>{
   }
   if(e.target.closest('[data-sis-back]')){e.preventDefault();sisBack();return;}
  const el=e.target.closest('button,[data-go]');if(!el)return;
+ if(S.busy){e.preventDefault();return;}
  try{
  if(el.dataset.kfDetail){detailModal(el.dataset.kfDetail);return;}
  if(el.dataset.kfCreate){sisKinerjaFinanceCreate(el);return;}
@@ -3644,7 +3743,7 @@ document.addEventListener('click',async e=>{
   PB_STATE.dirty=true;vaultSchedule();form.querySelector('.sisDraftRecovery')?.remove();note('Draf peta proses dipulihkan. Periksa sebelum Simpan ke Supabase.');return;
  }
  if(el.dataset.vaultDelete){if(confirm('Hapus hanya cadangan lokal ini? Dokumen di Supabase tidak terpengaruh.')){await vaultDelete(el.dataset.vaultDelete,el.dataset.vaultId);if(el.dataset.vaultDelete==='renstra')S.renstraRestored=null;el.closest('.sisDraftRecovery')?.remove();note('Cadangan lokal dihapus.')}return;}
- if(el.matches('[data-close]')){vaultFlush();return closeModal();}
+ if(el.matches('[data-close]')){return sisTryCloseModal();}
  if(el.dataset.processTab){PB_STATE.tab=el.dataset.processTab;render();return}
  if(el.dataset.processSelect){PB_STATE.selected=el.dataset.processSelect;render();return}
  if(el.dataset.processEdit){pbEditHTML(pbAll().find(p=>p.kode===el.dataset.processEdit));return}
@@ -3653,9 +3752,9 @@ document.addEventListener('click',async e=>{
  if(el.dataset.dpaSelectRenja){return sisDpaTerpaduEditor(el.dataset.dpaSelectRenja);}
  if(el.dataset.dpaPay){const line=(S.dpaLedger||[]).find(x=>x.id===el.dataset.dpaPay);if(!line)throw Error('Rekening tidak lagi aktif.');closeModal();sisRenderForm('realisasi',null,{dpaRekeningId:line.id,anggaranId:line.anggaranId||'',dpaId:line.dpaId,kodeRekening:line.kodeRekening,renjaBarisId:line.renjaBarisId});return;}
  if(el.dataset.dpaLinesClone){if(confirm('Salin rekening dari DPA sebelumnya sebagai DRAF? Nominal tahap baru harus Anda tinjau sesuai dokumen sah.'))await sisDpaCloneLines(el.dataset.dpaLinesClone);return;}
- if(el.dataset.dpaLinesOpen)return sisDpaLedgerModal(el.dataset.dpaLinesOpen);
+ if(el.dataset.dpaLinesOpen){if(S.dpaLineDirty&&!sisTryCloseModal())return;return sisDpaLedgerModal(el.dataset.dpaLinesOpen);}
  if(el.dataset.dpaLineDelete){if(confirm('Hapus baris rekening DPA draf ini?'))await sisDpaDeleteLine(el.dataset.dpaLineDelete,el.dataset.dpaId);return;}
- if(el.dataset.dpaLineEdit)return sisDpaLedgerModal(el.dataset.dpaId,el.dataset.dpaLineEdit);
+ if(el.dataset.dpaLineEdit){if(S.dpaLineDirty&&!sisTryCloseModal())return;return sisDpaLedgerModal(el.dataset.dpaId,el.dataset.dpaLineEdit);}
  if(el.dataset.wsActivity){S.wsActivity=el.dataset.wsActivity;render();return;}
  if(el.dataset.wsAi){const mode=el.dataset.wsAi;const messages={risalah:'Bantu saya menyusun kerangka DRAF risalah rapat DPRD berdasarkan pedoman yang terindeks. Jelaskan data hasil rapat yang wajib diisi secara nyata, tanpa mengarang kejadian.',surat:'Jelaskan tata cara menyiapkan draf surat atau undangan resmi dan daftar informasi yang perlu diperiksa menurut sumber terindeks. Jangan menciptakan nomor surat atau tanda tangan.',kinerja:'Periksa langkah pengisian Renja, PK dan rencana aksi tahun aktif berdasarkan referensi resmi. Jangan membuat target atau pagu baru.',spj:'Bantu saya membuat daftar periksa administratif SPJ berdasarkan dokumen sumber, dan jelaskan bukti mana yang harus diverifikasi manusia.'};S.aiMode='draf';S.aiDraft=messages[mode]||messages.kinerja;S.aiMessages=[];S.aiApproved=false;S.aiExcerpt='';navigate('asistenai');return;}
  if(el.dataset.wsHealth){const status=$('#wsHealthStatus');if(status)status.textContent='Memeriksa jalur AI...';try{const path=config.aiBackend==='cloudflare'?sisAiEndpoint():config.url+'/functions/v1/sis-ai';const res=await sisFetchTimed(path,{method:'GET',cache:'no-store'},8000);const info=await res.json().catch(()=>({}));if(status)status.textContent=res.ok?'Gateway AI aktif. Koneksi model masih perlu diuji dengan pertanyaan.':(info.error||'Gateway belum siap')+' (HTTP '+res.status+')';}catch(e){if(status)status.textContent='Jalur AI tidak dapat dijangkau: '+(e.message||String(e));}return;}
@@ -3677,7 +3776,7 @@ document.addEventListener('click',async e=>{
  navigate(target);sisRenderForm(target,null,{[link[0]]:parent.id});const form=document.querySelector('#recordForm');if(form)sisAutofillFromSource(form,link[0]);return;}
  if(el.dataset.renjaTab){renjaChooseTab(el.dataset.renjaTab);return;}
  if(el.dataset.renjaAdd){renjaAddRow(el.dataset.renjaAdd);return;}
- if(el.dataset.renjaRowDelete){const tr=el.closest('tr'),id=tr?.dataset.renjaRow,renja=renjaCurrent();if(id&&renja?.id&&rows('dpa').some(d=>d.data?.renjaId===renja.id&&(d.data?.renjaBarisId===id||(d.data?.renjaBarisIds||[]).includes(id))))throw Error('Baris T-C.33 sudah digunakan DPA. Relasi dan riwayat anggaran harus dipertahankan.');if(confirm('Hapus baris Renja ini? Data belum tersimpan di Supabase sampai tombol Simpan ditekan.')){tr?.remove();renjaMarkDirty();}return;}
+ if(el.dataset.renjaRowDelete){const tr=el.closest('tr'),id=tr?.dataset.renjaRow,renja=renjaCurrent();if(id&&renja?.id){const linked=SISCrudGuard.renjaRowDependents({renjaId:renja.id,rowId:id,records:S.records});if(linked.length)throw Error('Baris T-C.33 masih digunakan oleh '+linked.length+' rekaman turunan yang terlihat (DPA/Kinerja/Kegiatan). Pertahankan atau pindahkan relasinya terlebih dahulu.');}if(confirm('Hapus baris Renja ini? Data belum tersimpan di Supabase sampai tombol Simpan ditekan.')){tr?.remove();renjaMarkDirty();}return;}
  if(el.dataset.dpaShow){const rec=find('dpa',el.dataset.dpaShow);if(!rec)throw Error('DPA terkait tidak dapat diakses.');if(S.renjaDirty)throw Error('Simpan perubahan Renja terlebih dahulu sebelum membuka DPA.');navigate('dpa');detailModal(rec.id);return;}
  if(el.dataset.dpaShow){detailModal(el.dataset.dpaShow);return;}
  if(el.dataset.dpaFromRenja){sisDpaFromRenjaStart(el.dataset.renjaId,el.dataset.dpaFromRenja);return;}
@@ -3704,8 +3803,8 @@ document.addEventListener('click',async e=>{
  if(el.dataset.renstraTargets){renstraAddSourceTargets(el.dataset.renstraTargets);return}
  if(el.dataset.renstraCsv){renstraCSV(el.dataset.renstraCsv);return}
  if(el.dataset.renstraAdd){const host=el.closest('[data-matrix]'),list=host?.querySelector('[data-matrix-rows]');if(!list)return;const table=el.dataset.renstraAdd;const n=list.querySelectorAll('[data-matrix-row]').length;if(n>=renstraMatrixMaxRows(table))throw Error('Batas '+renstraMatrixMaxRows(table)+' baris Tabel '+table+'.');list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML(table,{},n));renstraUpdateCount(host);if(host.closest('#renstraSheetForm'))renstraMarkDirty();return}
- if(el.dataset.renstraRowDelete){if(el.closest('[data-matrix]')?.dataset.matrix==='3.3'){renstra33Delete(el);return;}const host=el.closest('[data-matrix]');el.closest('[data-matrix-row]')?.remove();renstraUpdateCount(host);if(host?.closest('#renstraSheetForm'))renstraMarkDirty();return}
- if(el.dataset.renstraFromSummary){const host=el.closest('[data-matrix]'),form=el.closest('form'),table=el.dataset.renstraFromSummary,content=renstraFromSummary(table,form);if(!Object.keys(content).length)throw Error('Isi dahulu kolom ringkas yang sesuai pada bab ini, atau pilih indikator acuan Renstra.');const list=host.querySelector('[data-matrix-rows]');const n=list.querySelectorAll('[data-matrix-row]').length;if(n>=renstraMatrixMaxRows(table))throw Error('Batas '+renstraMatrixMaxRows(table)+' baris Tabel '+table+'.');list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML(table,content,n));renstraUpdateCount(host);return}
+ if(el.dataset.renstraRowDelete){if(el.closest('[data-matrix]')?.dataset.matrix==='3.3'){renstra33Delete(el);return;}const host=el.closest('[data-matrix]');if(!confirm('Hapus baris dari DRAF Renstra? Perubahan baru berlaku setelah dokumen disimpan.'))return;el.closest('[data-matrix-row]')?.remove();renstraUpdateCount(host);if(host?.closest('#renstraSheetForm'))renstraMarkDirty();return}
+ if(el.dataset.renstraFromSummary){const host=el.closest('[data-matrix]'),form=el.closest('form'),table=el.dataset.renstraFromSummary,content=renstraFromSummary(table,form);if(!Object.keys(content).length)throw Error('Isi dahulu kolom ringkas yang sesuai pada bab ini, atau pilih indikator acuan Renstra.');const list=host.querySelector('[data-matrix-rows]');const n=list.querySelectorAll('[data-matrix-row]').length;if(n>=renstraMatrixMaxRows(table))throw Error('Batas '+renstraMatrixMaxRows(table)+' baris Tabel '+table+'.');list.insertAdjacentHTML('beforeend',renstraMatrixRowHTML(table,content,n));renstraUpdateCount(host);if(host?.closest('#renstraSheetForm'))renstraMarkDirty();return}
  if(el.dataset.renstraSource){const form=el.closest('form');if(!form||form.dataset.module!=='renstra')return;const values={latarBelakang:'Renstra Sekretariat DPRD Kabupaten Kapuas Hulu 2025–2029 merupakan rencana lima tahun untuk memberikan dukungan administratif dan fasilitasi tugas DPRD serta mengacu pada RPJMD Kabupaten Kapuas Hulu 2025–2029. (Sumber: Rancangan Akhir Renstra, Bab I, PDF hlm. 7–9)',dasarHukum:'Undang-Undang Nomor 25 Tahun 2004; Undang-Undang Nomor 23 Tahun 2014; Permendagri Nomor 86 Tahun 2017; Inmendagri Nomor 2 Tahun 2025; Perbup Kapuas Hulu Nomor 57 Tahun 2021. (Sumber: Rancangan Akhir Renstra, Bab I, PDF hlm. 11–12; periksa perubahan dasar hukum pada dokumen final.)',maksudTujuan:'Arah perencanaan diarahkan pada pelayanan prima kepada Pimpinan dan Anggota DPRD serta mendukung tujuan dan sasaran RPJMD Kabupaten Kapuas Hulu 2025–2029. (Sumber: Rancangan Akhir Renstra, PDF hlm. 12–13)',tugasFungsi:'Administrasi kesekretariatan dan keuangan; dukungan rapat-rapat DPRD; pengoordinasian tenaga ahli; pengawasan dan pengendalian kegiatan; pelaporan berkala. (Sumber: Rancangan Akhir Renstra, Bab II PDF hlm. 16–17; Perbup 57/2021)',kelompokSasaran:'Pimpinan dan Anggota DPRD Kabupaten Kapuas Hulu sebagai penerima layanan administratif dan fasilitasi tugas DPRD. (Sumber: Rancangan Akhir Renstra, Bab I PDF hlm. 7–13)',statusDokumen:'Rancangan Akhir'};let total=0;for(const [field,value] of Object.entries(values)){const input=form.elements[field];if(input&&(!input.value||field==='statusDokumen'&&!input.value)){input.value=value;total++}}note(total+' isian dasar diambil sebagai DRAF dari dokumen Renstra. Periksa/ubah menurut dokumen penetapan yang berlaku.');return}
   if(el.hasAttribute('data-attendee-add')){const f=el.closest('form');f?.querySelector('[data-attendees]')?.insertAdjacentHTML('beforeend',sisAttendanceRowHTML());sisAttendanceSync(f);return;}
   if(el.hasAttribute('data-attendee-remove')){const f=el.closest('form');el.closest('[data-attendee-row]')?.remove();sisAttendanceSync(f);return;}
@@ -3724,13 +3823,17 @@ document.addEventListener('click',async e=>{
    if(el.dataset.dpaSourceRenja){const rec=find('renja',el.dataset.dpaSourceRenja);if(!rec)throw Error('Dokumen Renja sumber tidak dapat diakses.');closeModal();S.renjaYear=Number(rec.data.tahun);S.renjaActiveId=rec.id;S.renjaTab='tc33';S.renjaDirty=false;navigate('renja');return;}
  if(el.dataset.dpaNext)return sisDpaNextDraft(el.dataset.dpaNext);
  if(el.dataset.reassign)return sisReassignUnitModal(el.dataset.reassign);
- if(el.dataset.edit){const id=el.dataset.edit,r=S.records.find(x=>x.id===id);closeModal();return editModal(r.module,id)}
+ if(el.dataset.edit){const id=el.dataset.edit,r=S.records.find(x=>x.id===id);
+  if(!r)throw Error('Rekaman tidak ditemukan. Tekan Sinkronisasi sebelum mengedit.');
+  if(!canWrite(r.module,r.unit)||!SISCrudGuard.canChange(r))throw Error('Data tidak dapat diedit oleh akun ini atau tahapnya sudah terkunci.');
+  return editModal(r.module,id);
+ }
  if(el.dataset.ruleEdit)return ruleModal(el.dataset.ruleEdit);
  if(el.hasAttribute('data-rule-new'))return ruleModal();
  if(el.dataset.userEdit)return userModal(el.dataset.userEdit);
  if(el.hasAttribute('data-user-new'))return userModal();
  if(el.dataset.doc)return printDocument(el.dataset.id,el.dataset.doc);
- if(el.dataset.fileDownload)return await action(()=>downloadAttachment(el.dataset.fileDownload),'Mengunduh file...');
+ if(el.dataset.fileDownload)return await action(()=>downloadAttachment(el.dataset.fileDownload),'Mengunduh file...', {close:false,refresh:false,success:'Unduhan file dimulai.'});
  if(el.dataset.fileDelete){if(confirm('Hapus file pendukung ini?'))await action(()=>removeAttachment(el.dataset.fileDelete),'Menghapus lampiran...');return}
  if(el.dataset.travelRealize){const trip=find('perjalanan',el.dataset.travelRealize);if(!trip)throw Error('Perjalanan tidak ditemukan.');if(!['disetujui','selesai','arsip'].includes(trip.status))throw Error('Perjalanan harus disetujui terlebih dahulu.');const line=sisTravelActiveLedgerLine(trip.data);if(!line)throw Error('Rekening dari perjalanan tidak tersedia pada DPA berlaku. Pilih dan verifikasi versi DPA yang baru.');closeModal();navigate('realisasi');sisRenderForm('realisasi',null,{perjalananId:trip.id,kegiatanId:trip.data.kegiatanId||'',dpaRekeningId:line.id,refTipe:'Perjalanan Dinas',refId:trip.id,uraian:trip.data.keperluan||''});return;}
  if(el.dataset.submit){
@@ -3743,11 +3846,23 @@ document.addEventListener('click',async e=>{
    if(confirm('Ajukan dokumen untuk pemeriksaan berjenjang?'))await action(()=>rpc('sis_submit',{p_record_id:el.dataset.submit}),'Mengajukan dokumen...');return}
  if(el.dataset.decision){const id=el.dataset.id,which=el.dataset.decision;const reason=which==='return'?prompt('Alasan pengembalian (wajib, minimum 4 karakter):'):'';if(reason===null)return;await action(()=>rpc('sis_decide',{p_record_id:id,p_action:which,p_reason:reason||''}),'Memproses keputusan...');return}
  if(el.dataset.closeRecord){if(confirm('Ubah tahap dokumen ini?'))await action(()=>rpc('sis_close_record',{p_record_id:el.dataset.closeRecord,p_archive:el.dataset.archive==='true'}),'Memperbarui tahap...');return}
- if(el.dataset.delete){if(confirm('Hapus data draf? Perubahan tidak dapat dibatalkan.'))await action(()=>rpc('sis_delete_draft',{p_record_id:el.dataset.delete}),'Menghapus draf...');return}
-  if(el.dataset.refOpen){await action(()=>openKinerjaPDF(el.dataset.refOpen,el.dataset.refPage),'Membuka PDF privat...');return}
+ if(el.dataset.delete){
+   const r=S.records.find(x=>x.id===el.dataset.delete);
+   if(!r)throw Error('Rekaman tidak tersedia. Tekan Sinkronisasi lalu ulangi.');
+   if(!canWrite(r.module,r.unit))throw Error('Anda tidak berwenang menghapus data milik unit ini.');
+   const check=SISCrudGuard.deleteSafety({source:r,records:S.records,modules,attachments:S.attachments});
+   if(!check.ok)throw Error(check.message);
+   const label=titleOf(r.module,r);
+   const warning=check.attached?`\nPeringatan: ${check.attached} lampiran tercatat pada rekaman ini.`:'';
+   if(confirm(`Hapus DRAF ${modules[r.module]?.title||r.module}: ${label}?\nTindakan tidak dapat dibatalkan.${warning}`)){
+    await action(()=>rpc('sis_delete_draft',{p_record_id:r.id}),'Menghapus draf...',{success:'Draf berhasil dihapus. Relasi yang tidak terlihat oleh akun tetap harus diamankan backend.'});
+   }
+   return;
+ }
+  if(el.dataset.refOpen){await action(()=>openKinerjaPDF(el.dataset.refOpen,el.dataset.refPage),'Membuka PDF privat...',{close:false,refresh:false,success:''});return}
   switch(el.dataset.do){case 'kinerja-tc30':exportKinerjaOtherTC('TC30');break;case 'kinerja-tc31':exportKinerjaOtherTC('TC31');break;case 'kinerja-tc32':exportKinerjaOtherTC('TC32');break;case 'kinerja-tc29':exportRenjaReferenceCSV('TC29');break;case 'kinerja-tc33':exportRenjaReferenceCSV('TC33');break;case 'seed-kinerja-ref':if(!isAdmin())throw Error('Hanya Admin');if(confirm('Buat 3 draf Renstra dan 3 draf IKU dari RANCANGAN AKHIR? Draf tidak dianggap disahkan dan data yang sudah ada tidak ditimpa.'))await action(async()=>{const result=await rpc('sis_seed_kinerja_reference_drafts',{});note('Draf dibuat: Renstra '+result.renstra_added+' dan IKU '+result.iku_added)},'Membuat draf acuan...');break;case 'toggle-menu':setMobileMenu(!S.menu);renderMobileNav();break;case 'logout': S.aiMessages=[];S.aiDraft='';S.aiModule='';S.aiRecordId='';S.aiIncludeRecord=false;S.aiExcerpt='';S.aiApproved=false;S.aiSelectedFields=[];vaultFlush();await DRAFT_VAULT.queue.catch(()=>{});vaultResetSession();S.token=null;S.refresh=null;S.user=null;S.profile=null;S.activation=null;S.records=[];S.yearState=null;S.yearPeriods=[];S.yearHistory=[];S.yearReady=false;S.showYearHistory=false;S.renstraRestored=null;S.renstraDirty=false;S.renstraBaseVersion=null;S.renjaDirty=false;S.renjaRestored=null;S.formDirty=false;S.formBaseVersion=null;closeModal();renderGate();break;
   case 'copy-auth-uid':if(S.activation?.id){try{await navigator.clipboard.writeText(S.activation.id);note('UUID akun disalin.')}catch{window.prompt('Salin UUID akun ini:',S.activation.id)}}break;
- case 'sync':await action(async()=>{},'Sinkronisasi...');break;
+ case 'sync':await action(async()=>{},'Sinkronisasi...',{close:false,success:'Data terbaru berhasil dimuat dari Supabase.'});break;
  case 'csv':exportModule(el.dataset.module);break;
  case 'kinerja-csv':csvExport('SIS-DPR_Rencana_Aksi_'+S.kinerjaYear+'.csv',[['Kode','Tahun','Renja','PK','Kegiatan','TW1 Target','TW1 Realisasi','TW2 Target','TW2 Realisasi','TW3 Target','TW3 Realisasi','TW4 Target','TW4 Realisasi','Satuan','Bagian'],...rows('rencanaaksi').filter(r=>Number(r.data.tahun)===S.kinerjaYear).map(r=>[r.data.kode,r.data.tahun,titleOf('renja',find('renja',r.data.renjaId)),titleOf('pksekwan',find('pksekwan',r.data.pkId)),r.data.kegiatan,...[1,2,3,4].flatMap(q=>[r.data['targetTW'+q]||0,r.data['realisasiTW'+q]||0]),r.data.satuan,r.unit])]);break;
    case 'report-csv':csvExport('SIS-DPR_laporan_'+(sisActiveYear()||'semua')+'.csv',[['Modul','Jumlah','Draf'],...Object.keys(modules).map(k=>[modules[k].title,sisYearRows(k).length,sisYearRows(k).filter(r=>r.status==='draft').length])]);break;
@@ -3767,7 +3882,7 @@ document.addEventListener('submit',async e=>{e.preventDefault();const f=e.target
  if(f.id==='dpaFromRenjaForm'){sisDpaFromRenjaContinue(f);return;}
  if(f.id==='recordForm')return action(()=>saveForm(f),'Menyimpan rekaman...');
  if(f.id==='sisReassignForm')return action(()=>sisSaveReassign(f),'Mencatat alih unit dengan audit...');
- if(f.id==='renstraSheetForm')return action(()=>renstraSaveWorkbook(f),'Menyimpan seluruh tabel Renstra...');
+ if(f.id==='renstraSheetForm')return renstraActionSave(f);
  if(f.id==='renjaWorkbookForm')return action(()=>renjaSaveWorkbook(f),'Menyimpan Renja, RKT dan tabel T-C.29–T-C.33...');
   if(f.id==='refUploadForm')return action(()=>uploadKinerjaPDF(f),'Mengunggah referensi privat...');
   if(f.id==='progressForm')return action(()=>saveProgress(f),'Mencatat realisasi triwulan...');
@@ -3799,13 +3914,13 @@ document.addEventListener('input',e=>{if(e.target.closest('#sisAiForm')){if(e.ta
   return;
  }if(e.target.id==='kinerjaYear'){if(S.yearReady&&!S.showYearHistory){e.target.value=String(sisActiveYear());return;}S.kinerjaYear=Number(e.target.value)||new Date().getFullYear();render();return}if(e.target.name==='pelakuTipe'||e.target.name==='refTipe'){const form=e.target.closest('form');if(!form)return;const sel=form.elements[e.target.name==='pelakuTipe'?'pelakuId':'refId'];if(!sel)return;const target=e.target.name==='pelakuTipe'?(e.target.value==='Anggota DPRD'?'anggota':'pegawai'):({'Perjalanan Dinas':'perjalanan','Pengadaan':'pengadaan','Pemeliharaan':'pemeliharaan','Fasilitasi Rapat':'dukunganrapat','Pusat Kegiatan DPRD':'kegiatan'})[e.target.value];sel.innerHTML=selectOptions(rows(target||'').map(r=>[r.id,titleOf(target,r)]),'') }});
  $('#menuToggle').onclick=()=>{setMobileMenu(!S.menu);renderMobileNav()};$('#shade').onclick=()=>{setMobileMenu(false);renderMobileNav()};
- document.addEventListener('click',e=>{if(e.target.id==='dialogBackdrop')closeModal()});
- window.addEventListener('hashchange',()=>{if(S.profile)navigate(location.hash.slice(1)||'workspace')});
+ document.addEventListener('click',e=>{if(e.target.id==='dialogBackdrop')sisTryCloseModal()});
+ window.addEventListener('hashchange',()=>{if(S.profile&&navigate(location.hash.slice(1)||'workspace')===false)history.replaceState({},'','#'+S.page)});
  window.addEventListener('beforeunload',e=>{vaultFlush();if(S.renstraDirty||S.renjaDirty||S.formDirty||S.dpaLineDirty){e.preventDefault();e.returnValue='';}});
  window.addEventListener('online',updateNetworkIndicator);
  window.addEventListener('offline',updateNetworkIndicator);
  window.addEventListener('resize',()=>{if(window.innerWidth>820&&S.menu){setMobileMenu(false);renderMobileNav()}});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(S.modal)closeModal();else if(S.menu){setMobileMenu(false);renderMobileNav()}}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(S.modal)sisTryCloseModal();else if(S.menu){setMobileMenu(false);renderMobileNav()}}});
  // Close the off-canvas drawer on iPhone swipe left; no page navigation is intercepted.
  let startX=null,startY=null;
  $('#sidebar').addEventListener('touchstart',e=>{if(e.touches.length===1){startX=e.touches[0].clientX;startY=e.touches[0].clientY}},{passive:true});

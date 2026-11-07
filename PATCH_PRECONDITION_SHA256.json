@@ -1,0 +1,32 @@
+{
+  "title": "Patch gabungan CRUD + Simpan Renstra 400",
+  "baseline_full_zip": "SIS-DPR_LENGKAP_KINERJA_KEUANGAN_20261107.zip",
+  "baseline_sha256": {
+    "index.html": "dff6de16ecfe377c183ad7928b61903bd98c751a16a4a640492e3ca87bc1df2c",
+    "sw.js": "ea3bf4926ef3b4208ca0dbfacbd83adbf54700a60e534189e6dadc8d5da91f49",
+    "package.json": "7ec8d16f5930dc092e762a04331e190b3d160fa47a0b667791249a866d97703d"
+  },
+  "optional_prior_crud_sha256": {
+    "index.html": "30d0cd89fac19326a68d5ebe171e681017893706c9ca1f0555fb881229d0775d",
+    "sw.js": "2b631cdd76b02a10d992302a2fc756303df2806639621d1f96c99bb788e94fe7",
+    "package.json": "043e8564d87bbf26b672aaeae8f14d20ddf51f1e08f873c0cb2338b157b8855e"
+  },
+  "patch_sha256": {
+    "index.html": "c122c003f72726676968426e2d3083551e0789400c1441dc9994d4bc532454a5",
+    "sw.js": "a0450f3e97b57377960708c69229917de0fbe8cc50e0798db6a5edddc4e786f8",
+    "package.json": "6ca243fb228a91e48583a4d22d8764813f9252a094e11f728fc716c962eb5e0e",
+    "js/sis-crud-guards.js": "fae7a14c62cce19bd4f5ea4a8df1b76921b23fe4d18e7e8457303f314eff7f30",
+    "js/sis-renstra-save.js": "ac1645454ded16ae7080a73d1b0483e881100401e8ad4fca6b51bd9e0f905c96",
+    "tests/crud_guards.test.mjs": "166856acfcd689a39161f2a115fdd55beac841c61d9d1e5a57565f2f0524509d",
+    "tests/renstra_save.test.mjs": "94aeb3ad30bd726cc212cc54e11f14ac44408ea1d19c3c1c69c1fd4d3ed664e5",
+    "tests/smoke_crud_browser.py": "9704c4c697792bc7fdc70938c5419babb7796fa4c87a8c35ca87ad59be7d9049",
+    "tests/smoke_crud_transactions.py": "324da7668220e341d2de6b9236c24027586a346e2c43a8b9b68ee94406246ffc",
+    "tests/smoke_renstra_400.py": "e1123aefb2f02cafe64a3501cff09867823642ee8a46e580727f9446ae4b9464",
+    "docs/audit/LAPORAN_AUDIT_CRUD_20261107.md": "371f007cb9a7774086b8c7fe6a4202224686655add4c1343f8d4f7f0a7cc4de1",
+    "docs/audit/MATRIKS_TOMBOL_CRUD_50_MODUL_20261107.csv": "f6d5bc674da5cfdd7dc992276eee66d9a7b15f4a4637f3d28c77e8230c085818",
+    "README_PATCH_CRUD_RENSTRA_HTTP400_20261107.md": "08eefd2f49bcf6de4fc1ea34da4921c479d3e962efed458cc0ea1f8ccf8bbd74"
+  },
+  "cloudflare": "Konfigurasi Cloudflare yang sudah berjalan tidak perlu diubah; index.html tetap root",
+  "schema_sql": "Tidak ada migrasi SQL",
+  "note": "Jika hash main berbeda dari keduanya, gabungkan file secara manual; jangan timpa pembaruan lain."
+}
