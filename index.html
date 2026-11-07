@@ -169,6 +169,17 @@ label.field{min-width:0} .field>.control{min-width:0}
 /* RENSTRA 2025–2029 — satu dokumen, navigasi bab dan tabel sesuai pedoman */
 .renstraWorkbookTop{margin-bottom:12px}.renstraDocumentHeader{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;justify-content:space-between}
 .renstraDocumentMeta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}.renstraDocumentMeta>span{background:#eef6f7;border:1px solid #dbe9e9;border-radius:7px;padding:7px 10px;font-size:12px;color:#244955}
+
+/* Renstra: status penyimpanan, status pekerjaan, dan tahap naskah tidak boleh disamakan. */
+.renstraStatusGroup{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:11px}
+.renstraStatePill{display:inline-flex;align-items:center;min-height:33px;padding:6px 10px;border:1px solid;border-radius:8px;font-size:12px;line-height:1.35;font-weight:700;box-sizing:border-box;overflow-wrap:anywhere}
+.renstraStatePill--saved{background:#e9f7ef;border-color:#b5dfc5;color:#126443}
+.renstraStatePill--unsaved,.renstraStatePill--pending,.renstraStatePill--new{background:#fff5e5;border-color:#efcf9b;color:#79501b}
+.renstraStatePill--document{background:#f2f5f8;border-color:#d9e1e8;color:#435669}
+.renstraStatePill--source{background:#eaf4f7;border-color:#c5dfe8;color:#28536c}
+.renstraStatusHelp{font-size:12px;line-height:1.5;color:#5d7080;margin:7px 0 0}
+@media(max-width:600px){.renstraStatusGroup{gap:6px}.renstraStatePill{font-size:11px;min-height:34px;padding:6px 9px}.renstraStatusHelp{font-size:11px}}
+
 .renstraWorkbook .renstraChapterNav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:8px 0 14px}
 .renstraChapterButton{border:1px solid #d8e5e7;border-radius:10px;min-height:62px;background:#f5f8fa;color:#284c59;text-align:left;padding:11px;cursor:pointer;font:inherit;font-weight:750}
 .renstraChapterButton small{display:block;font-size:11px;margin-top:3px;color:#607884;font-weight:500}
