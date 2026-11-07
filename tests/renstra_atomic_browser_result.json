@@ -1,0 +1,28 @@
+[
+  {
+    "viewport": "desktop",
+    "payload_bytes": 156232,
+    "save_rpc_calls": 1,
+    "save_generic_rpc_calls": 0,
+    "optional_reference_requests": 0,
+    "restored_narrative_chars": 150499,
+    "restored_table_rows": 5,
+    "failure_feedback": "Penyimpanan Renstra khusus belum dipasang\n\nFungsi sis_save_renstra_document belum tersedia. Administrator perl",
+    "blocked_document_prevents_editing": true,
+    "other_modules_still_accessible": true,
+    "js_errors": []
+  },
+  {
+    "viewport": "iphone",
+    "payload_bytes": 156232,
+    "save_rpc_calls": 1,
+    "save_generic_rpc_calls": 0,
+    "optional_reference_requests": 0,
+    "restored_narrative_chars": 150499,
+    "restored_table_rows": 5,
+    "failure_feedback": "Penyimpanan Renstra khusus belum dipasang\n\nFungsi sis_save_renstra_document belum tersedia. Administrator perl",
+    "blocked_document_prevents_editing": true,
+    "other_modules_still_accessible": true,
+    "js_errors": []
+  }
+]
