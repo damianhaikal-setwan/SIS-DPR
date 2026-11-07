@@ -1,0 +1,51 @@
+mod 50 groups 11 fields 589
+{"group":"Pendukung Tata Kelola & Integrasi","id":"prosesbisnis","title":"Register Proses Bisnis & SIPOC","fields":17,"required":8,"refs":3,"nonrequiredRefs":3,"nonrequiredDates":0,"numeric":0,"selects":3}
+{"group":"Pendukung Tata Kelola & Integrasi","id":"rencanasumberdaya","title":"Rencana Kebutuhan Sumber Daya","fields":14,"required":8,"refs":3,"nonrequiredRefs":2,"nonrequiredDates":0,"numeric":4,"selects":1}
+{"group":"Pendukung Tata Kelola & Integrasi","id":"feedbackberkelanjutan","title":"Skema Umpan Balik Berkelanjutan","fields":14,"required":8,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":2,"numeric":1,"selects":2}
+{"group":"Pendukung Tata Kelola & Integrasi","id":"tatakeloladata","title":"Rencana Tata Kelola Data & e-SAKIP","fields":14,"required":10,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":0,"numeric":1,"selects":5}
+{"group":"Pendukung Tata Kelola & Integrasi","id":"evaluasisakip","title":"Kerangka Evaluasi Internal SAKIP","fields":13,"required":8,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":1,"selects":1}
+{"group":"Instrumen Akselerasi Spesifik","id":"r3k","title":"Rencana Aksi Akselerasi (R3K)","fields":14,"required":9,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":1,"selects":3}
+{"group":"Instrumen Akselerasi Spesifik","id":"inovasilayanan","title":"Perencanaan Inovasi Layanan","fields":15,"required":10,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":2,"selects":2}
+{"group":"Instrumen Akselerasi Spesifik","id":"crosscutting","title":"Komitmen Kinerja Lintas Sektor","fields":13,"required":8,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":1,"selects":1}
+{"group":"Instrumen Akselerasi Spesifik","id":"direktifpimpinan","title":"Direktif Pimpinan / Task Force Khusus","fields":15,"required":9,"refs":2,"nonrequiredRefs":2,"nonrequiredDates":2,"numeric":1,"selects":3}
+{"group":"Perencanaan Kinerja","id":"renstra","title":"Renstra Sekretariat DPRD (5 Tahun)","fields":75,"required":6,"refs":0,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":17,"selects":4}
+{"group":"Perencanaan Kinerja","id":"renja","title":"Renja Sekretariat DPRD (Tahunan)","fields":25,"required":7,"refs":3,"nonrequiredRefs":2,"nonrequiredDates":0,"numeric":11,"selects":1}
+{"group":"Perencanaan Kinerja","id":"iku","title":"IKU Sekretaris DPRD","fields":12,"required":6,"refs":1,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":2,"selects":3}
+{"group":"Perencanaan Kinerja","id":"pksekwan","title":"Perjanjian Kinerja (PK) Sekwan","fields":11,"required":6,"refs":1,"nonrequiredRefs":0,"nonrequiredDates":1,"numeric":3,"selects":0}
+{"group":"Perencanaan Kinerja","id":"pohonkinerja","title":"Pohon Kinerja / Cascading","fields":11,"required":6,"refs":3,"nonrequiredRefs":1,"nonrequiredDates":0,"numeric":1,"selects":2}
+{"group":"Perencanaan Kinerja","id":"rencanaaksi","title":"Rencana Aksi Kinerja Triwulanan","fields":17,"required":10,"refs":2,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":9,"selects":0}
+{"group":"Perencanaan Kinerja","id":"mph","title":"Matriks Pembagian Peran & Hasil (MPH)","fields":10,"required":6,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":0,"numeric":1,"selects":1}
+{"group":"Perencanaan Kinerja","id":"skpsekwan","title":"SKP Sekretaris DPRD","fields":11,"required":7,"refs":1,"nonrequiredRefs":0,"nonrequiredDates":1,"numeric":1,"selects":0}
+{"group":"Perencanaan Kinerja","id":"manualindikator","title":"Manual Indikator Kinerja","fields":12,"required":8,"refs":1,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":0,"selects":1}
+{"group":"Perencanaan Kinerja","id":"manajemenrisiko","title":"Manajemen Risiko Kinerja","fields":16,"required":12,"refs":3,"nonrequiredRefs":2,"nonrequiredDates":1,"numeric":3,"selects":2}
+{"group":"Kegiatan DPRD","id":"tugaskegiatan","title":"Tugas & Otomatisasi Kegiatan","fields":12,"required":6,"refs":4,"nonrequiredRefs":3,"nonrequiredDates":1,"numeric":0,"selects":2}
+{"group":"Penganggaran & Pengawasan","id":"aspirasi","title":"Aspirasi & Pokok Pikiran DPRD","fields":9,"required":2,"refs":1,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":0,"selects":1}
+{"group":"Penganggaran & Pengawasan","id":"bahasanggaran","title":"Pembahasan Anggaran DPRD","fields":12,"required":3,"refs":2,"nonrequiredRefs":2,"nonrequiredDates":1,"numeric":1,"selects":3}
+{"group":"Penganggaran & Pengawasan","id":"pengawasan","title":"Agenda & Hasil Pengawasan","fields":13,"required":2,"refs":3,"nonrequiredRefs":3,"nonrequiredDates":2,"numeric":0,"selects":2}
+{"group":"Penganggaran & Pengawasan","id":"tindakpengawasan","title":"Tindak Lanjut Pengawasan","fields":13,"required":3,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":3,"numeric":0,"selects":2}
+{"group":"Penganggaran & Pengawasan","id":"laporanfasilitasi","title":"Laporan Fasilitasi Penganggaran & Pengawasan","fields":9,"required":3,"refs":1,"nonrequiredRefs":1,"nonrequiredDates":0,"numeric":1,"selects":2}
+{"group":"Kegiatan DPRD","id":"kegiatan","title":"Pusat Kegiatan DPRD","fields":11,"required":3,"refs":2,"nonrequiredRefs":2,"nonrequiredDates":2,"numeric":1,"selects":1}
+{"group":"Administrasi Umum","id":"dukunganrapat","title":"Kebutuhan & Fasilitasi Rapat","fields":10,"required":2,"refs":3,"nonrequiredRefs":2,"nonrequiredDates":1,"numeric":1,"selects":0}
+{"group":"Persidangan & Perundang-undangan","id":"rapat","title":"Rapat & Persidangan","fields":10,"required":2,"refs":1,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":0,"selects":3}
+{"group":"Persidangan & Perundang-undangan","id":"kehadiran","title":"Daftar Hadir Rapat","fields":6,"required":3,"refs":1,"nonrequiredRefs":0,"nonrequiredDates":1,"numeric":0,"selects":1}
+{"group":"Persidangan & Perundang-undangan","id":"tindaklanjut","title":"Tindak Lanjut Keputusan","fields":8,"required":3,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":0,"selects":1}
+{"group":"Persidangan & Perundang-undangan","id":"risalah","title":"Risalah & Keputusan Rapat","fields":7,"required":4,"refs":1,"nonrequiredRefs":0,"nonrequiredDates":1,"numeric":0,"selects":1}
+{"group":"Persidangan & Perundang-undangan","id":"perda","title":"Raperda & Kajian Hukum","fields":8,"required":3,"refs":0,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":1,"selects":3}
+{"group":"Persidangan & Perundang-undangan","id":"dim","title":"Daftar Inventarisasi Masalah","fields":7,"required":3,"refs":1,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":0,"selects":1}
+{"group":"Persidangan & Perundang-undangan","id":"publikasi","title":"Humas, Publikasi & Protokol","fields":8,"required":2,"refs":1,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":0,"selects":2}
+{"group":"Administrasi Umum","id":"pegawai","title":"Kepegawaian","fields":5,"required":2,"refs":0,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":0,"selects":1}
+{"group":"Administrasi Umum","id":"anggota","title":"Keanggotaan DPRD","fields":5,"required":1,"refs":0,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":0,"selects":1}
+{"group":"Administrasi Umum","id":"surat","title":"Tata Usaha & Surat","fields":7,"required":3,"refs":1,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":0,"selects":1}
+{"group":"Administrasi Umum","id":"arsipmanual","title":"Kearsipan & Perpustakaan","fields":7,"required":2,"refs":2,"nonrequiredRefs":2,"nonrequiredDates":1,"numeric":0,"selects":0}
+{"group":"Administrasi Umum","id":"ahli","title":"Tenaga Ahli","fields":6,"required":2,"refs":2,"nonrequiredRefs":2,"nonrequiredDates":0,"numeric":0,"selects":0}
+{"group":"Administrasi Umum","id":"kapasitas","title":"Peningkatan Kapasitas","fields":7,"required":1,"refs":2,"nonrequiredRefs":2,"nonrequiredDates":1,"numeric":1,"selects":0}
+{"group":"Administrasi Umum","id":"fraksi","title":"Fasilitasi Fraksi","fields":6,"required":2,"refs":2,"nonrequiredRefs":2,"nonrequiredDates":1,"numeric":0,"selects":0}
+{"group":"Administrasi Umum","id":"pengadaan","title":"Pengadaan Kebutuhan","fields":7,"required":2,"refs":2,"nonrequiredRefs":2,"nonrequiredDates":1,"numeric":1,"selects":0}
+{"group":"Administrasi Umum","id":"aset","title":"Inventaris & Aset","fields":6,"required":2,"refs":0,"nonrequiredRefs":0,"nonrequiredDates":1,"numeric":1,"selects":1}
+{"group":"Administrasi Umum","id":"pemeliharaan","title":"Pemeliharaan","fields":6,"required":2,"refs":2,"nonrequiredRefs":1,"nonrequiredDates":1,"numeric":1,"selects":0}
+{"group":"Keuangan & Perjalanan Dinas","id":"program","title":"Program & Kegiatan","fields":4,"required":3,"refs":0,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":1,"selects":0}
+{"group":"Keuangan & Perjalanan Dinas","id":"anggaran","title":"Perencanaan Anggaran","fields":6,"required":5,"refs":1,"nonrequiredRefs":0,"nonrequiredDates":0,"numeric":2,"selects":0}
+{"group":"Keuangan & Perjalanan Dinas","id":"dpa","title":"Dokumen Pelaksanaan Anggaran (DPA)","fields":17,"required":7,"refs":3,"nonrequiredRefs":2,"nonrequiredDates":1,"numeric":2,"selects":2}
+{"group":"Keuangan & Perjalanan Dinas","id":"perjalanan","title":"Perjalanan Dinas","fields":14,"required":6,"refs":1,"nonrequiredRefs":1,"nonrequiredDates":2,"numeric":1,"selects":2}
+{"group":"Keuangan & Perjalanan Dinas","id":"realisasi","title":"Realisasi Keuangan","fields":9,"required":4,"refs":2,"nonrequiredRefs":2,"nonrequiredDates":1,"numeric":1,"selects":2}
+{"group":"Keuangan & Perjalanan Dinas","id":"spj","title":"SPJ & Verifikasi","fields":5,"required":2,"refs":1,"nonrequiredRefs":0,"nonrequiredDates":1,"numeric":0,"selects":0}

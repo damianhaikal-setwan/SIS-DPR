@@ -7,7 +7,7 @@ const root=process.cwd();
 const exists=f=>fs.existsSync(path.join(root,f));
 
 test('Cloudflare Pages existing configuration: index and assets in repository root',()=>{
-  for(const f of ['index.html','ai-config.js','js/sis-workflows.js','sw.js','manifest.webmanifest','functions/api/ai.js'])assert.ok(exists(f),f);
+  for(const f of ['index.html','ai-config.js','js/sis-workflows.js','js/sis-integration.js','sw.js','manifest.webmanifest','functions/api/ai.js'])assert.ok(exists(f),f);
   assert.equal(exists('public'),false,'New public/ directory would require changing existing Cloudflare build output.');
   assert.equal(exists('public/index.html'),false);
   for(const f of ['functions/api/ai.js','worker/src/index.js','supabase/config.toml','tests/static.test.mjs'])assert.ok(exists(f),f);
@@ -17,7 +17,7 @@ test('PWA refs and cache targets resolve to existing root assets',()=>{
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
   const sw=fs.readFileSync(path.join(root,'sw.js'),'utf8');
   const manifest=JSON.parse(fs.readFileSync(path.join(root,'manifest.webmanifest'),'utf8'));
-  for(const p of ['manifest.webmanifest','ai-config.js','js/sis-workflows.js','icons/sis-dpr-180.png','icons/sis-dpr-192.png']) {
+  for(const p of ['manifest.webmanifest','ai-config.js','js/sis-workflows.js','js/sis-integration.js','icons/sis-dpr-180.png','icons/sis-dpr-192.png']) {
     assert.ok(exists(p),p);
     assert.ok(html.includes('./'+p),'HTML reference missing: '+p);
   }

@@ -1,0 +1,16 @@
+import fs from 'fs';
+import vm from 'vm';
+const s=fs.readFileSync('index.html','utf8');
+const a=s.indexOf('const f=(label');
+const b=s.indexOf('const SIS_DIRECT_WORK',a);
+if(a<0||b<0)throw new Error('snippet bounds missing');
+const snippet=s.slice(a,b);
+const modules=vm.runInNewContext(snippet+'\nmodules;',{}, {timeout:10000});
+const g=s.slice(s.indexOf('const GROUPS='),s.indexOf('const SPECIAL='));
+const groups=vm.runInNewContext(g+'\nGROUPS;',{}, {timeout:10000});
+const groupName=Object.fromEntries(groups.map(([id,ic,name])=>[id,name]));
+const inv=Object.entries(modules).map(([id,m])=>({id,title:m.title,group:m.group,groupName:groupName[m.group]||m.group,fields:Object.entries(m.fields||{}).map(([key,fd])=>({key,type:fd.type,label:fd.label,required:!!fd.required,unique:!!fd.unique,options:fd.options||null,ref:fd.target||null,min:fd.min||null,max:fd.max||null,search:!!fd.search})),evidence:m.evidence||[],sotk:m.sotk||'',workflow:m.workflow||false}));
+fs.writeFileSync('/mnt/data/audit_sisdpr_source/forms_inventory.json',JSON.stringify(inv,null,2));
+const summary=inv.map(x=>({group:x.groupName,id:x.id,title:x.title,fields:x.fields.length,required:x.fields.filter(f=>f.required).length,refs:x.fields.filter(f=>f.type==='ref').length,nonrequiredRefs:x.fields.filter(f=>f.type==='ref'&&!f.required).length,nonrequiredDates:x.fields.filter(f=>f.type==='date'&&!f.required).length,numeric:x.fields.filter(f=>f.type==='number').length,selects:x.fields.filter(f=>f.type==='select').length}));
+console.log('mod',inv.length,'groups',groups.length,'fields',inv.reduce((n,x)=>n+x.fields.length,0));
+for(const x of summary)console.log(JSON.stringify(x));

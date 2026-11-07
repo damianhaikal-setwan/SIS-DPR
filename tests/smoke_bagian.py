@@ -5,7 +5,7 @@ import json
 
 root=Path(__file__).resolve().parents[1]
 html=(root/'index.html').read_text()
-for file in ['ai-config.js','js/sis-workflows.js']:
+for file in ['ai-config.js','js/sis-workflows.js','js/sis-integration.js']:
  html=html.replace(f'<script src="./{file}"></script>', '<script>'+(root/file).read_text()+'</script>')
 html=html.replace('attachEvents();S.page=', 'window.__sisTest={state:S,render,navigate,modules};attachEvents();S.page=')
 report={'mode':'Browser sintetis (tanpa data atau akun produksi)','screens':[], 'errors':[],'checked':[]}
