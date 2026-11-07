@@ -2303,18 +2303,43 @@ function renstraOpenPrint(mode='full',figure='',recordId=''){
  const record=recordId?find('renstra',recordId):renstraWorkbookCurrent();if(record?.id)rpc('sis_log_document',{p_record_id:record.id,p_title:'Pratinjau cetak Renstra '+mode+(figure?' Gambar '+figure:'')}).catch(e=>console.warn('Log cetak Renstra:',e.message));
 }
 
+/** Status penyimpanan teknis tidak sama dengan status kerja atau tahap naskah. */
+function renstraStorageState(record,hasLocalChanges=false){
+ if(hasLocalChanges)return {kind:'unsaved',label:record?.id?'Perubahan belum disimpan':'Belum disimpan',hint:'Perubahan di layar belum tersimpan ke Supabase. Simpan setelah diperiksa.'};
+ if(record?.id)return {kind:'saved',label:'Tersimpan di Supabase',hint:'Rekaman terakhir berhasil dimuat dari Supabase. Ini bukan bukti penetapan dokumen.'};
+ return {kind:'new',label:'Belum disimpan',hint:'Belum ada rekaman dokumen ini di Supabase.'};
+}
+function renstraUpdateStorageIndicator(pendingSync=false){
+ const el=document.getElementById('renstraStorageBadge');if(!el)return;
+ const id=document.getElementById('renstraSheetForm')?.dataset.id||'';
+ const record=id?find('renstra',id):null;
+ const status=pendingSync?{kind:'pending',label:'Tersimpan · perlu sinkronisasi',hint:'Simpan sudah diterima server, tetapi pembacaan ulang belum berhasil. Jangan simpan ulang; pilih Sinkronisasi.'}:renstraStorageState(record,!!(S.renstraDirty||S.renstraRestored));
+ el.className='renstraStatePill renstraStatePill--'+status.kind;
+ el.textContent=status.label;
+ el.title=status.hint;
+ const hint=document.getElementById('renstraStorageExplanation');if(hint)hint.textContent=status.hint+' Tahap naskah dan penetapan resmi adalah informasi terpisah.';
+}
 function renstraWorkbookPage(){
  if(S.renstraLoadError)return `<section class="panel" role="alert"><h1>⚠ Dokumen Renstra belum dapat dibuka lengkap</h1><p>${esc(S.renstraLoadError)}</p><p>Modul lain tetap tersedia. Tidak ada data Renstra yang dihapus atau diganti.</p><button type="button" class="button" data-do="sync-renstra">↻ Sinkronkan kembali</button></section>`;
  const r=renstraWorkbookCurrent(),d={...(r?.data||renstraBaseDraft()),...(S.renstraRestored?.data||{})},unit=r?.unit||'Sekretariat DPRD';
  const writable=canWrite('renstra',unit)&&(!r||['draft','master'].includes(r.status));
  const selected=RENSTRA_CHAPTER_TABS[renstraChapterForTab(S.renstraTab||'3.3')].some(x=>x[0]===S.renstraTab)?S.renstraTab:'3.3';
  const chapter=renstraChapterForTab(selected),older=renstraOtherRecords(r);
+ const storage=renstraStorageState(r,!!(S.renstraDirty||S.renstraRestored));
+ const kerja=(r?.status==='draft'||!r)?'Draf dokumen':'Status kerja: '+statusName(r.status);
+ const naskah=String(d.statusDokumen||'Rancangan Akhir').trim()||'Rancangan Akhir';
  const chapterNames={bab1:'Latar belakang, dasar hukum, maksud, tujuan, dan sistematika.',bab2:'Gambaran pelayanan, kondisi sumber daya, permasalahan dan isu strategis.',bab3:'Tabel tujuan, sasaran, indikator, target, penahapan dan arah kebijakan.',bab4:'Keterkaitan outcome–output, program, kegiatan, subkegiatan, target, pagu dan IKU/IKK.',bab5:'Penutup, reviu APIP dan catatan verifikasi. Bukti asli harus diunggah.'};
  const allTabs=Object.entries(RENSTRA_CHAPTER_TABS).flatMap(([ch,tabs])=>tabs.map(([id,label])=>`<button type="button" role="tab" aria-selected="${id===selected}" data-tab-chapter="${ch}" data-renstra-tab="${id}" class="renstraTab ${id===selected?'is-active':''}" ${ch!==chapter?'hidden':''}>${esc(label)}</button>`)).join('');
  return `<section class="renstraWorkbook" aria-label="Dokumen Renstra Setwan 2025–2029">
  <div class="pageIntro sisModuleIntro"><div><p class="sisEyebrow">PERENCANAAN KINERJA · DOKUMEN INDUK</p><h1>📘 Renstra Sekretariat DPRD 2025–2029</h1><p><b>Satu dokumen induk</b> untuk seluruh tujuan, sasaran, program, kegiatan, subkegiatan dan indikator. Input langsung pada tabel yang disusun menurut <b>Inmendagri Nomor 2 Tahun 2025</b>.</p></div></div>
  <section class="panel renstraWorkbookTop"><div class="renstraDocumentHeader"><div><h2 style="margin:0">Dokumen induk Renstra Sekretariat DPRD</h2><p class="hint">Kabupaten Kapuas Hulu · Periode 2025–2029 · Data berasal dari Rancangan Akhir, bukan dokumen penetapan final.</p></div><div style="display:flex;flex-wrap:wrap;gap:8px"><button type="button" class="button" data-renstra-review="1">✓ Periksa kelengkapan</button>${r?`<button type="button" class="button" data-detail="${esc(r.id)}">📎 Detail & evidence</button>`:''}<div class="renstraPrintActions"><button type="button" class="primary" data-renstra-print="full">🖨 PDF Renstra lengkap</button><button type="button" class="button" data-renstra-print="chapter">PDF BAB aktif</button><button type="button" class="button" data-renstra-print="active">PDF tabel/gambar aktif</button></div></div></div>
- <div class="renstraDocumentMeta"><span>📅 2025–2029</span><span>📘 Pedoman Inmendagri 2/2025</span><span>📄 Sumber Rancangan Akhir Renstra Setwan</span><span>🏢 Sekretariat DPRD</span>${r?`<span>${chip(r.status)}</span>`:'<span>📝 Belum disimpan</span>'}</div>
+ <div class="renstraDocumentMeta"><span>📅 2025–2029</span><span>📘 Pedoman Inmendagri 2/2025</span><span>📄 Sumber Rancangan Akhir Renstra Setwan</span><span>🏢 Sekretariat DPRD</span></div>
+ <div class="renstraStatusGroup" aria-label="Status penyimpanan dan dokumen Renstra">
+  <span id="renstraStorageBadge" role="status" aria-live="polite" class="renstraStatePill renstraStatePill--${storage.kind}" title="${esc(storage.hint)}">${esc(storage.label)}</span>
+  <span class="renstraStatePill renstraStatePill--document" title="Status pengelolaan dokumen di SIS-DPR, bukan pengesahan resmi">${esc(kerja)}</span>
+  <span class="renstraStatePill renstraStatePill--source" title="Tahap naskah berdasarkan dokumen sumber, bukan hasil tombol Simpan">Tahap naskah: ${esc(naskah)}</span>
+ </div>
+ <p class="renstraStatusHelp" id="renstraStorageExplanation">${esc(storage.hint)} Tahap naskah dan penetapan resmi adalah informasi terpisah.</p>
  ${older.length?`<details class="renstraLegacyBox"><summary>${older.length} rekaman Renstra lama tetap tersimpan — lihat sebagai arsip, tidak digabung otomatis</summary><div class="renstraLegacyItems">${older.map(x=>`<button class="button" type="button" data-detail="${esc(x.id)}">${esc(x.data.kode||'Rekaman tanpa kode')} · ${esc(statusName(x.status))}</button>`).join('')}</div></details>`:''}
  ${r&&r.data?.kode!==RENSTRA_PRIMARY_CODE?`<p class="renstraStatusInfo">Rekaman lama <b>${esc(r.data.kode||'tanpa kode')}</b> digunakan sebagai dasar dokumen induk, sehingga referensi Renja/IKU yang sudah menunjuk rekaman ini tetap berlaku. Kode induk diterapkan otomatis saat simpan. Data Renstra lama lain tidak dihapus.</p>`:''}
  </section>
@@ -2387,6 +2412,7 @@ async function renstraActionSave(form){
   await renstraSaveWorkbook(form);
   try{await sync();note('Dokumen Renstra berhasil disimpan di Supabase.');}
   catch(err){console.warn('Renstra tersimpan, pemuatan ulang gagal:',err);
+   renstraUpdateStorageIndicator(true);
    if(document.getElementById('renstraSaveFeedback'))renstraShowSaveFeedback('warning','Renstra tersimpan, tetapi daftar belum terbarui','Jangan simpan ulang. Gunakan menu Sinkronisasi untuk memperbarui tampilan.');
    else note('Renstra tersimpan, tetapi daftar belum terbarui. Sinkronkan; jangan simpan ulang.','error');}
   return true;
@@ -2395,6 +2421,7 @@ async function renstraActionSave(form){
   console.error('Simpan Renstra gagal:',{status:result.status,code:result.code,endpoint:result.endpoint},err);
   // Simpan draf perangkat jika tersedia. Jangan ubah status data dan jangan retry POST otomatis.
   if(S.renstraDirty)try{vaultFlush()}catch(e){console.warn('Cadangan draf Renstra belum tersimpan:',e.message)}
+  renstraUpdateStorageIndicator();
   if(document.getElementById('renstraSaveFeedback'))renstraShowSaveFeedback('error',result.title,result.message+' '+result.unsaved,result.reference);
   else note(result.title+'. '+result.message+' '+result.reference,'error');
   return false;
@@ -2458,7 +2485,7 @@ function renstraAddSourceTargets(table){
  }
  renstraUpdateCount(host);if(added){renstraMarkDirty();note(added+' baris indikator dimasukkan dari Rancangan Akhir Renstra; sasaran dan tujuan harus diperiksa dan dilengkapi.');}else note('Indikator dari sumber sudah ada pada tabel ini; tidak diduplikasi.');
 }
-function renstraMarkDirty(){if(!S.renstraDirty){S.renstraBaseVersion=find('renstra',document.querySelector('#renstraSheetForm')?.dataset.id)?.version||0;}S.renstraDirty=true;const badge=document.getElementById('renstraUnsaved');if(badge){badge.hidden=false;badge.textContent=DRAFT_VAULT.available?'● Belum ke Supabase · cadangan lokal aktif':'● Belum tersimpan · cadangan lokal tidak tersedia';}vaultSchedule()}
+function renstraMarkDirty(){if(!S.renstraDirty){S.renstraBaseVersion=find('renstra',document.querySelector('#renstraSheetForm')?.dataset.id)?.version||0;}S.renstraDirty=true;renstraUpdateStorageIndicator();const badge=document.getElementById('renstraUnsaved');if(badge){badge.hidden=false;badge.textContent=DRAFT_VAULT.available?'● Belum ke Supabase · cadangan lokal aktif':'● Belum tersimpan · cadangan lokal tidak tersedia';}vaultSchedule()}
 function renstraSwitchChapter(chapter){if(!RENSTRA_CHAPTER_TABS[chapter])return;
  const previous=S.renstraTab,tab=RENSTRA_CHAPTER_TABS[chapter].some(x=>x[0]===previous)?previous:RENSTRA_CHAPTER_TABS[chapter][0][0];renstraSwitchTab(tab);
 }
