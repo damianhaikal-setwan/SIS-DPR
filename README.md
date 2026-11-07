@@ -1,4 +1,4 @@
-# SIPETAK Pribadi — v3.12.1-rc2
+# SIPETAK Pribadi — v3.12.3-rc1 (integrasi referensi Meta AI)
 
 **Status: kandidat uji/staging; belum diterapkan ke GitHub atau Cloudflare produksi dan belum diuji pada Safari iPhone pengguna.**
 
@@ -29,3 +29,10 @@ Informasi lengkap: [docs/REKAM-KETIK-BERSAMA-3.12.md](docs/REKAM-KETIK-BERSAMA-3
 ## Notulen dan risalah
 
 Lihat [panduan format notulen dan risalah](docs/NOTULEN-RISALAH-DPRD-3.12.1.md). Notulen dan Risalah dihasilkan dari satu transkrip, metadata dapat diisi sekali, ekspor `.doc` bisa diedit Word/Pages, serta dialog Cetak dapat disimpan sebagai PDF. Semua hasil berstatus KONSEP sampai diverifikasi.
+
+
+Untuk perbaikan terbaru Transkripsi Suara, lihat [Audit 3.12.2](docs/AUDIT-TRANSKRIPSI-3.12.2.md).
+
+## Integrasi referensi Meta AI 3.12.3
+
+Form rapat menambah Tahun Sidang, Masa Persidangan, Rapat Ke-, dan Acara Rapat. Saat merekam, notulis dapat menambahkan penanda pembicara/waktu **secara manual**. Penanda tersimpan di brankas terenkripsi bersama transkrip dan dicetak dalam lampiran konsep Notulen/Risalah. Ini bukan identifikasi pembicara otomatis. Mesin Rekam WAV + Dikte Chrome **tidak diubah**. Berkas Meta AI `notulenrek.html` **tidak perlu dan tidak boleh diunggah sebagai pengganti aplikasi**. Lihat `docs/INTEGRASI-REFERENSI-META-AI-3.12.3.md`.

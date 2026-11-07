@@ -27,3 +27,20 @@ test('manual, confirmed decisions may appear but are not automatically generated
  assert.match(n,/Perbaikan pencatatan disetujui/);
  assert.ok(!n.includes('[Belum dicatat — wajib dikonfirmasi kepada pimpinan rapat.]'));
 });
+
+test('adds sidang metadata and manually selected speaking-time markers without inventing diarization',()=>{
+ const input2={...input,details:{...input.details,sessionYear:'2026',sessionPeriod:'Masa Persidangan I',meetingNumber:'3',agenda:'Pembahasan Raperda'},markers:[{session:1,seconds:72,speaker:'Ketua Rapat'},{session:1,seconds:83,speaker:'Sekretaris / Setwan'}]};
+ const risalah=F.makeText('risalah',input2),notulen=F.makeText('notulen',input2);
+ assert.match(risalah,/Masa Persidangan I/);assert.match(notulen,/Pembahasan Raperda/);
+ assert.match(risalah,/Sesi 1 · 00:01:12 · Ketua Rapat \(ditandai manual\)/);
+ assert.match(risalah,/bukan pengenalan identitas otomatis/i);
+ assert.match(notulen,/PENANDA PEMBICARA DAN WAKTU \(MANUAL\)/);
+});
+test('manual labels are bounded and escaped; legacy records with no markers still export',()=>{
+ const h=F.makeHtml('risalah',{...input,markers:[{session:-1,seconds:-10,speaker:'<img src=x onerror=alert(1)>'}]});
+ assert.ok(h.includes('&lt;img src=x onerror=alert(1)&gt;'));
+ assert.ok(!h.includes('<img '));
+ assert.match(F.makeText('risalah',input),/Belum ada penanda pembicara manual/);
+ const m=F.sanitizeMarkers([{session:5,seconds:59,speaker:'abc'},null,{}, {speaker:'x'.repeat(1000)}]);
+ assert.equal(m.length,2);assert.equal(m[1].speaker.length,90);
+});

@@ -78,7 +78,8 @@ test('one tap starts WAV recording and live text in the same draft without auto 
  ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-stop'}});
  await new Promise(r=>setTimeout(r,35));
  assert.equal(recorderStopped,true);
- assert.equal(data.transcriptions.length,0,'Still needs verification and explicit save');
+ assert.equal(data.transcriptions.length,1,'Unverified text is backed up to encrypted vault');
+ assert.equal(data.transcriptions[0].verifiedAt,null,'Auto-backup must never become a confirmed transcript');
  ctx.SIPETAK_TRANSCRIPT.secureLock();
 });
 
@@ -128,7 +129,8 @@ test('one primary button records WAV and writes interim text before Stop; WAV re
  assert.equal(stopped,true);
  assert.match(controls.transcriptPreview.innerHTML,/download=/);
  assert.match(controls.transcriptPreview.innerHTML,/rapat.wav/);
- assert.equal(data.transcriptions.length,0,'transcript still needs review and explicit save');
+ assert.equal(data.transcriptions.length,1,'transcript text should be recoverable as encrypted provisional draft');
+ assert.equal(data.transcriptions[0].verifiedAt,null,'draft backup is not a verified official record');
 });
 
 test('combined mode refuses restricted material and missing consent without opening microphone',async()=>{
@@ -166,4 +168,75 @@ test('formal details are saved with transcript without replacing old encrypted v
  assert.equal(data.transcriptions[0].formalDetails.chair,'Ketua Rapat Verifikasi');
  assert.equal(data.transcriptions[0].formalDetails.date,'2026-11-07');
  assert.ok(!('audio' in data.transcriptions[0]));
+});
+
+
+test('automatic draft backup cannot be linked to a meeting before explicit verification',async()=>{
+ const {ctx,controls,data}=build();
+ controls.transcriptConsent.checked=true;
+ controls.transcriptPreview={innerHTML:'',querySelector:()=>null};
+ controls.transcriptAudioIndicator={textContent:''};
+ controls.transcriptTextIndicator={textContent:''};
+ ctx.SIPETAK_COMBINED_ENGINE={supported:()=>true,start:({onText,onFinished})=>{
+  onText('Draf rapat yang belum diperiksa');
+  return {ready:Promise.resolve({}),stop:async()=>{const f=new ctx.File([new Uint8Array(4096)],'draf.wav',{type:'audio/wav'});onFinished(f,null);return f;},abort:()=>{}};
+ }};
+ ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-combined'}});await tick();
+ ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-stop'}});await tick();
+ assert.equal(data.transcriptions.length,1);
+ assert.equal(data.transcriptions[0].verifiedAt,null);
+ ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-create-task'}});await tick();
+ assert.equal(data.tasks.length,0);
+ assert.match(controls.transcriptStatus.textContent,/Periksa teks dan centang konfirmasi/);
+ ctx.SIPETAK_TRANSCRIPT.secureLock();
+});
+
+test('navigation away from active microphone can be cancelled to preserve recording',async()=>{
+ const {ctx,controls}=build();controls.transcriptConsent.checked=true;
+ ctx.confirm=()=>false;
+ let aborts=0;
+ ctx.SIPETAK_COMBINED_ENGINE={supported:()=>true,start:()=>({ready:Promise.resolve({}),stop:async()=>null,abort:()=>{aborts++;}})};
+ ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-combined'}});await tick();
+ assert.equal(ctx.SIPETAK_TRANSCRIPT.leave(),false);
+ assert.equal(aborts,0,'No audio should be discarded after cancelling navigation');
+ ctx.confirm=()=>true;
+ assert.equal(ctx.SIPETAK_TRANSCRIPT.leave(),true);
+ assert.equal(aborts,1);
+});
+
+test('speaker/time annotation during a combined recording is stored with the encrypted transcript and shown in Risalah',async()=>{
+ const {ctx,controls,data}=build();
+ controls.transcriptConsent.checked=true;
+ controls.transcriptSpeakerMarkers={innerHTML:''};
+ ctx.SIPETAK_COMBINED_ENGINE={supported:()=>true,start:({onText,onFinished})=>{
+  onText('Pimpinan membuka rapat');
+  return {ready:Promise.resolve({}),stop:async()=>{
+   const wav=new ctx.File([new Uint8Array(4096)],'uji.wav',{type:'audio/wav'});
+   onFinished(wav,null);
+   return wav;
+  },abort:()=>{}};
+ }};
+ assert.match(ctx.SIPETAK_TRANSCRIPT.page(),/Penanda Pembicara & Waktu/);
+ ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-combined'}});
+ await tick();
+ ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-marker',speaker:'Ketua Rapat'}});
+ await tick();
+ assert.match(controls.transcriptSpeakerMarkers.innerHTML,/Ketua Rapat/);
+ ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-stop'}});
+ await tick();
+ assert.equal(data.transcriptions.length,1);
+ assert.equal(data.transcriptions[0].speakerMarkers.length,1);
+ assert.equal(data.transcriptions[0].speakerMarkers[0].speaker,'Ketua Rapat');
+ ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-formal-preview',kind:'risalah'}});
+ await tick();
+ assert.match(controls.transcriptOutput.innerHTML,/Ketua Rapat/);
+ assert.match(controls.transcriptOutput.innerHTML,/PENANDA/);
+ ctx.SIPETAK_TRANSCRIPT.secureLock();
+});
+
+test('marker cannot be added without an active recording',async()=>{
+ const {ctx,controls}=build();
+ ctx.SIPETAK_TRANSCRIPT.action({dataset:{action:'transcript-marker',speaker:'Ketua Rapat'}});
+ await tick();
+ assert.match(controls.transcriptStatus.textContent,/Mulai rekaman dahulu/);
 });
