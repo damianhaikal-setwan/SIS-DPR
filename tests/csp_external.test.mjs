@@ -29,5 +29,5 @@ test('App utama dimuat setelah dependensi dan valid sintaks',()=>{
 
 test('Service worker memuat versi dan file JS utama baru',()=>{
  assert.match(sw,/\/js\/sis-app\.js/);
- assert.match(sw,/sis-dpr-shell-v46-renstra-atomic-20261107/);
+ assert.match(sw,/sis-dpr-shell-v47-renstra-status-20261107/);
 });
