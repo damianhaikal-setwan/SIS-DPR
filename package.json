@@ -1,7 +1,7 @@
 {
   "name": "sis-dpr-kapuas-hulu",
   "private": true,
-  "version": "2026.11.07-kinerja-finance",
+  "version": "2026.11.07-crud-renstra-400",
   "type": "module",
   "description": "SIS-DPR — aplikasi web statis Cloudflare Pages dengan backend AI terpisah",
   "scripts": {
