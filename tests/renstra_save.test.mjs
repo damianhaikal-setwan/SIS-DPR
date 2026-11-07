@@ -31,10 +31,10 @@ test('kode error dan popup tidak meneruskan pesan backend panjang',()=>{
 });
 test('tombol Renstra memakai handler khusus dan indikator kesalahan inline',()=>{
  const html=fs.readFileSync('index.html','utf8');
- const js=html.slice(html.indexOf('<script>')+8,html.lastIndexOf('</script>'));
+ const js=fs.readFileSync('js/sis-app.js','utf8');
  new vm.Script(js);
- assert.match(html,/if\(f.id==='renstraSheetForm'\)return renstraActionSave\(f\);/);
- assert.match(html,/id="renstraSaveFeedback"/);
+ assert.match(js,/if\(f.id==='renstraSheetForm'\)return renstraActionSave\(f\);/);
+ assert.match(js,/id="renstraSaveFeedback"/);
  assert.match(html,/\.\/js\/sis-renstra-save\.js/);
  assert.match(html,/max-height:112px/);
  assert.match(fs.readFileSync('sw.js','utf8'),/\/js\/sis-renstra-save.js/);

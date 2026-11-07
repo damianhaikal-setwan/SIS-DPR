@@ -4,8 +4,9 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const html = fs.readFileSync('index.html', 'utf8');
-const moduleSource = html.slice(html.indexOf('const modules={'),html.indexOf('const SIS_DIRECT_WORK='));
-const groupsSource = html.slice(html.indexOf('const GROUPS=['), html.indexOf('const SPECIAL='));
+const app = fs.readFileSync('js/sis-app.js','utf8');
+const moduleSource = app.slice(app.indexOf('const modules={'),app.indexOf('const SIS_DIRECT_WORK='));
+const groupsSource = app.slice(app.indexOf('const GROUPS=['), app.indexOf('const SPECIAL='));
 const context = {};
 vm.runInNewContext(`const f=(label,type='text',opts={})=>({label,type,...opts});const dateFields=label=>({type:'date',label});${moduleSource};globalThis.modules=modules;${groupsSource};globalThis.groups=GROUPS;`,context);
 vm.runInNewContext(fs.readFileSync('js/sis-integration.js','utf8'), context);

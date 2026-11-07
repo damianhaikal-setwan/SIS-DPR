@@ -14,6 +14,7 @@ if True:
    page=browser.new_page(viewport={'width':width,'height':height}, device_scale_factor=1)
    page.on('pageerror', lambda error: report['errors'].append(str(error)))
    html=(root/'index.html').read_text().replace('<script src="./ai-config.js"></script><script src="./js/sis-workflows.js"></script>', '<script>'+ (root/'ai-config.js').read_text() +'</script><script>'+ (root/'js'/'sis-workflows.js').read_text() +'</script><script>'+(root/'js'/'sis-integration.js').read_text()+'</script>').replace('<script src="./js/sis-integration.js"></script>','')
+   html=html.replace('<script src="./js/sis-app.js"></script>', '<script>'+ (root/'js/sis-app.js').read_text(encoding='utf-8')+'</script>')
    html=html.replace('attachEvents();S.page=', 'window.__sisTest={state:S,render,navigate,modules};attachEvents();S.page=')
    page.set_content(html, wait_until='domcontentloaded')
    page.evaluate('''() => {

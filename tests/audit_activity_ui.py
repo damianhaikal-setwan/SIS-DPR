@@ -4,6 +4,7 @@ r=Path(__file__).resolve().parents[1]
 h=(r/'index.html').read_text()
 for f in ['ai-config.js','js/sis-workflows.js','js/sis-integration.js']:
  h=h.replace(f'<script src="./{f}"></script>','<script>'+(r/f).read_text()+'</script>')
+h=h.replace('<script src="./js/sis-app.js"></script>', '<script>'+ (r/'js/sis-app.js').read_text(encoding='utf-8')+'</script>')
 h=h.replace('attachEvents();S.page=', 'window.__audit={state:S,navigate,sisRenderForm,sisDomainValidate,sisYearOf,sisInYear};attachEvents();S.page=')
 with sync_playwright() as p:
  b=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox'])

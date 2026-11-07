@@ -4,7 +4,7 @@ from playwright.sync_api import sync_playwright
 import json
 root=Path(__file__).resolve().parents[1]
 html=(root/'index.html').read_text(encoding='utf-8')
-for path in ['ai-config.js','js/sis-workflows.js','js/sis-form-guards.js','js/sis-integration.js','js/sis-crud-guards.js','js/sis-kinerja-finance.js','js/sis-renstra-save.js']:
+for path in ['ai-config.js','js/sis-workflows.js','js/sis-form-guards.js','js/sis-integration.js','js/sis-crud-guards.js','js/sis-kinerja-finance.js','js/sis-renstra-save.js','js/sis-app.js']:
  tag=f'<script src="./{path}"></script>'
  assert tag in html,path
  html=html.replace(tag,'<script>'+ (root/path).read_text(encoding='utf-8')+'</script>')

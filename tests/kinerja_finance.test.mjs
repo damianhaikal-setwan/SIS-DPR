@@ -61,11 +61,11 @@ test('draf perjalanan/realisasi/SPJ tidak mengarang nomor resmi, nilai atau bukt
 });
 
 test('Cloudflare tetap root dan perubahan frontend dilengkapi service worker',()=>{
- const html=fs.readFileSync('index.html','utf8');const sw=fs.readFileSync('sw.js','utf8');
+ const html=fs.readFileSync('index.html','utf8');const app=fs.readFileSync('js/sis-app.js','utf8');const sw=fs.readFileSync('sw.js','utf8');
  for(const name of ['js/sis-kinerja-finance.js','js/sis-form-guards.js','js/sis-integration.js']){
   assert.match(html,new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
   assert.ok(fs.existsSync(name));assert.ok(sw.includes('/'+name));
  }
- assert.match(html,/data-kf-create/);assert.match(html,/sisKinerjaFinancePanel/);
- assert.match(html,/SISKinerjaFinance\.validateDraft/);assert.ok(!fs.existsSync('public/index.html'));
+ assert.match(app,/data-kf-create/);assert.match(app,/sisKinerjaFinancePanel/);
+ assert.match(app,/SISKinerjaFinance\.validateDraft/);assert.ok(!fs.existsSync('public/index.html'));
 });

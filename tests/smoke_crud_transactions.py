@@ -4,7 +4,7 @@ from playwright.sync_api import sync_playwright
 import json
 root=Path(__file__).resolve().parents[1]
 h=(root/'index.html').read_text()
-for path in ['ai-config.js','js/sis-workflows.js','js/sis-form-guards.js','js/sis-integration.js','js/sis-crud-guards.js','js/sis-kinerja-finance.js']:
+for path in ['ai-config.js','js/sis-workflows.js','js/sis-form-guards.js','js/sis-integration.js','js/sis-crud-guards.js','js/sis-kinerja-finance.js','js/sis-renstra-save.js','js/sis-app.js']:
  h=h.replace(f'<script src="./{path}"></script>','<script>'+(root/path).read_text()+'</script>')
 h=h.replace('attachEvents();S.page=','window.__t={S,navigate,sisRenderForm,detailModal};attachEvents();S.page=')
 with sync_playwright() as p:

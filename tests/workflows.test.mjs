@@ -5,13 +5,14 @@ import {readFileSync} from 'node:fs';
 await import('../js/sis-workflows.js');
 const W=globalThis.SISWorkflow;
 const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
+const app=readFileSync(new URL('../js/sis-app.js',import.meta.url),'utf8');
 
 test('12 submodul memakai status kerja langsung, bukan rantai persetujuan',()=>{
  assert.equal(W.directModules.length,12);
  assert.deepEqual(W.states,['Draf','Dalam proses','Selesai','Dibatalkan']);
- for(const m of W.directModules)assert.match(html,new RegExp('^'+m+':\\{','m'),m);
- assert.ok(html.includes('!sisIsDirect(r.module)&&can&&r.status'));
- assert.ok(html.includes('sisIsDirect(r.module)?sisWorkChip(r):chip(r.status)'));
+ for(const m of W.directModules)assert.match(app,new RegExp('^'+m+':\\{','m'),m);
+ assert.ok(app.includes('!sisIsDirect(r.module)&&can&&r.status'));
+ assert.ok(app.includes('sisIsDirect(r.module)?sisWorkChip(r):chip(r.status)'));
  assert.equal(W.workStatus({status:'draft',data:{}}),'Draf');
  assert.equal(W.workStatus({status:'draft',data:{statusKerja:'Selesai'}}),'Selesai');
  assert.equal(W.workStatus({status:'diajukan',data:{}}),'Status warisan: diajukan');
@@ -48,13 +49,13 @@ test('rekap hanya mengambil data tahun terkait, tidak mengarang data sejarah',()
  assert.equal(snap.rapat,1);
  assert.equal(snap.pengawasan,1);
  assert.equal(snap.risalah,0);
- assert.ok(html.includes('bukan laporan pengesahan'));
+ assert.ok(app.includes('bukan laporan pengesahan'));
 });
 
 test('layout Cloudflare & service worker konsisten untuk asset helper',()=>{
  const sw=readFileSync(new URL('../sw.js',import.meta.url),'utf8');
  assert.ok(sw.includes("'/js/sis-workflows.js'"));
  assert.ok(html.includes('<script src="./js/sis-workflows.js"></script>'));
- assert.ok(html.includes('sisOperationalOverview(k)'));
- assert.ok(html.includes('data-report-prefill'));
+ assert.ok(app.includes('sisOperationalOverview(k)'));
+ assert.ok(app.includes('data-report-prefill'));
 });

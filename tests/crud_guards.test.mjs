@@ -44,10 +44,10 @@ test('CRUD: lampiran tercatat dalam peringatan, tanpa penghapusan otomatis',()=>
 });
 test('CRUD: alur semua modul terpasang, Cloudflare root tetap seperti sebelumnya',()=>{
  const html=fs.readFileSync('index.html','utf8');
- const js=html.slice(html.indexOf('<script>')+8,html.lastIndexOf('</script>'));
+ const js=fs.readFileSync('js/sis-app.js','utf8');
  new vm.Script(js);
  assert.match(html,/\.\/js\/sis-crud-guards\.js/);
- for(const signature of ['SISCrudGuard.deleteSafety','sisTryCloseModal','Status penyimpanan BELUM PASTI','data-delete','if(S.busy){e.preventDefault();return;}'])assert.ok(html.includes(signature),signature);
+ for(const signature of ['SISCrudGuard.deleteSafety','sisTryCloseModal','Status penyimpanan BELUM PASTI','data-delete','if(S.busy){e.preventDefault();return;}'])assert.ok(js.includes(signature),signature);
  const sw=fs.readFileSync('sw.js','utf8');assert.ok(sw.includes('/js/sis-crud-guards.js'));
  assert.ok(fs.existsSync('index.html'));assert.ok(!fs.existsSync('public/index.html'));
 });

@@ -7,7 +7,7 @@ const root=process.cwd();
 const exists=f=>fs.existsSync(path.join(root,f));
 
 test('Cloudflare Pages existing configuration: index and assets in repository root',()=>{
-  for(const f of ['index.html','ai-config.js','js/sis-workflows.js','js/sis-integration.js','sw.js','manifest.webmanifest','functions/api/ai.js'])assert.ok(exists(f),f);
+  for(const f of ['index.html','ai-config.js','js/sis-workflows.js','js/sis-integration.js','js/sis-app.js','sw.js','manifest.webmanifest','functions/api/ai.js'])assert.ok(exists(f),f);
   assert.equal(exists('public'),false,'New public/ directory would require changing existing Cloudflare build output.');
   assert.equal(exists('public/index.html'),false);
   for(const f of ['functions/api/ai.js','worker/src/index.js','supabase/config.toml','tests/static.test.mjs'])assert.ok(exists(f),f);
@@ -21,7 +21,7 @@ test('PWA refs and cache targets resolve to existing root assets',()=>{
     assert.ok(exists(p),p);
     assert.ok(html.includes('./'+p),'HTML reference missing: '+p);
   }
-  assert.ok(html.includes("register('./sw.js')"));
+  assert.ok(fs.readFileSync(path.join(root,'js/sis-app.js'),'utf8').includes("register('./sw.js')"));
   assert.equal(manifest.start_url,'/');
   for(const icon of manifest.icons)assert.ok(exists(icon.src.replace(/^\//,'')),icon.src);
   for(const url of [...sw.matchAll(/'(\/[^']+)'/g)].map(m=>m[1]))if(url!=='/')assert.ok(exists(url.replace(/^\//,'')),'PWA cache target missing: '+url);

@@ -6,6 +6,7 @@ r=Path(__file__).resolve().parents[1]
 html=(r/'index.html').read_text()
 for x in ['ai-config.js','js/sis-workflows.js','js/sis-integration.js']:
     html=html.replace(f'<script src="./{x}"></script>','<script>'+(r/x).read_text()+'</script>')
+html=html.replace('<script src="./js/sis-app.js"></script>', '<script>'+ (r/'js/sis-app.js').read_text(encoding='utf-8')+'</script>')
 html=html.replace('attachEvents();S.page=', 'window.__audit={state:S,render,navigate,modules,sisRenderForm,editModal};attachEvents();S.page=')
 report={'source':'SIS-DPR_INTEGRASI_11_KELOMPOK_ROOT_CLOUDFLARE_20261106.zip','mode':'local mock auth; no Supabase requests','pages':[],'error':[],'exceptions':[],'tested':0}
 with sync_playwright() as p:

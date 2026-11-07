@@ -7,6 +7,7 @@ root=Path(__file__).resolve().parents[1]
 html=(root/'index.html').read_text()
 for file in ['ai-config.js','js/sis-workflows.js','js/sis-integration.js']:
  html=html.replace(f'<script src="./{file}"></script>', '<script>'+(root/file).read_text()+'</script>')
+html=html.replace('<script src="./js/sis-app.js"></script>', '<script>'+ (root/'js/sis-app.js').read_text(encoding='utf-8')+'</script>')
 html=html.replace('attachEvents();S.page=', 'window.__sisTest={state:S,render,navigate,modules};attachEvents();S.page=')
 report={'mode':'Browser sintetis (tanpa data atau akun produksi)','screens':[], 'errors':[],'checked':[]}
 with sync_playwright() as p:

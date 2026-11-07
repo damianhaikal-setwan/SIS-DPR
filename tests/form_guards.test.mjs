@@ -7,6 +7,7 @@ const activity=(more={})=>({kode:'KEG-2026-ABCD123456',nama:'Rapat koordinasi',j
 const opts=(module,data,extra={})=>({module,data,activeYear:2026,isNew:true,...extra});
 const valid=(o)=>G.check(o);
 const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
+const app=fs.readFileSync(new URL('../js/sis-app.js',import.meta.url),'utf8');
 
 test('kegiatan baru draf cepat beridentitas tahun kerja Supabase, tanpa tanggal',()=>{
  valid(opts('kegiatan',activity()));
@@ -64,8 +65,8 @@ test('pengawasan, realisasi, perjalanan dan siklus pohon kinerja dicegah secara 
 
 test('Cloudflare tetap root, script guard terpasang, dan kegiatan tahun kosong tidak bocor ke tahun lain',()=>{
  assert.match(html,/<script src="\.\/js\/sis-form-guards\.js"><\/script>/);
- assert.match(html,/if\(r\.module==='kegiatan'&&year==null\)return false/);
- assert.match(html,/tahunKegiatan:f\('Tahun kerja \(dari Supabase\)'/);
+ assert.match(app,/if\(r\.module==='kegiatan'&&year==null\)return false/);
+ assert.match(app,/tahunKegiatan:f\('Tahun kerja \(dari Supabase\)'/);
  assert.ok(fs.existsSync(new URL('../functions/api/ai.js',import.meta.url)));
  assert.ok(fs.readFileSync(new URL('../sw.js',import.meta.url),'utf8').includes('/js/sis-form-guards.js'));
 });
